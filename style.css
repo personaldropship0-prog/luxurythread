@@ -3,7 +3,6 @@
 /* --- CONFIGURAZIONE IMMAGINI LOCALI --- */
 :root {
     /* TEMA GIORNO (Marmo Bianco) */
-    /* Il codice cerca il file "marmo-white.jpg" nella cartella "img" */
     --marble-img: url('img/marmo-white.jpg');
     
     --body-bg: #f5f5f5; 
@@ -11,13 +10,13 @@
     --accent-color: #000000;
     --border-color: #000000;
     --card-bg: #ffffff;
-    /* Ombra bianca leggera per leggere il testo sul marmo chiaro */
-    --text-shadow: 0px 0px 10px rgba(255,255,255,0.9); 
+    
+    /* Ombra bianca più forte per leggere il testo nero sul marmo */
+    --text-shadow: 0px 0px 8px rgba(255,255,255,1); 
 }
 
 body.dark-mode {
-    /* TEMA NOTTE (Marmo Nero - dopo le 19:00) */
-    /* Il codice cerca il file "marmo-black.jpg" nella cartella "img" */
+    /* TEMA NOTTE (Marmo Nero) */
     --marble-img: url('img/marmo-black.jpg');
     
     --body-bg: #111111;
@@ -25,19 +24,17 @@ body.dark-mode {
     --accent-color: #ffffff;
     --border-color: #ffffff;
     --card-bg: #1a1a1a;
-    /* Ombra nera forte per leggere il testo sul marmo scuro */
-    --text-shadow: 0px 0px 5px rgba(0,0,0,1); 
+    
+    /* Ombra nera per leggere il testo bianco sul marmo */
+    --text-shadow: 0px 0px 8px rgba(0,0,0,1); 
 }
 
-/* CLASSE "EFFETTO MARMO" */
+/* CLASSE UTILITÀ PER APPLICARE IL MARMO */
 .marble-texture {
     background-image: var(--marble-img);
-    background-size: cover;       /* Copre tutto lo spazio */
-    background-position: center;  /* Centra l'immagine */
-    background-repeat: no-repeat; /* Non ripeterla a mattonella */
-    
-    /* Fallback: se l'immagine non si trova, usa un colore solido */
-    background-color: var(--card-bg); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* --- BASE --- */
@@ -58,55 +55,40 @@ body {
     padding: 10px 20px;
     border-bottom: 2px solid var(--border-color);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-    
-    /* Qui viene applicata la texture marmo tramite HTML */
+    /* Ha già la classe .marble-texture nell'HTML */
 }
 
 .header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1800px;
-    margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    max-width: 1800px; margin: 0 auto;
 }
 
-/* --- LOGO CIRCOLARE --- */
+/* --- LOGO --- */
 .logo-slot {
-    width: 60px; 
-    height: 60px;
+    width: 60px; height: 60px;
     border-radius: 50%;
     border: 2px solid var(--border-color);
-    overflow: hidden; 
-    cursor: pointer;
-    background: #fff;
+    overflow: hidden; cursor: pointer;
+    background: #fff; flex-shrink: 0; margin-right: 15px;
     display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; 
-    margin-right: 15px; /* Spazio tra logo e testo */
 }
-
-.logo-slot img {
-    width: 100%; height: 100%; object-fit: cover; display: block;
-}
-
+.logo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .brand-fallback { font-family: 'Oswald'; font-weight: bold; font-size: 1.5rem; }
 
 /* TITOLO */
 .brand-title {
     font-family: 'Oswald', sans-serif;
     font-size: clamp(24px, 5vw, 48px);
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    cursor: pointer;
-    text-shadow: var(--text-shadow); /* Fondamentale per leggere sul marmo */
-    letter-spacing: -1px;
+    font-weight: 700; text-transform: uppercase;
+    text-align: center; cursor: pointer;
+    text-shadow: var(--text-shadow); /* Leggibilità */
     flex-grow: 1;
 }
 
 /* SEARCH BAR */
 .search-bar {
     display: flex;
-    background: var(--card-bg);
+    background: var(--card-bg); /* La barra ricerca rimane solida per leggere bene ciò che scrivi */
     border: 2px solid var(--border-color);
     height: 40px;
 }
@@ -117,8 +99,7 @@ body {
     color: var(--text-color); outline: none; width: 150px;
 }
 .search-bar button {
-    background: var(--accent-color);
-    color: var(--card-bg);
+    background: var(--accent-color); color: var(--card-bg);
     border: none; padding: 0 15px; cursor: pointer;
 }
 
@@ -131,15 +112,14 @@ body {
 }
 .filters button {
     padding: 10px 25px;
-    background: var(--card-bg);
+    background: var(--card-bg); /* Bottoni filtri: fondo solido o marmo? Lascio solido per pulizia */
     border: 2px solid var(--border-color);
     font-family: 'Oswald'; font-weight: 700; text-transform: uppercase;
     cursor: pointer; color: var(--text-color);
 }
 .filters button.active, .filters button:hover {
     background: var(--accent-color); color: var(--card-bg);
-    transform: translateY(-3px);
-    box-shadow: 4px 4px 0 var(--border-color);
+    transform: translateY(-3px); box-shadow: 4px 4px 0 var(--border-color);
 }
 
 .product-grid {
@@ -149,8 +129,13 @@ body {
     max-width: 1800px; margin: 0 auto;
 }
 
+/* --- CARD PRODOTTO CON MARMO --- */
 .card {
-    background: var(--card-bg);
+    /* APPLICO IL MARMO ANCHE QUI */
+    background-image: var(--marble-img);
+    background-size: cover;
+    background-position: center;
+    
     border: 2px solid var(--border-color);
     transition: transform 0.2s; cursor: pointer;
 }
@@ -159,73 +144,102 @@ body {
     box-shadow: 8px 8px 0 var(--text-color);
 }
 .card-img { width: 100%; height: 350px; object-fit: cover; border-bottom: 2px solid var(--border-color); }
-.card-details { padding: 15px; }
+
+.card-details { 
+    padding: 15px; 
+    /* Aggiungo ombra al testo per leggerlo sopra il marmo */
+    text-shadow: var(--text-shadow);
+}
 .card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 5px; }
 .price { font-weight: 700; font-family: 'Oswald'; font-size: 1.2rem; }
 
-/* --- PAGINA PRODOTTO (SFONDO MARMO) --- */
+/* --- PAGINA PRODOTTO --- */
 .single-product-view {
-    display: none;
-    min-height: 100vh;
-    padding-bottom: 50px;
-    /* La texture marmo viene applicata qui perché nell'HTML ha class="marble-texture" */
+    display: none; min-height: 100vh; padding-bottom: 50px;
 }
 
-.product-top-bar {
-    padding: 20px 40px;
-    text-align: right; 
-}
+.product-top-bar { padding: 20px 40px; text-align: right; }
 
 .close-view-btn {
     background: var(--card-bg); 
     border: 2px solid var(--text-color);
     color: var(--text-color);
     font-family: 'Oswald'; font-weight: 700;
-    padding: 10px 25px; cursor: pointer;
-    font-size: 1.1rem;
+    padding: 10px 25px; cursor: pointer; font-size: 1.1rem;
     box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
 }
 .close-view-btn:hover { transform: scale(1.05); }
 
+/* --- BOX DETTAGLIO CON MARMO --- */
 .product-detail-container {
     display: flex;
-    max-width: 1300px;
-    margin: 0 auto;
-    background: var(--card-bg); /* Il box del prodotto resta tinta unita per leggibilità */
+    max-width: 1300px; margin: 0 auto;
+    
+    /* APPLICO IL MARMO ANCHE QUI */
+    background-image: var(--marble-img);
+    background-size: cover;
+    background-position: center;
+    
     border: 3px solid var(--border-color);
     box-shadow: 15px 15px 0 rgba(0,0,0,0.5); 
 }
 
 .detail-image { flex: 1; border-right: 2px solid var(--border-color); }
-.detail-image img { width: 100%; height: 100%; object-fit: cover; }
+.detail-image img { width: 100%; height: 100%; object-fit: cover; display: block;}
 
-.detail-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+.detail-info { 
+    flex: 1; padding: 50px; 
+    display: flex; flex-direction: column; justify-content: center; 
+    /* Ombra al testo fondamentale qui */
+    text-shadow: var(--text-shadow);
+}
 
 .badge {
     background: var(--accent-color); color: var(--card-bg);
     padding: 5px 15px; align-self: start; font-family: 'Oswald'; font-weight: bold; margin-bottom: 20px;
+    text-shadow: none; /* Il badge è solido, non serve ombra */
 }
 .detail-info h2 { font-family: 'Oswald'; font-size: 3.5rem; text-transform: uppercase; line-height: 1; margin-bottom: 20px; }
+.detail-info p { font-weight: 500; } /* Font un po' più spesso per leggibilità */
 .price-tag { font-family: 'Oswald'; font-size: 2.5rem; font-weight: bold; margin-bottom: 40px; }
 .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
-.buy-btn {
-    flex: 1; padding: 15px; font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; border: 2px solid var(--border-color); cursor: pointer;
-}
-.main-btn { background: var(--accent-color); color: var(--card-bg); }
-.sec-btn { background: transparent; color: var(--text-color); }
 
-/* FOOTER MARMO */
+.buy-btn {
+    flex: 1; padding: 15px; font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; 
+    border: 2px solid var(--border-color); cursor: pointer;
+}
+.main-btn { background: var(--accent-color); color: var(--card-bg); text-shadow: none;}
+.sec-btn { background: transparent; color: var(--text-color); border-color: var(--text-color); }
+.sec-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* --- FOOTER --- */
 footer {
-    padding: 40px; text-align: center; font-family: 'Oswald';
+    padding: 20px; text-align: center; font-family: 'Oswald';
     border-top: 2px solid var(--border-color);
     text-shadow: var(--text-shadow);
-    /* Anche qui il marmo apparirà perché nell'HTML c'è class="marble-texture" */
+}
+.footer-content {
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
 }
 .contact-link { color: inherit; font-weight: bold; }
 
+/* TASTO CAMBIO TEMA */
+#theme-toggle {
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    border-radius: 20px;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+#theme-toggle:hover { transform: scale(1.1); }
+
 /* POPUP */
 .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;}
-.popup-box { background: var(--card-bg); padding: 30px; border: 2px solid var(--border-color); text-align: center; max-width: 400px; }
+.popup-box { background: var(--card-bg); padding: 30px; border: 2px solid var(--border-color); text-align: center; max-width: 400px; text-shadow: none;} /* Popup resta solido */
 .popup-box button { width: 100%; margin-top: 10px; }
 
 /* MOBILE */
