@@ -14,7 +14,9 @@ const requestBox = document.getElementById("request-box");
 const popup = document.getElementById("popup");
 const popupText = document.getElementById("popup-text");
 
-function renderProducts(list) {
+// Render prodotti
+function renderProducts(list, category="all") {
+  container.dataset.category = category;
   container.innerHTML = "";
   list.forEach(p => {
     container.innerHTML += `
@@ -27,16 +29,18 @@ function renderProducts(list) {
   });
 }
 
+// Filtri
 function filterProducts(cat) {
   hero.style.display = "none";
   filters.style.display = "none";
   searchSection.style.display = "none";
 
   const list = cat === "all" ? products : products.filter(p => p.category === cat);
-  renderProducts(list);
+  renderProducts(list, cat);
   container.scrollIntoView({ behavior: "smooth" });
 }
 
+// Ricerca
 function searchProduct() {
   const q = document.getElementById("searchInput").value.toLowerCase().trim();
   results.innerHTML = "";
@@ -69,7 +73,7 @@ function searchProduct() {
   searchSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-// Nuova funzione popup
+// Mostra popup richiesta
 function showRequestPopup() {
   const product = document.getElementById("requestInput").value.trim();
   const note = document.getElementById("requestNote").value.trim();
@@ -82,20 +86,19 @@ function showRequestPopup() {
   popup.style.display = "flex";
 }
 
+// Copia e apri Instagram
 function copyAndOpenInstagram() {
   const text = popupText.innerText;
-
   navigator.clipboard.writeText(text).then(() => {
-    // apre Instagram DM
     window.open("https://ig.me/m/luxury.thread_", "_blank");
     closePopup();
   });
 }
 
-function closePopup() {
-  popup.style.display = "none";
-}
+// Chiudi popup
+function closePopup() { popup.style.display = "none"; }
 
+// Torna home
 function goHome() {
   hero.style.display = "flex";
   filters.style.display = "flex";
@@ -105,4 +108,5 @@ function goHome() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+// Render iniziale
 renderProducts(products);
