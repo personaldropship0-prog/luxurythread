@@ -12,10 +12,10 @@
 <header class="main-header marble-texture">
   <div class="header-content">
     
-   <div class="logo-slot" onclick="goHome()">
-  <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
-  <span class="brand-fallback" style="display:none">LT</span>
-</div>
+    <div class="logo-slot" onclick="goHome()">
+      <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
+      <span class="brand-fallback" style="display:none">LT</span>
+    </div>
     
     <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
 
@@ -47,8 +47,12 @@
   </div>
 
   <footer class="marble-texture">
-    <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
-    <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
+    <div class="footer-content">
+      <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
+      <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
+      
+      <button id="theme-toggle" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
+    </div>
   </footer>
 </main>
 
@@ -90,4 +94,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
