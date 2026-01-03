@@ -10,83 +10,40 @@
 
 <div class="bg"></div>
 
-<!-- HEADER -->
 <header class="topbar">
   <div class="logo" onclick="goHome()">Luxury Thread</div>
 
   <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Cerca prodotti..." />
+    <input id="searchInput" type="text" placeholder="Cerca prodotti">
     <button onclick="searchProduct()">Cerca</button>
   </div>
 </header>
 
-<!-- HERO -->
-<section class="overlay" id="home">
+<section class="hero" id="home">
   <h1 class="title-3d">LUXURY<br>THREAD</h1>
   <p class="subtitle">Timeless fashion. Modern soul.</p>
 </section>
 
-<!-- CATALOGO -->
-<nav class="catalogo">
-  <button onclick="showSection('scarpe', event)">Scarpe</button>
-  <button onclick="showSection('maglie', event)">Maglie</button>
-  <button onclick="showSection('pantaloni', event)">Pantaloni</button>
+<nav class="filters">
+  <button onclick="filterProducts('all')">Tutti</button>
+  <button onclick="filterProducts('scarpe')">Scarpe</button>
+  <button onclick="filterProducts('maglie')">Maglie</button>
+  <button onclick="filterProducts('pantaloni')">Pantaloni</button>
 </nav>
 
-<!-- RISULTATI RICERCA -->
-<section id="search-results" class="sezione">
-  <div class="overlay-section">
-    <h2 id="search-title"></h2>
-    <div id="results-container" class="results-grid"></div>
-    <button class="back" onclick="goHome()">← Torna alla Home</button>
-  </div>
+<section class="products" id="products"></section>
+
+<section id="search-results" class="search-section">
+  <h2 id="search-title"></h2>
+  <div id="results" class="products"></div>
+  <button class="back" onclick="goHome()">← Torna alla Home</button>
 </section>
 
-<!-- SCARPE -->
-<section id="scarpe" class="sezione">
-  <div class="overlay-section">
-    <h2>Scarpe</h2>
-    <div class="card">
-      <h3>Signature Leather</h3>
-      <p>Scarpe in pelle premium dal design essenziale.</p>
-      <a class="btn" href="https://ig.me/m/luxury.thread_" target="_blank">Contattaci su Instagram</a>
-    </div>
-    <button class="back" onclick="goHome()">← Torna alla Home</button>
-  </div>
-</section>
-
-<!-- MAGLIE -->
-<section id="maglie" class="sezione">
-  <div class="overlay-section">
-    <h2>Maglie</h2>
-    <div class="card">
-      <h3>Essential Knit</h3>
-      <p>Maglia sartoriale, comfort e stile.</p>
-      <a class="btn" href="https://ig.me/m/luxury.thread_" target="_blank">Contattaci su Instagram</a>
-    </div>
-    <button class="back" onclick="goHome()">← Torna alla Home</button>
-  </div>
-</section>
-
-<!-- PANTALONI -->
-<section id="pantaloni" class="sezione">
-  <div class="overlay-section">
-    <h2>Pantaloni</h2>
-    <div class="card">
-      <h3>Tailored Urban</h3>
-      <p>Pantaloni moderni dal taglio pulito.</p>
-      <a class="btn" href="https://ig.me/m/luxury.thread_" target="_blank">Contattaci su Instagram</a>
-    </div>
-    <button class="back" onclick="goHome()">← Torna alla Home</button>
-  </div>
-</section>
-
-<!-- CONTATTACI -->
 <section class="contact">
   <div class="contact-box">
     <h2>Contattaci</h2>
-    <p>Scrivici direttamente su Instagram</p>
-    <a class="contact-btn" href="https://instagram.com/luxury.thread_" target="_blank">
+    <p>Scrivici su Instagram per ordini e informazioni</p>
+    <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-btn">
       @luxury.thread_
     </a>
   </div>
