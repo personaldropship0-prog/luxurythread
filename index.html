@@ -11,8 +11,9 @@
 
 <header class="main-header marble-texture">
   <div class="header-content">
+    
     <div class="logo-slot" onclick="goHome()">
-      <img src="logo.png" alt="LT Logo" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='block'">
+      <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
       <span class="brand-fallback" style="display:none">LT</span>
     </div>
     
@@ -28,7 +29,9 @@
 </header>
 
 <main id="home-view">
-  <div class="spacer"></div> <nav class="filters">
+  <div class="spacer"></div>
+  
+  <nav class="filters">
     <button onclick="filterProducts('all')" class="active">ALL</button>
     <button onclick="filterProducts('sneakers')">SNEAKERS</button>
     <button onclick="filterProducts('hoodies')">HOODIES</button>
@@ -40,7 +43,7 @@
 
   <div id="no-results" class="no-results-box" style="display:none;">
     <h2>NESSUN RISULTATO</h2>
-    <p>Non trovi quello che cerchi? Inviaci una richiesta.</p>
+    <p>Inviaci una richiesta su IG.</p>
   </div>
 
   <footer class="marble-texture">
@@ -54,7 +57,7 @@
   <div class="spacer"></div>
   
   <div class="product-top-bar">
-    <button class="close-view-btn" onclick="goBackToHome()">✕ CLOSE VIEW</button>
+    <button class="close-view-btn" onclick="goBackToHome()">✕ TORNA ALLA HOME</button>
   </div>
 
   <div class="product-detail-container">
@@ -75,12 +78,11 @@
   </div>
 </section>
 
-
 <div id="popup" class="popup-overlay">
   <div class="popup-box">
-    <h3>MESSAGGIO PRONTO</h3>
+    <h3>MESSAGGIO COPIATO</h3>
     <p id="popup-text"></p>
-    <button class="buy-btn main-btn" onclick="openInstagram()">APRI INSTAGRAM</button>
+    <button class="buy-btn main-btn" onclick="openInstagram()">VAI SU INSTAGRAM</button>
     <button class="buy-btn sec-btn" onclick="closePopup()">CHIUDI</button>
   </div>
 </div>
