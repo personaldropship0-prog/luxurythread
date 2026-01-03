@@ -32,7 +32,6 @@ function checkDarkMode() {
         console.log("Light mode attivata (orario diurno)");
     }
 }
-// Esegui il controllo all'avvio
 checkDarkMode();
 
 
@@ -44,9 +43,8 @@ function renderProducts(list) {
     } else {
         noResults.style.display = "none";
         list.forEach(p => {
-            // Nota: ora cliccando si chiama goToProductPage invece di openModal
             grid.innerHTML += `
-                <div class="card glass-panel" onclick="goToProductPage(${p.id})">
+                <div class="card" onclick="goToProductPage(${p.id})">
                     <img src="${p.img}" class="card-img" alt="${p.name}">
                     <div class="card-details">
                         <h3>${p.name}</h3>
@@ -61,7 +59,7 @@ function renderProducts(list) {
 function filterProducts(cat) {
     document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
-    searchInput.value = ""; // Reset ricerca
+    searchInput.value = "";
     
     if (cat === 'all') renderProducts(products);
     else renderProducts(products.filter(p => p.category === cat));
@@ -76,55 +74,40 @@ function performSearch() {
 }
 
 // --- 3. LOGICA NAVIGAZIONE "PAGINA A PARTE" ---
-
-// Funzione per andare alla pagina prodotto
 function goToProductPage(id) {
     const p = products.find(x => x.id === id);
     if(!p) return;
 
-    // Popola i dati della pagina prodotto
     document.getElementById("detail-img").src = p.img;
     document.getElementById("detail-title").innerText = p.name;
     document.getElementById("detail-category").innerText = p.category;
     document.getElementById("detail-price").innerText = p.price;
     document.getElementById("detail-desc").innerText = p.desc;
 
-    // Nascondi Home, Mostra Prodotto
     homeView.style.display = 'none';
     productView.style.display = 'block';
-    window.scrollTo(0, 0); // Torna in cima alla pagina
+    window.scrollTo(0, 0);
 
-    // Aggiunge uno stato alla cronologia del browser per far funzionare il tasto "Indietro"
     history.pushState({view: 'product', id: id}, "", `?product=${id}`);
 }
 
-// Funzione per tornare alla Home
 function goBackToHome() {
-    // Se siamo arrivati qui tramite cronologia, torniamo indietro
     if(history.state && history.state.view === 'product') {
         history.back();
     } else {
-        // Altrimenti forziamo la vista home
         showHomeView();
     }
 }
 
-// Funzione che mostra fisicamente la home
 function showHomeView() {
     productView.style.display = 'none';
     homeView.style.display = 'block';
-    // Opzionale: resetta filtri o ricerca quando si torna
-    // renderProducts(products); 
 }
 
-// Gestisce il tasto "Indietro" del browser
 window.onpopstate = function(event) {
     if (event.state && event.state.view === 'product') {
-        // Se lo stato dice prodotto, mostriamo il prodotto (caso raro)
-        const pId = event.state.id;
-        // Qui potremmo ricaricare i dati se necessario, ma di solito sono già nel DOM
+        // Rimanere nella pagina prodotto
     } else {
-        // Altrimenti torniamo alla home
         showHomeView();
     }
 };
