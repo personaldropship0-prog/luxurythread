@@ -45,7 +45,7 @@
       </p>
       <input id="requestInput" type="text" placeholder="Nome del prodotto">
       <textarea id="requestNote" placeholder="Dettagli (taglia, colore, brand...)"></textarea>
-      <button type="button" onclick="sendRequest()">Invia richiesta</button>
+      <button type="button" onclick="showRequestPopup()">Invia richiesta</button>
       <button class="back" onclick="goHome()">← Torna alla Home</button>
     </div>
 
@@ -69,8 +69,9 @@
 <!-- POPUP MESSAGGIO -->
 <div id="popup" class="popup">
   <div class="popup-content">
-    <h3>Messaggio pronto da inviare!</h3>
+    <h3>Messaggio pronto da inviare</h3>
     <p id="popup-text"></p>
+    <button onclick="copyAndOpenInstagram()">Copia e apri Instagram</button>
     <button onclick="closePopup()">Chiudi</button>
   </div>
 </div>
