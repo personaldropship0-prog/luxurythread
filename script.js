@@ -1,63 +1,73 @@
-const products = [
-  { name:"Signature Leather", category:"scarpe", desc:"Scarpe in pelle premium" },
-  { name:"Essential Knit", category:"maglie", desc:"Maglia sartoriale elegante" },
-  { name:"Tailored Urban", category:"pantaloni", desc:"Pantaloni moderni" }
-];
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Luxury Thread</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-const container = document.getElementById("products");
-const searchSection = document.getElementById("search-results");
-const results = document.getElementById("results");
-const searchTitle = document.getElementById("search-title");
+<div class="bg"></div>
 
-function renderProducts(list) {
-  container.innerHTML = "";
-  list.forEach(p => {
-    container.innerHTML += `
-      <div class="card">
-        <h3>${p.name}</h3>
-        <p>${p.desc}</p>
-        <a href="https://ig.me/m/luxury.thread_" target="_blank">
-          Contattaci su Instagram
-        </a>
-      </div>
-    `;
-  });
-}
+<header class="topbar">
+  <div class="logo" onclick="goHome()">Luxury Thread</div>
 
-function filterProducts(cat) {
-  searchSection.style.display = "none";
-  const filtered = cat === "all" ? products : products.filter(p => p.category === cat);
-  renderProducts(filtered);
-}
+  <div class="search-box">
+    <input id="searchInput" type="text" placeholder="Cerca un prodotto o brand">
+    <button onclick="searchProduct()">Cerca</button>
+  </div>
+</header>
 
-function searchProduct() {
-  const q = document.getElementById("searchInput").value.toLowerCase();
-  const found = products.filter(p =>
-    p.name.toLowerCase().includes(q) || p.category.includes(q)
-  );
+<section class="hero" id="home">
+  <h1 class="title-3d">LUXURY<br>THREAD</h1>
+  <p class="subtitle">Curated fashion. On demand sourcing.</p>
+</section>
 
-  results.innerHTML = "";
-  if(found.length === 0) {
-    searchTitle.innerText = "Prodotto non trovato";
-  } else {
-    searchTitle.innerText = "Risultati ricerca";
-    found.forEach(p => {
-      results.innerHTML += `
-        <div class="card">
-          <h3>${p.name}</h3>
-          <p>${p.desc}</p>
-        </div>
-      `;
-    });
-  }
+<nav class="filters">
+  <button onclick="filterProducts('all')">Tutti</button>
+  <button onclick="filterProducts('scarpe')">Scarpe</button>
+  <button onclick="filterProducts('maglie')">Maglie</button>
+  <button onclick="filterProducts('pantaloni')">Pantaloni</button>
+</nav>
 
-  searchSection.style.display = "block";
-  searchSection.scrollIntoView({behavior:"smooth"});
-}
+<section class="products" id="products"></section>
 
-function goHome() {
-  searchSection.style.display = "none";
-  window.scrollTo({top:0,behavior:"smooth"});
-}
+<section id="search-results" class="search-section">
+  <h2 id="search-title"></h2>
 
-renderProducts(products);
+  <div id="results" class="products"></div>
+
+  <!-- RICHIESTA PRODOTTO -->
+  <div id="request-box" class="request-box">
+    <p class="request-title">Non trovi quello che cerchi?</p>
+    <p class="request-sub">
+      Richiedi il prodotto e proveremo a renderlo disponibile per te.
+    </p>
+
+    <input id="requestInput" type="text" placeholder="Nome del prodotto">
+    <textarea id="requestNote" placeholder="Dettagli (taglia, colore, brand...)"></textarea>
+
+    <button onclick="sendRequest()">Invia richiesta</button>
+  </div>
+
+  <button class="back" onclick="goHome()">← Torna alla Home</button>
+</section>
+
+<section class="contact">
+  <div class="contact-box">
+    <h2>Contattaci</h2>
+    <p>Per ordini, richieste e collaborazioni</p>
+    <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-btn">
+      @luxury.thread_
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Luxury Thread — All rights reserved
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
