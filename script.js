@@ -11,6 +11,8 @@ const searchSection = document.getElementById("search-results");
 const results = document.getElementById("results");
 const searchTitle = document.getElementById("search-title");
 const requestBox = document.getElementById("request-box");
+const popup = document.getElementById("popup");
+const popupText = document.getElementById("popup-text");
 
 function renderProducts(list) {
   container.innerHTML = "";
@@ -77,17 +79,21 @@ function sendRequest() {
 
   const message = `Ciao Luxury Thread 👋%0ASto cercando questo prodotto:%0A👉 ${encodeURIComponent(product)}${note ? `%0ANote:%0A${encodeURIComponent(note)}` : ''}%0AGrazie!`;
 
-  // Proviamo a usare clipboard per desktop
   if(navigator.userAgent.includes("Mobi")) {
-    // mobile → apre direttamente Instagram con messaggio
+    // mobile → apre Instagram con DM pronto
     window.open(`https://ig.me/m/luxury.thread_?text=${message}`, "_blank");
   } else {
-    // desktop → copia negli appunti + apre Instagram Web
+    // desktop → copia testo e mostra popup
     navigator.clipboard.writeText(decodeURIComponent(message)).then(() => {
-      alert("Messaggio copiato negli appunti! Incollalo su Instagram per inviare la richiesta.");
+      popupText.innerText = decodeURIComponent(message);
+      popup.style.display = "flex";
       window.open("https://www.instagram.com/direct/inbox/", "_blank");
     });
   }
+}
+
+function closePopup() {
+  popup.style.display = "none";
 }
 
 function goHome() {
@@ -95,6 +101,7 @@ function goHome() {
   filters.style.display = "flex";
   searchSection.style.display = "none";
   requestBox.style.display = "none";
+  popup.style.display = "none";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
