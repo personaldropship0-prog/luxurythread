@@ -19,7 +19,8 @@ function renderProducts(list) {
       <div class="card">
         <h3>${p.name}</h3>
         <p>${p.desc}</p>
-        <a href="https://ig.me/m/luxury.thread_" target="_blank">Instagram</a>
+        <button onclick="goHome()">← Torna alla Home</button>
+        <a href="https://ig.me/m/luxury.thread_?text=Ciao%20Luxury%20Thread%20voglio%20informazioni%20su%20${encodeURIComponent(p.name)}" target="_blank">Instagram</a>
       </div>
     `;
   });
@@ -30,10 +31,7 @@ function filterProducts(cat) {
   filters.style.display = "none";
   searchSection.style.display = "none";
 
-  const list = cat === "all"
-    ? products
-    : products.filter(p => p.category === cat);
-
+  const list = cat === "all" ? products : products.filter(p => p.category === cat);
   renderProducts(list);
   container.scrollIntoView({ behavior: "smooth" });
 }
@@ -61,6 +59,7 @@ function searchProduct() {
         <div class="card">
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
+          <button onclick="goHome()">← Torna alla Home</button>
         </div>
       `;
     });
@@ -71,20 +70,21 @@ function searchProduct() {
 }
 
 function sendRequest() {
-  const product = document.getElementById("requestInput").value;
-  const note = document.getElementById("requestNote").value;
+  const product = document.getElementById("requestInput").value.trim();
+  const note = document.getElementById("requestNote").value.trim();
 
-  const text =
-    `Ciao Luxury Thread 👋%0A` +
-    `Sto cercando:%0A👉 ${product}%0A${note}`;
+  if(!product) { alert("Inserisci il nome del prodotto"); return; }
 
-  window.open(`https://ig.me/m/luxury.thread_?text=${text}`, "_blank");
+  const message = `Ciao Luxury Thread 👋%0ASto cercando questo prodotto:%0A👉 ${encodeURIComponent(product)}${note ? `%0ANote:%0A${encodeURIComponent(note)}` : ''}%0AGrazie!`;
+  
+  window.open(`https://ig.me/m/luxury.thread_?text=${message}`, "_blank");
 }
 
 function goHome() {
   hero.style.display = "flex";
   filters.style.display = "flex";
   searchSection.style.display = "none";
+  requestBox.style.display = "none";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
