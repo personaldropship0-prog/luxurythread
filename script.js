@@ -3,18 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.sezione').forEach(s => s.style.display = 'none');
 });
 
-function showSection(id) {
+function showSection(id, event) {
+  if(event) event.preventDefault(); // blocca default del pulsante
   // Nascondi tutte le sezioni
   document.querySelectorAll('.sezione').forEach(s => s.style.display = 'none');
-  // Mostra solo quella cliccata
-  document.getElementById(id).style.display = 'block';
-  // Non scrollare verso la home
-  window.scrollTo({ top: 0, behavior: 'auto' }); // rapido
+  // Mostra solo la sezione selezionata
+  const sec = document.getElementById(id);
+  sec.style.display = 'block';
+  // Scroll direttamente alla sezione
+  sec.scrollIntoView({ behavior: 'smooth' });
 }
 
 function goHome() {
   // Nascondi tutte le sezioni
   document.querySelectorAll('.sezione').forEach(s => s.style.display = 'none');
-  // Scrolla in cima alla Home
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Scrolla alla Home
+  document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
 }
