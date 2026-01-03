@@ -12,16 +12,22 @@
 <div class="bg"></div>
 
 <header class="topbar">
-  <div class="logo" onclick="goHome()">Luxury Thread</div>
+  <div class="brand" onclick="goHome()">
+    <div class="logo-wrapper">
+      <img src="img/logo.png" alt="Luxury Thread Logo">
+    </div>
+    <span class="brand-name">Luxury Thread</span>
+  </div>
+
   <div class="search-box">
-    <input id="searchInput" type="text" placeholder="Cerca un prodotto o brand">
-    <button type="button" onclick="searchProduct()">Cerca</button>
+    <input id="searchInput" type="text" placeholder="Cerca prodotto o brand">
+    <button onclick="searchProduct()">Cerca</button>
   </div>
 </header>
 
 <section class="hero" id="hero">
   <h1 class="title-3d">LUXURY<br>THREAD</h1>
-  <p class="subtitle">Curated fashion. On demand sourcing.</p>
+  <p class="subtitle">Curated fashion · On-demand sourcing</p>
 </section>
 
 <nav class="filters" id="filters">
@@ -39,40 +45,32 @@
     <div id="results" class="products"></div>
 
     <div id="request-box" class="request-box">
-      <p class="request-title">Non trovi quello che cerchi?</p>
-      <p class="request-sub">
-        Richiedi il prodotto e lo cercheremo per te.
-      </p>
-      <input id="requestInput" type="text" placeholder="Nome del prodotto">
-      <textarea id="requestNote" placeholder="Dettagli (taglia, colore, brand...)"></textarea>
-      <button type="button" onclick="showRequestPopup()">Invia richiesta</button>
+      <h3>Non trovi quello che cerchi?</h3>
+      <input id="requestInput" placeholder="Nome prodotto">
+      <textarea id="requestNote" placeholder="Brand, taglia, colore..."></textarea>
+      <button onclick="showRequestPopup()">Invia richiesta</button>
       <button class="back" onclick="goHome()">← Torna alla Home</button>
     </div>
-
-    <button class="back" onclick="goHome()">← Torna alla Home</button>
   </div>
 </section>
 
 <section class="contact">
-  <div class="contact-box">
-    <h2>Contattaci</h2>
-    <a class="contact-btn" href="https://ig.me/m/luxury.thread_" target="_blank">
-      @luxury.thread_
-    </a>
-  </div>
+  <h2>Contattaci</h2>
+  <a class="contact-btn" href="https://ig.me/m/luxury.thread_" target="_blank">
+    @luxury.thread_
+  </a>
 </section>
 
 <footer>
   © 2026 Luxury Thread
 </footer>
 
-<!-- POPUP MESSAGGIO -->
 <div id="popup" class="popup">
   <div class="popup-content">
-    <h3>Messaggio pronto da inviare</h3>
+    <h3>Messaggio pronto</h3>
     <p id="popup-text"></p>
     <button onclick="copyAndOpenInstagram()">Copia e apri Instagram</button>
-    <button onclick="closePopup()">Chiudi</button>
+    <button class="back" onclick="closePopup()">Chiudi</button>
   </div>
 </div>
 
