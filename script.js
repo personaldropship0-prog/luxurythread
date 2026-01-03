@@ -20,7 +20,7 @@ function renderProducts(list) {
         <h3>${p.name}</h3>
         <p>${p.desc}</p>
         <button onclick="goHome()">← Torna alla Home</button>
-        <a href="https://ig.me/m/luxury.thread_?text=Ciao%20Luxury%20Thread%20voglio%20informazioni%20su%20${encodeURIComponent(p.name)}" target="_blank">Instagram</a>
+        <a href="https://ig.me/m/luxury.thread_?text=${encodeURIComponent("Ciao Luxury Thread! Vorrei informazioni su: " + p.name)}" target="_blank">Instagram</a>
       </div>
     `;
   });
@@ -44,11 +44,10 @@ function searchProduct() {
   filters.style.display = "none";
 
   const found = products.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.category.includes(q)
+    p.name.toLowerCase().includes(q) || p.category.includes(q)
   );
 
-  if (found.length === 0) {
+  if(found.length === 0) {
     searchTitle.innerText = "Prodotto non disponibile";
     requestBox.style.display = "block";
   } else {
@@ -60,6 +59,7 @@ function searchProduct() {
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
           <button onclick="goHome()">← Torna alla Home</button>
+          <a href="https://ig.me/m/luxury.thread_?text=${encodeURIComponent("Ciao Luxury Thread! Vorrei informazioni su: " + p.name)}" target="_blank">Instagram</a>
         </div>
       `;
     });
@@ -76,8 +76,18 @@ function sendRequest() {
   if(!product) { alert("Inserisci il nome del prodotto"); return; }
 
   const message = `Ciao Luxury Thread 👋%0ASto cercando questo prodotto:%0A👉 ${encodeURIComponent(product)}${note ? `%0ANote:%0A${encodeURIComponent(note)}` : ''}%0AGrazie!`;
-  
-  window.open(`https://ig.me/m/luxury.thread_?text=${message}`, "_blank");
+
+  // Proviamo a usare clipboard per desktop
+  if(navigator.userAgent.includes("Mobi")) {
+    // mobile → apre direttamente Instagram con messaggio
+    window.open(`https://ig.me/m/luxury.thread_?text=${message}`, "_blank");
+  } else {
+    // desktop → copia negli appunti + apre Instagram Web
+    navigator.clipboard.writeText(decodeURIComponent(message)).then(() => {
+      alert("Messaggio copiato negli appunti! Incollalo su Instagram per inviare la richiesta.");
+      window.open("https://www.instagram.com/direct/inbox/", "_blank");
+    });
+  }
 }
 
 function goHome() {
