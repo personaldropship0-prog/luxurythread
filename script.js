@@ -12,7 +12,6 @@ const products = [
   { id: 10, name: "Beanie Logo Wool", category: "accessories", price: "€95", desc: "Berretto in lana merino a coste con patch logo gommata frontale.", img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?q=80&w=1000&auto=format&fit=crop" }
 ];
 
-// --- RIFERIMENTI DOM ---
 const homeView = document.getElementById("home-view");
 const productView = document.getElementById("single-product-page");
 const grid = document.getElementById("products-grid");
@@ -20,22 +19,18 @@ const noResults = document.getElementById("no-results");
 const searchInput = document.getElementById("searchInput");
 const popup = document.getElementById("popup");
 
-// --- 1. CONTROLLO MODALITÀ SCURA (DOPO LE 19:00) ---
+// 1. NIGHT MODE CHECK
 function checkDarkMode() {
     const hour = new Date().getHours();
-    // Se è dopo le 19:00 o prima delle 6:00
     if (hour >= 19 || hour < 6) {
         document.body.classList.add('dark-mode');
-        console.log("Dark mode attivata (orario notturno)");
     } else {
         document.body.classList.remove('dark-mode');
-        console.log("Light mode attivata (orario diurno)");
     }
 }
 checkDarkMode();
 
-
-// --- 2. LOGICA HOME & GRIGLIA ---
+// 2. RENDER & FILTERS
 function renderProducts(list) {
     grid.innerHTML = "";
     if (list.length === 0) {
@@ -60,20 +55,17 @@ function filterProducts(cat) {
     document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
     searchInput.value = "";
-    
     if (cat === 'all') renderProducts(products);
     else renderProducts(products.filter(p => p.category === cat));
 }
 
 function performSearch() {
     const q = searchInput.value.toLowerCase().trim();
-    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
-    
     const found = products.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q));
     renderProducts(found);
 }
 
-// --- 3. LOGICA NAVIGAZIONE "PAGINA A PARTE" ---
+// 3. NAVIGATION
 function goToProductPage(id) {
     const p = products.find(x => x.id === id);
     if(!p) return;
@@ -87,7 +79,6 @@ function goToProductPage(id) {
     homeView.style.display = 'none';
     productView.style.display = 'block';
     window.scrollTo(0, 0);
-
     history.pushState({view: 'product', id: id}, "", `?product=${id}`);
 }
 
@@ -105,25 +96,18 @@ function showHomeView() {
 }
 
 window.onpopstate = function(event) {
-    if (event.state && event.state.view === 'product') {
-        // Rimanere nella pagina prodotto
-    } else {
+    if (!event.state || event.state.view !== 'product') {
         showHomeView();
     }
 };
 
-
-// --- 4. CONTATTI & POPUP ---
+// 4. CONTACTS
 function contactForProduct(type) {
     const name = document.getElementById("detail-title").innerText;
     const price = document.getElementById("detail-price").innerText;
-    let msg = "";
-    
-    if(type === 'buy') {
-        msg = `Ciao! Voglio acquistare questo prodotto: ${name} (${price}). È disponibile?`;
-    } else {
-        msg = `Ciao! Cerco un prodotto simile a: ${name}. Potete aiutarmi nel sourcing?`;
-    }
+    let msg = type === 'buy' ? 
+        `Ciao! Voglio acquistare: ${name} (${price}).` : 
+        `Ciao! Cerco un prodotto simile a: ${name}.`;
     
     document.getElementById("popup-text").innerText = msg;
     popup.style.display = 'flex';
@@ -135,14 +119,8 @@ function openInstagram() {
         popup.style.display = 'none';
     });
 }
-
 function closePopup() { popup.style.display = 'none'; }
+function goHome() { searchInput.value=""; filterProducts('all'); goBackToHome(); }
 
-function goHome() {
-    searchInput.value = "";
-    filterProducts('all');
-    goBackToHome();
-}
-
-// INIT
+// Init
 renderProducts(products);
