@@ -22,7 +22,6 @@ function renderProducts(list) {
         <h3>${p.name}</h3>
         <p>${p.desc}</p>
         <button onclick="goHome()">← Torna alla Home</button>
-        <a href="https://ig.me/m/luxury.thread_?text=${encodeURIComponent("Ciao Luxury Thread! Vorrei informazioni su: " + p.name)}" target="_blank">Instagram</a>
       </div>
     `;
   });
@@ -61,7 +60,6 @@ function searchProduct() {
           <h3>${p.name}</h3>
           <p>${p.desc}</p>
           <button onclick="goHome()">← Torna alla Home</button>
-          <a href="https://ig.me/m/luxury.thread_?text=${encodeURIComponent("Ciao Luxury Thread! Vorrei informazioni su: " + p.name)}" target="_blank">Instagram</a>
         </div>
       `;
     });
@@ -71,25 +69,27 @@ function searchProduct() {
   searchSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-function sendRequest() {
+// Nuova funzione popup
+function showRequestPopup() {
   const product = document.getElementById("requestInput").value.trim();
   const note = document.getElementById("requestNote").value.trim();
 
   if(!product) { alert("Inserisci il nome del prodotto"); return; }
 
-  const message = `Ciao Luxury Thread 👋%0ASto cercando questo prodotto:%0A👉 ${encodeURIComponent(product)}${note ? `%0ANote:%0A${encodeURIComponent(note)}` : ''}%0AGrazie!`;
+  const message = `Ciao Luxury Thread 👋\nSto cercando questo prodotto:\n👉 ${product}${note ? `\nNote:\n${note}` : ''}\nGrazie!`;
 
-  if(navigator.userAgent.includes("Mobi")) {
-    // mobile → apre Instagram con DM pronto
-    window.open(`https://ig.me/m/luxury.thread_?text=${message}`, "_blank");
-  } else {
-    // desktop → copia testo e mostra popup
-    navigator.clipboard.writeText(decodeURIComponent(message)).then(() => {
-      popupText.innerText = decodeURIComponent(message);
-      popup.style.display = "flex";
-      window.open("https://www.instagram.com/direct/inbox/", "_blank");
-    });
-  }
+  popupText.innerText = message;
+  popup.style.display = "flex";
+}
+
+function copyAndOpenInstagram() {
+  const text = popupText.innerText;
+
+  navigator.clipboard.writeText(text).then(() => {
+    // apre Instagram DM
+    window.open("https://ig.me/m/luxury.thread_", "_blank");
+    closePopup();
+  });
 }
 
 function closePopup() {
