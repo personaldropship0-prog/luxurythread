@@ -9,72 +9,79 @@
 
 <body>
 
-<div class="marble-bg"></div>
+<header class="main-header header-blur">
+  <div class="header-content">
+    <div class="logo-slot" onclick="goHome()">
+      <img src="logo.png" alt="LT Logo" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='block'">
+      <span class="brand-fallback" style="display:none">LT</span>
+    </div>
+    
+    <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
 
-<header class="main-header">
-  <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
-  
-  <div class="controls">
-    <div class="search-bar">
-      <input type="text" id="searchInput" placeholder="SEARCH ITEM...">
-      <button onclick="searchProduct()">🔍</button>
+    <div class="search-bar-container">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="SEARCH...">
+        <button onclick="performSearch()">🔍</button>
+      </div>
     </div>
   </div>
 </header>
 
-<nav class="filters">
-  <button onclick="filterProducts('all')" class="active">ALL</button>
-  <button onclick="filterProducts('sneakers')">SNEAKERS</button>
-  <button onclick="filterProducts('hoodies')">HOODIES</button>
-  <button onclick="filterProducts('pants')">PANTS</button>
-  <button onclick="filterProducts('accessories')">ACCESSORIES</button>
-</nav>
+<main id="home-view">
+  <div class="spacer"></div> <nav class="filters glass-panel">
+    <button onclick="filterProducts('all')" class="active">ALL</button>
+    <button onclick="filterProducts('sneakers')">SNEAKERS</button>
+    <button onclick="filterProducts('hoodies')">HOODIES</button>
+    <button onclick="filterProducts('pants')">PANTS</button>
+    <button onclick="filterProducts('accessories')">ACCESSORIES</button>
+  </nav>
 
-<section id="products" class="product-grid"></section>
+  <section id="products-grid" class="product-grid"></section>
 
-<section id="search-results" class="search-container" style="display:none;">
-  <div class="glass-panel">
-    <h2 id="search-title">RISULTATI</h2>
-    <div id="results" class="product-grid"></div>
+  <div id="no-results" class="glass-panel" style="display:none; margin: 20px auto; max-width: 600px; text-align: center;">
+    <h2>NESSUN RISULTATO</h2>
+    <p>Non trovi quello che cerchi? Inviaci una richiesta.</p>
+  </div>
 
-    <div id="request-box" class="request-box" style="display:none;">
-      <h3>SOURCING REQUEST</h3>
-      <p>Non abbiamo trovato il capo. Lo cerchiamo per te.</p>
-      <input id="requestInput" placeholder="Nome del prodotto...">
-      <textarea id="requestNote" placeholder="Taglia, Colore, Note..."></textarea>
-      <button onclick="showRequestPopup()">INVIA RICHIESTA DM</button>
-      <button class="btn-outline" onclick="goHome()">TORNA ALLA HOME</button>
+  <footer>
+    <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
+    <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
+  </footer>
+</main>
+
+
+<section id="single-product-page" class="single-product-view">
+  <div class="spacer"></div>
+  
+  <div class="back-nav">
+    <button onclick="goBackToHome()">← TORNA ALLA HOME</button>
+  </div>
+
+  <div class="product-detail-container glass-panel">
+    <div class="detail-image">
+      <img id="detail-img" src="" alt="">
+    </div>
+    <div class="detail-info">
+      <span id="detail-category" class="badge">CATEGORY</span>
+      <h2 id="detail-title">PRODUCT NAME</h2>
+      <p id="detail-desc">Description goes here.</p>
+      <div id="detail-price" class="price-tag">€000</div>
+      
+      <div class="action-buttons">
+        <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA (DM)</button>
+        <button class="buy-btn sec-btn" onclick="contactForProduct('info')">RICHIESTA SOURCING</button>
+      </div>
     </div>
   </div>
 </section>
 
-<footer>
-  <p>© 2026 LUXURY THREAD · MILAN</p>
-  <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">CONTACT US</a>
-</footer>
-
-<div id="product-modal" class="modal-overlay">
-  <div class="modal-card">
-    <button class="close-modal" onclick="closeProductModal()">×</button>
-    <div class="modal-img-wrapper">
-      <img id="modal-img-src" src="" alt="">
-    </div>
-    <div class="modal-info">
-      <span id="modal-category" class="badge">CATEGORY</span>
-      <h2 id="modal-title">PRODUCT NAME</h2>
-      <p id="modal-desc">Description goes here.</p>
-      <div id="modal-price" class="price-tag">€000</div>
-      <button class="buy-btn" onclick="contactForProduct()">ACQUISTA (DM)</button>
-    </div>
-  </div>
-</div>
 
 <div id="popup" class="popup-overlay">
-  <div class="popup-box">
-    <h3>MESSAGGIO COPIATO</h3>
+  <div class="popup-box glass-panel">
+    <h3>MESSAGGIO PRONTO</h3>
     <p id="popup-text"></p>
-    <button onclick="copyAndOpenInstagram()">VAI SU INSTAGRAM</button>
-    <button class="btn-outline" onclick="closePopup()">CHIUDI</button>
+    <button class="buy-btn main-btn" onclick="openInstagram()">APRI INSTAGRAM</button>
+    <button class="buy-btn sec-btn" onclick="closePopup()">CHIUDI</button>
   </div>
 </div>
 
