@@ -1,61 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap');
 
-/* --- VARIABILI TEMA (GIORNO/NOTTE) --- */
+/* --- VARIABILI TEMA (MARMO REALE) --- */
 :root {
-    /* TEMA GIORNO (Default) - Marmo Bianco */
-    /* Usiamo un overlay bianco semitrasparente sopra l'immagine del marmo per leggerezza */
-    --marble-bg-layer: linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)), url('https://images.unsplash.com/photo-1596484552993-9c595055b80e?q=80&w=2670&auto=format&fit=crop');
+    /* GIORNO: Marmo Bianco Carrara Nitido */
+    --marble-img: url('https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=2000&auto=format&fit=crop');
     
-    --body-bg: #f0f0f0; /* Sfondo neutro per la home */
+    --body-bg: #f5f5f5;
     --text-color: #000000;
     --accent-color: #000000;
     --border-color: #000000;
     --card-bg: #ffffff;
-    --hover-shadow: 10px 10px 0px rgba(0,0,0,0.8);
+    
+    /* Ombra bianca attorno al testo per farlo leggere sopra il marmo */
+    --text-shadow: 2px 2px 0px rgba(255,255,255,0.6);
 }
 
 body.dark-mode {
-    /* TEMA NOTTE (Dopo le 19:00) - Marmo Nero */
-    /* Overlay scuro sopra il marmo nero per contrasto */
-    --marble-bg-layer: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1616462794354-1b157476054f?q=80&w=2670&auto=format&fit=crop');
-
-    --body-bg: #121212;
+    /* NOTTE: Marmo Nero Marquina Lucido */
+    --marble-img: url('https://images.unsplash.com/photo-1610219666085-3b99480be639?q=80&w=2000&auto=format&fit=crop');
+    
+    --body-bg: #111111;
     --text-color: #ffffff;
     --accent-color: #ffffff;
     --border-color: #ffffff;
     --card-bg: #1a1a1a;
-    --hover-shadow: 10px 10px 0px rgba(255,255,255,0.2);
+    
+    /* Ombra nera attorno al testo per farlo leggere sopra il marmo */
+    --text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
 }
 
-/* --- CLASSE UTILITÀ MARMO --- */
-/* Questa classe applica la texture marmo definita nelle variabili */
+/* CLASSE PER APPLICARE IL MARMO */
 .marble-texture {
-    background-image: var(--marble-bg-layer);
+    background-image: var(--marble-img);
     background-size: cover;
     background-position: center;
-    border-bottom: 2px solid var(--border-color);
+    /* Nessun overlay pesante, solo il marmo vero */
 }
 
-
-/* --- BASE SETUP --- */
+/* --- BASE --- */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
     color: var(--text-color);
-    background-color: var(--body-bg); /* Sfondo tinta unita per la home */
-    min-height: 100vh;
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    background-color: var(--body-bg);
+    transition: background 0.5s, color 0.5s;
 }
 
-/* --- HEADER FISSO (Con Texture Marmo) --- */
+/* --- HEADER --- */
 .main-header {
     position: fixed;
     top: 0; left: 0; width: 100%;
     z-index: 1000;
-    /* La classe .marble-texture qui applica lo sfondo */
-    padding: 15px 30px;
-    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Ombra sotto la barra */
 }
 
 .header-content {
@@ -66,43 +65,54 @@ body {
     margin: 0 auto;
 }
 
-/* Logo Slot */
+/* --- LOGO CIRCOLARE --- */
 .logo-slot {
-    width: 50px; height: 50px;
+    width: 60px; 
+    height: 60px;
+    border-radius: 50%; /* CERCHIO PERFETTO */
+    border: 2px solid var(--border-color);
+    overflow: hidden; /* Taglia l'immagine se quadrata */
     cursor: pointer;
+    background: #fff; /* Sfondo bianco se l'immagine è trasparente */
     display: flex; align-items: center; justify-content: center;
-    border: 2px solid var(--border-color); /* Bordino stile streetwear */
-    padding: 2px;
 }
-.logo-slot img { width: 100%; height: 100%; object-fit: contain; }
-.brand-fallback { font-family: 'Oswald'; font-weight: 700; font-size: 2rem; color: var(--text-color); }
 
-/* Titolo */
+.logo-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Riempie il cerchio */
+}
+
+.brand-fallback {
+    font-family: 'Oswald'; font-weight: bold; font-size: 1.5rem;
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+}
+
+/* TITOLO */
 .brand-title {
     font-family: 'Oswald', sans-serif;
-    font-size: clamp(24px, 4vw, 48px);
-    text-transform: uppercase;
+    font-size: clamp(24px, 5vw, 48px);
     font-weight: 700;
-    cursor: pointer;
-    flex-grow: 1;
+    text-transform: uppercase;
     text-align: center;
-    margin: 0 20px;
-    letter-spacing: -1px;
+    margin: 0 15px;
+    cursor: pointer;
+    text-shadow: var(--text-shadow); /* Per leggere sopra il marmo */
 }
 
-/* Search Bar */
+/* SEARCH BAR */
 .search-bar {
     display: flex;
-    border: 2px solid var(--border-color);
     background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    height: 40px;
 }
 .search-bar input {
-    border: none; padding: 10px;
-    font-family: 'Oswald', sans-serif;
-    text-transform: uppercase;
+    border: none; padding: 0 10px;
     background: transparent;
-    color: var(--text-color);
-    outline: none; width: 180px;
+    font-family: 'Oswald'; text-transform: uppercase;
+    color: var(--text-color); outline: none; width: 150px;
 }
 .search-bar button {
     background: var(--accent-color);
@@ -110,27 +120,24 @@ body {
     border: none; padding: 0 15px; cursor: pointer;
 }
 
-/* Spacer per non far finire il contenuto sotto l'header fisso */
 .spacer { height: 100px; }
 
-/* --- HOME VIEW --- */
+/* --- HOME --- */
 .filters {
-    display: flex; justify-content: center; gap: 10px;
-    padding: 30px 20px; flex-wrap: wrap;
-    max-width: 900px; margin: 0 auto;
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+    padding: 30px;
 }
 .filters button {
+    padding: 10px 25px;
     background: var(--card-bg);
     border: 2px solid var(--border-color);
-    color: var(--text-color);
-    padding: 10px 25px;
-    font-family: 'Oswald', sans-serif; text-transform: uppercase; font-weight: 700;
-    cursor: pointer; transition: 0.2s;
+    font-family: 'Oswald'; font-weight: 700; text-transform: uppercase;
+    cursor: pointer; color: var(--text-color);
 }
-.filters button:hover, .filters button.active {
+.filters button.active, .filters button:hover {
     background: var(--accent-color); color: var(--card-bg);
-    box-shadow: 4px 4px 0 var(--border-color);
-    transform: translate(-2px, -2px);
+    transform: translateY(-3px);
+    box-shadow: 3px 3px 0 var(--border-color);
 }
 
 .product-grid {
@@ -143,138 +150,90 @@ body {
 .card {
     background: var(--card-bg);
     border: 2px solid var(--border-color);
-    cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s; cursor: pointer;
 }
 .card:hover {
-    transform: translateY(-8px) translateX(-4px);
-    box-shadow: var(--hover-shadow);
+    transform: translate(-5px, -5px);
+    box-shadow: 8px 8px 0 var(--text-color);
 }
 .card-img { width: 100%; height: 350px; object-fit: cover; border-bottom: 2px solid var(--border-color); }
-.card-details { padding: 20px; }
-.card h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; margin-bottom: 5px; font-size: 1.1rem;}
-.price { font-weight: 700; font-size: 1.2rem; font-family: 'Oswald'; }
+.card-details { padding: 15px; }
+.card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 5px; }
+.price { font-weight: 700; font-family: 'Oswald'; font-size: 1.2rem; }
 
-.no-results-box {
-    text-align: center; padding: 50px;
-    border: 2px solid var(--border-color);
-    background: var(--card-bg);
-    max-width: 600px; margin: 20px auto;
-}
-.no-results-box h2 { font-family: 'Oswald'; margin-bottom: 10px;}
-
-/* --- SINGLE PRODUCT PAGE VIEW (Con Texture Marmo) --- */
+/* --- PAGINA PRODOTTO (SFONDO MARMO) --- */
 .single-product-view {
-    display: none; /* Nascosta di default */
+    display: none;
     min-height: 100vh;
-    /* La classe .marble-texture applica lo sfondo qui */
+    padding-bottom: 50px;
+    /* La texture marmo viene applicata dall'HTML */
 }
 
-/* Nuova barra superiore per il tasto di chiusura */
 .product-top-bar {
     padding: 20px 40px;
-    text-align: right; /* Tasto a destra */
+    text-align: right; /* Tasto X a destra */
 }
 
 .close-view-btn {
-    background: transparent;
+    background: var(--card-bg); /* Sfondo bianco/nero per contrasto */
     border: 2px solid var(--text-color);
     color: var(--text-color);
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 700;
-    padding: 10px 25px;
-    cursor: pointer;
-    transition: 0.3s;
-    text-transform: uppercase;
+    font-family: 'Oswald'; font-weight: 700;
+    padding: 10px 25px; cursor: pointer;
+    font-size: 1.1rem;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
 }
-.close-view-btn:hover {
-    background: var(--accent-color);
-    color: var(--card-bg);
-    border-color: var(--accent-color);
-}
-
+.close-view-btn:hover { transform: scale(1.05); }
 
 .product-detail-container {
     display: flex;
     max-width: 1300px;
-    margin: 0 auto 50px;
-    min-height: 650px;
-    background: var(--card-bg); /* Contenitore interno bianco/nero */
-    border: 2px solid var(--border-color);
-    box-shadow: var(--hover-shadow);
+    margin: 0 auto;
+    background: var(--card-bg);
+    border: 3px solid var(--border-color);
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.5); /* Ombra "Deep" */
 }
 
-.detail-image { flex: 1.2; border-right: 2px solid var(--border-color); background: #000; }
+.detail-image { flex: 1; border-right: 2px solid var(--border-color); }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; }
 
-.detail-info { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+.detail-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
 
 .badge {
     background: var(--accent-color); color: var(--card-bg);
-    padding: 8px 15px; font-family: 'Oswald'; text-transform: uppercase;
-    align-self: flex-start; margin-bottom: 25px; font-weight: 700; letter-spacing: 1px;
+    padding: 5px 15px; align-self: start; font-family: 'Oswald'; font-weight: bold; margin-bottom: 20px;
 }
-.detail-info h2 {
-    font-family: 'Oswald'; font-size: 3.8rem; line-height: 1;
-    margin-bottom: 30px; text-transform: uppercase;
-}
-.detail-info p { font-size: 1.1rem; margin-bottom: 40px; line-height: 1.6; opacity: 0.9; max-width: 500px;}
-.price-tag { font-size: 2.8rem; font-weight: 700; margin-bottom: 50px; font-family: 'Oswald'; }
-
-.action-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
-
+.detail-info h2 { font-family: 'Oswald'; font-size: 3.5rem; text-transform: uppercase; line-height: 1; margin-bottom: 20px; }
+.price-tag { font-family: 'Oswald'; font-size: 2.5rem; font-weight: bold; margin-bottom: 40px; }
+.action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
 .buy-btn {
-    padding: 18px 35px; border: 2px solid var(--border-color);
-    font-family: 'Oswald'; font-size: 1.2rem; cursor: pointer;
-    text-transform: uppercase; font-weight: 700; flex: 1; min-width: 220px;
-    transition: 0.2s;
+    flex: 1; padding: 15px; font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; border: 2px solid var(--border-color); cursor: pointer;
 }
 .main-btn { background: var(--accent-color); color: var(--card-bg); }
-.main-btn:hover { opacity: 0.9; transform: translateY(-3px); box-shadow: 4px 4px 0 var(--border-color);}
 .sec-btn { background: transparent; color: var(--text-color); }
-.sec-btn:hover { background: var(--accent-color); color: var(--card-bg); transform: translateY(-3px); box-shadow: 4px 4px 0 var(--border-color);}
 
-/* --- FOOTER & POPUP --- */
+/* FOOTER */
 footer {
-    /* La classe .marble-texture qui applica lo sfondo */
-    text-align: center; padding: 40px; font-family: 'Oswald'; margin-top: auto;
+    padding: 40px; text-align: center; font-family: 'Oswald';
     border-top: 2px solid var(--border-color);
-    font-weight: 700;
+    text-shadow: var(--text-shadow);
 }
-.contact-link { color: inherit; text-decoration: none; border-bottom: 2px solid var(--border-color);}
+.contact-link { color: inherit; font-weight: bold; }
 
-.popup-overlay {
-    display:none; position:fixed; inset:0;
-    background:rgba(0,0,0,0.85); z-index:2000;
-    justify-content:center; align-items:center;
-    backdrop-filter: blur(5px);
-}
-.popup-box { 
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    box-shadow: var(--hover-shadow);
-    padding:40px; text-align:center; max-width:450px; width: 90%; 
-}
-.popup-box h3 { font-family: 'Oswald'; margin-bottom: 20px; font-size: 1.5rem; text-transform: uppercase;}
-.popup-box p { background: var(--body-bg); padding: 20px; margin-bottom: 25px; text-align: left; border: 2px solid var(--border-color); font-family: 'Inter'; font-weight: 500;}
-.popup-box button { width: 100%; margin-bottom: 15px; }
+/* POPUP */
+.popup-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;}
+.popup-box { background: var(--card-bg); padding: 30px; border: 2px solid var(--border-color); text-align: center; max-width: 400px; }
+.popup-box button { width: 100%; margin-top: 10px; }
 
 /* MOBILE */
 @media(max-width: 768px) {
-    .header-content { flex-wrap: wrap; gap: 15px; justify-content: center; }
-    .brand-title { order: 1; font-size: 32px; flex: none; width: 100%; margin: 10px 0;}
-    .logo-slot { order: 2; }
-    .search-bar-container { order: 3; }
-    .search-bar input { width: 140px; }
+    .header-content { flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .brand-title { font-size: 32px; width: 100%; order: 1; margin-top: 10px; }
+    .logo-slot { order: 2; margin-right: auto;}
+    .search-bar-container { order: 3; margin-left: auto;}
     .spacer { height: 180px; }
     
-    .product-top-bar { padding: 15px 20px; text-align: left;} /* Tasto a sinistra su mobile */
-    
-    .product-detail-container { flex-direction: column; margin: 0 20px 40px;}
-    .detail-image { height: 400px; border-right: none; border-bottom: 2px solid var(--border-color); }
-    .detail-info { padding: 30px; }
-    .detail-info h2 { font-size: 2.5rem; }
-    .price-tag { font-size: 2rem; margin-bottom: 30px; }
-    .action-buttons { flex-direction: column; gap: 10px; }
-    .buy-btn { width: 100%; }
+    .product-detail-container { flex-direction: column; width: 95%; }
+    .detail-image { height: 350px; border-right: none; border-bottom: 2px solid var(--border-color); }
+    .detail-info { padding: 20px; }
 }
