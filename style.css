@@ -52,6 +52,8 @@ footer { padding:30px; text-align:center; color:#aaa; }
   background:#fff; color:#111; padding:30px; border-radius:26px; max-width:400px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,0.5);
 }
 
+.popup-content button { margin-top:12px; padding:10px 20px; border:none; border-radius:20px; background:#d6c9a5; cursor:pointer; }
+
 @media(max-width:768px){
   .filters { flex-direction:column; }
   .search-box { flex-direction:column; gap:8px; }
