@@ -2,17 +2,23 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Nome Brand</title>
+  <title>Luxury Thread</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- BACKGROUND ANIMATO -->
+<div class="bg"></div>
+
+<!-- HERO -->
 <header class="hero" id="home">
-  <h1>Nome Brand</h1>
-  <p>Abbigliamento moderno</p>
+  <h1 class="title-3d">LUXURY<br>THREAD</h1>
+  <p class="subtitle">Timeless fashion. Modern soul.</p>
 </header>
 
+<!-- CATALOGO -->
 <nav class="catalogo">
   <button onclick="showSection('scarpe')">Scarpe</button>
   <button onclick="showSection('maglie')">Maglie</button>
@@ -23,52 +29,52 @@
 <section id="scarpe" class="sezione">
   <h2>Scarpe</h2>
 
-  <div class="prodotto">
-    <img src="https://via.placeholder.com/400">
-    <h3>Scarpa Modello X</h3>
-    <p>Design minimal, materiali premium.</p>
-    <a href="https://ig.me/m/tuo_username" class="btn" target="_blank">
+  <div class="card">
+    <img src="https://via.placeholder.com/500x600" alt="Scarpe luxury">
+    <h3>Signature Leather</h3>
+    <p>Pelle premium, silhouette essenziale.</p>
+    <a href="https://ig.me/m/tuo_username" target="_blank" class="btn">
       Contattaci su Instagram
     </a>
   </div>
 
-  <button onclick="goHome()" class="back">← Torna alla Home</button>
+  <button class="back" onclick="goHome()">← Home</button>
 </section>
 
 <!-- SEZIONE MAGLIE -->
 <section id="maglie" class="sezione">
   <h2>Maglie</h2>
 
-  <div class="prodotto">
-    <img src="https://via.placeholder.com/400">
-    <h3>Maglia Essential</h3>
-    <p>Taglio moderno, comfort totale.</p>
-    <a href="https://ig.me/m/tuo_username" class="btn" target="_blank">
+  <div class="card">
+    <img src="https://via.placeholder.com/500x600" alt="Maglia luxury">
+    <h3>Essential Knit</h3>
+    <p>Taglio sartoriale, comfort assoluto.</p>
+    <a href="https://ig.me/m/tuo_username" target="_blank" class="btn">
       Contattaci su Instagram
     </a>
   </div>
 
-  <button onclick="goHome()" class="back">← Torna alla Home</button>
+  <button class="back" onclick="goHome()">← Home</button>
 </section>
 
 <!-- SEZIONE PANTALONI -->
 <section id="pantaloni" class="sezione">
   <h2>Pantaloni</h2>
 
-  <div class="prodotto">
-    <img src="https://via.placeholder.com/400">
-    <h3>Pantalone Urban</h3>
-    <p>Linea pulita, stile urbano.</p>
-    <a href="https://ig.me/m/tuo_username" class="btn" target="_blank">
+  <div class="card">
+    <img src="https://via.placeholder.com/500x600" alt="Pantaloni luxury">
+    <h3>Tailored Urban</h3>
+    <p>Linea pulita, stile contemporaneo.</p>
+    <a href="https://ig.me/m/tuo_username" target="_blank" class="btn">
       Contattaci su Instagram
     </a>
   </div>
 
-  <button onclick="goHome()" class="back">← Torna alla Home</button>
+  <button class="back" onclick="goHome()">← Home</button>
 </section>
 
 <footer>
-  <p>© 2026 Nome Brand</p>
+  <p>© 2026 Luxury Thread</p>
 </footer>
 
 <script src="script.js"></script>
