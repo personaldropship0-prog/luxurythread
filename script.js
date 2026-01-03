@@ -1,16 +1,20 @@
-// Nascondi tutte le sezioni all'inizio, mostra solo Home
 document.addEventListener("DOMContentLoaded", () => {
+  // Nascondi tutte le sezioni all'inizio
   document.querySelectorAll('.sezione').forEach(s => s.style.display = 'none');
-  // La "home" è visibile di default, quindi non serve mostrarla
 });
 
 function showSection(id) {
+  // Nascondi tutte le sezioni
   document.querySelectorAll('.sezione').forEach(s => s.style.display = 'none');
+  // Mostra solo quella cliccata
   document.getElementById(id).style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  // Non scrollare verso la home
+  window.scrollTo({ top: 0, behavior: 'auto' }); // rapido
 }
 
 function goHome() {
+  // Nascondi tutte le sezioni
   document.querySelectorAll('.sezione').forEach(s => s.style.display = 'none');
+  // Scrolla in cima alla Home
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
