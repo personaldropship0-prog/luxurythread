@@ -1,4 +1,4 @@
-// --- DATABASE PRODOTTI ---
+// ... (tutto il codice dei prodotti come prima) ...
 const products = [
   { id: 1, name: "Retro Jordan 1 High Mocha", category: "sneakers", price: "€650", desc: "Iconica silhouette high-top in pelle premium. Colorway esclusiva. Deadstock condition.", img: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1000&auto=format&fit=crop" },
   { id: 2, name: "Oversized Heavy Hoodie", category: "hoodies", price: "€320", desc: "Cotone 600gsm pesante. Taglio boxy fit oversize con spalle scese. Lavaggio vintage black.", img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop" },
@@ -19,7 +19,7 @@ const noResults = document.getElementById("no-results");
 const searchInput = document.getElementById("searchInput");
 const popup = document.getElementById("popup");
 
-// 1. NIGHT MODE CHECK (AUTOMATICO)
+// 1. NIGHT MODE CHECK AUTOMATICO
 function checkDarkMode() {
     const hour = new Date().getHours();
     if (hour >= 19 || hour < 6) {
@@ -28,14 +28,12 @@ function checkDarkMode() {
         document.body.classList.remove('dark-mode');
     }
 }
-// Eseguiamo il controllo automatico all'avvio
 checkDarkMode();
 
-// 2. TOGGLE MANUALE (Per il tasto nel footer)
+// 2. TOGGLE MANUALE
 function toggleTheme() {
+    // Questo inverte la classe: se c'è la toglie, se non c'è la mette
     document.body.classList.toggle('dark-mode');
-    // Opzionale: salva la preferenza
-    // localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
 }
 
 // 3. RENDER & FILTERS
