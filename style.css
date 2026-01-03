@@ -1,24 +1,39 @@
- @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap');
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Inter', sans-serif; color: #111; overflow-x: hidden; }
+/* RESET */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  overflow-x: hidden;
+}
 
 /* BACKGROUND ANIMATO */
 .bg {
   position: fixed;
   inset: 0;
-  background: linear-gradient(120deg, #0f0f0f, #1c1c1c, #2a241c, #0f0f0f);
+  background: linear-gradient(
+    120deg,
+    #0f0f0f,
+    #1c1c1c,
+    #2a241c,
+    #0f0f0f
+  );
   background-size: 400% 400%;
   animation: bgMove 18s ease infinite;
   z-index: -2;
 }
 
-/* OVERLAY HERO */
+/* HERO */
 .overlay {
-  position: relative;
   background: rgba(0,0,0,0.4);
-  padding: 120px 20px;
   min-height: 100vh;
+  padding: 120px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -27,24 +42,15 @@ body { font-family: 'Inter', sans-serif; color: #111; overflow-x: hidden; }
   color: #f5f5f5;
 }
 
-.overlay-section {
-  position: relative;
-  background: rgba(0,0,0,0.5);
-  padding: 80px 20px;
-  border-radius: 20px;
-  max-width: 900px;
-  margin: 60px auto;
-  animation: fadeInScale 0.8s ease;
-  color: #f5f5f5;
-}
-
-/* HERO TITLE */
+/* TITOLO 3D */
 .title-3d {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(48px, 10vw, 120px);
+  font-size: clamp(48px, 10vw, 130px);
   letter-spacing: 6px;
-  color: #f5f5f5;
-  text-shadow: 1px 1px 0 #ccc, 2px 2px 0 #aaa, 4px 4px 12px rgba(0,0,0,0.6);
+  text-shadow:
+    1px 1px 0 #ccc,
+    2px 2px 0 #aaa,
+    4px 4px 12px rgba(0,0,0,0.6);
   animation: titleFloat 6s ease-in-out infinite;
 }
 
@@ -61,15 +67,15 @@ body { font-family: 'Inter', sans-serif; color: #111; overflow-x: hidden; }
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 50px 20px;
+  padding: 60px 20px;
 }
 
 .catalogo button {
   background: none;
   border: 1px solid #d6c9a5;
   color: #d6c9a5;
-  padding: 12px 32px;
-  font-size: clamp(14px,2vw,18px);
+  padding: 14px 36px;
+  font-size: clamp(14px, 2vw, 18px);
   letter-spacing: 2px;
   cursor: pointer;
   transition: all 0.4s ease;
@@ -80,76 +86,86 @@ body { font-family: 'Inter', sans-serif; color: #111; overflow-x: hidden; }
   color: #111;
 }
 
+/* SEZIONI */
+.sezione {
+  display: none;
+  padding: 40px 20px;
+}
+
+.overlay-section {
+  background: rgba(0,0,0,0.55);
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 80px 20px;
+  border-radius: 24px;
+  color: #f5f5f5;
+  text-align: center;
+  animation: fadeInScale 0.8s ease;
+}
+
+.overlay-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 6vw, 48px);
+  letter-spacing: 3px;
+  margin-bottom: 40px;
+}
+
 /* CARD PRODOTTO */
 .card {
   max-width: 460px;
-  margin: 30px auto;
+  margin: 0 auto;
   background: rgba(255,255,255,0.95);
-  padding: 25px;
+  padding: 26px;
   border-radius: 20px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
   animation: fadeUp 0.8s ease;
 }
 
-.card img { width: 100%; border-radius: 14px; }
-.card h3 { margin-top: 20px; font-size: clamp(18px,4vw,24px); color: #111; }
-.card p { margin-top: 10px; color: #333; font-size: clamp(14px,3vw,16px); }
+.card img {
+  width: 100%;
+  border-radius: 14px;
+}
+
+.card h3 {
+  margin-top: 20px;
+  font-size: clamp(18px, 4vw, 24px);
+  color: #111;
+}
+
+.card p {
+  margin-top: 10px;
+  font-size: clamp(14px, 3vw, 16px);
+  color: #333;
+}
 
 /* BOTTONI */
 .btn {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 28px;
+  margin-top: 22px;
+  padding: 12px 30px;
   background: #111;
   color: #d6c9a5;
   text-decoration: none;
   letter-spacing: 1px;
   border-radius: 30px;
-  transition: 0.3s;
-  font-size: clamp(14px,2vw,16px);
+  transition: all 0.3s ease;
 }
 
-.btn:hover { background: #d6c9a5; color: #111; }
+.btn:hover {
+  background: #d6c9a5;
+  color: #111;
+}
 
 .back {
-  margin-top: 30px;
+  margin-top: 40px;
   background: none;
   border: none;
   color: #d6c9a5;
   cursor: pointer;
-  font-size: clamp(12px,2vw,14px);
+  font-size: clamp(12px, 2vw, 14px);
+  letter-spacing: 2px;
 }
 
-/* FOOTER */
-footer { text-align: center; padding: 30px 10px; color: #aaa; font-size: clamp(12px,2vw,14px); }
-
-/* ANIMAZIONI */
-@keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInScale {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes titleFloat {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-/* MEDIA QUERIES */
-@media (max-width: 768px) {
-  .overlay { padding: 80px 15px; }
-  .overlay-section { padding: 60px 15px; margin: 40px auto; }
-  .catalogo { flex-dir
 /* CONTATTACI */
 .contact {
   padding: 100px 20px;
@@ -182,7 +198,6 @@ footer { text-align: center; padding: 30px 10px; color: #aaa; font-size: clamp(1
   margin-bottom: 40px;
 }
 
-/* Bottone Instagram */
 .contact-btn {
   display: inline-block;
   padding: 16px 44px;
@@ -199,10 +214,74 @@ footer { text-align: center; padding: 30px 10px; color: #aaa; font-size: clamp(1
   color: #111;
 }
 
-/* Mobile */
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px 10px;
+  color: #aaa;
+  font-size: clamp(12px, 2vw, 14px);
+}
+
+/* ANIMAZIONI */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes titleFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 90px 15px;
+  }
+
+  .overlay-section {
+    padding: 60px 15px;
+    margin: 40px auto;
+  }
+
+  .catalogo {
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 480px) {
+  .overlay {
+    padding: 70px 10px;
+  }
+
+  .overlay-section {
+    padding: 40px 10px;
+  }
+
   .contact-box {
     padding: 40px 20px;
   }
 }
-
