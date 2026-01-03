@@ -1,4 +1,4 @@
-// --- DATABASE PRODOTTI (CON STATUS) ---
+// --- DATABASE ---
 const products = [
   { id: 1, name: "Retro Jordan 1 High Mocha", category: "sneakers", price: "€650", status: "new", desc: "Iconica silhouette high-top in pelle premium. Colorway esclusiva.", img: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1000&auto=format&fit=crop" },
   { id: 2, name: "Oversized Heavy Hoodie", category: "hoodies", price: "€320", status: "available", desc: "Cotone 600gsm pesante. Taglio boxy fit oversize.", img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop" },
@@ -26,13 +26,9 @@ function checkDarkMode() {
     else document.body.classList.remove('dark-mode');
 }
 checkDarkMode();
+function toggleTheme() { document.body.classList.toggle('dark-mode'); }
 
-// 2. TOGGLE MANUALE
-function toggleTheme() {
-    document.body.classList.toggle('dark-mode');
-}
-
-// 3. GESTIONE RICERCA (ENTER KEY)
+// 2. SEARCH
 searchInput.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -44,11 +40,7 @@ searchInput.addEventListener("keyup", function(event) {
 function performSearch() {
     const q = searchInput.value.toLowerCase().trim();
     const found = products.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q));
-    
-    // Mostra risultati
     renderProducts(found);
-    
-    // Chiudi pagina prodotto se aperta e torna in cima
     if (productView.style.display === 'block' || getComputedStyle(productView).display === 'block') {
         productView.style.display = 'none';
         homeView.style.display = 'block';
@@ -56,7 +48,7 @@ function performSearch() {
     window.scrollTo(0, 0);
 }
 
-// 4. RENDER & FILTERS (CON ANIMAZIONI E BADGE)
+// 3. RENDER
 function renderProducts(list) {
     grid.innerHTML = "";
     if (list.length === 0) {
@@ -64,7 +56,6 @@ function renderProducts(list) {
     } else {
         noResults.style.display = "none";
         list.forEach((p, index) => {
-            
             let badgeHTML = "";
             let soldClass = "";
             let clickAction = `onclick="goToProductPage(${p.id})"`;
@@ -74,10 +65,9 @@ function renderProducts(list) {
             } else if (p.status === "sold_out") {
                 badgeHTML = `<div class="status-badge badge-sold">SOLD OUT</div>`;
                 soldClass = "is-sold-out";
-                clickAction = ""; // Disabilita click
+                clickAction = "";
             }
 
-            // Animazione cascata (delay incrementale)
             let animStyle = `animation-delay: ${index * 0.1}s`;
 
             grid.innerHTML += `
@@ -102,7 +92,7 @@ function filterProducts(cat) {
     else renderProducts(products.filter(p => p.category === cat));
 }
 
-// 5. NAVIGATION
+// 4. NAVIGATION
 function goToProductPage(id) {
     const p = products.find(x => x.id === id);
     if(!p || p.status === 'sold_out') return; 
@@ -134,7 +124,9 @@ window.onpopstate = function(event) {
     if (!event.state || event.state.view !== 'product') showHomeView();
 };
 
-// 6. CONTACTS & SOURCING
+// 5. CONTACTS & VIP SOURCING
+const sourcingModal = document.getElementById("sourcing-modal");
+
 function contactForProduct(type) {
     const name = document.getElementById("detail-title").innerText;
     const price = document.getElementById("detail-price").innerText;
@@ -146,12 +138,24 @@ function contactForProduct(type) {
     popup.style.display = 'flex';
 }
 
-function contactForSourcing() {
-    const searchTerm = searchInput.value;
-    let msg = `Ciao! Sto cercando "${searchTerm}" ma non è sul sito. Potete trovarlo?`;
-    if(searchTerm === "") msg = "Ciao! Vorrei fare una richiesta di sourcing per un prodotto.";
-    document.getElementById("popup-text").innerText = msg;
-    popup.style.display = 'flex';
+function openSourcingModal() { sourcingModal.style.display = "flex"; }
+function closeSourcingModal() { sourcingModal.style.display = "none"; }
+
+function sendSourcingRequest() {
+    const model = document.getElementById("src-model").value;
+    const size = document.getElementById("src-size").value;
+
+    if(!model || !size) {
+        alert("Inserisci Modello e Taglia.");
+        return;
+    }
+
+    const clipboardMsg = `Ciao! Richiesta VIP Concierge:\nModello: ${model}\nTaglia: ${size}\nPotete trovarla?`;
+    
+    navigator.clipboard.writeText(clipboardMsg).then(() => {
+        window.open("https://ig.me/m/luxury.thread_", "_blank");
+        closeSourcingModal();
+    });
 }
 
 function openInstagram() {
@@ -163,5 +167,10 @@ function openInstagram() {
 function closePopup() { popup.style.display = 'none'; }
 function goHome() { searchInput.value=""; filterProducts('all'); showHomeView(); }
 
-// Init
+// CLOSE ON CLICK OUTSIDE
+window.onclick = function(event) {
+    if (event.target == sourcingModal) closeSourcingModal();
+    if (event.target == popup) closePopup();
+}
+
 renderProducts(products);
