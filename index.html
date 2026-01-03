@@ -9,7 +9,7 @@
 
 <body>
 
-<header class="main-header header-blur">
+<header class="main-header marble-texture">
   <div class="header-content">
     <div class="logo-slot" onclick="goHome()">
       <img src="logo.png" alt="LT Logo" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='block'">
@@ -28,7 +28,7 @@
 </header>
 
 <main id="home-view">
-  <div class="spacer"></div> <nav class="filters glass-panel">
+  <div class="spacer"></div> <nav class="filters">
     <button onclick="filterProducts('all')" class="active">ALL</button>
     <button onclick="filterProducts('sneakers')">SNEAKERS</button>
     <button onclick="filterProducts('hoodies')">HOODIES</button>
@@ -38,26 +38,26 @@
 
   <section id="products-grid" class="product-grid"></section>
 
-  <div id="no-results" class="glass-panel" style="display:none; margin: 20px auto; max-width: 600px; text-align: center;">
+  <div id="no-results" class="no-results-box" style="display:none;">
     <h2>NESSUN RISULTATO</h2>
     <p>Non trovi quello che cerchi? Inviaci una richiesta.</p>
   </div>
 
-  <footer>
+  <footer class="marble-texture">
     <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
     <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
   </footer>
 </main>
 
 
-<section id="single-product-page" class="single-product-view">
+<section id="single-product-page" class="single-product-view marble-texture">
   <div class="spacer"></div>
   
-  <div class="back-nav">
-    <button onclick="goBackToHome()">← TORNA ALLA HOME</button>
+  <div class="product-top-bar">
+    <button class="close-view-btn" onclick="goBackToHome()">✕ CLOSE VIEW</button>
   </div>
 
-  <div class="product-detail-container glass-panel">
+  <div class="product-detail-container">
     <div class="detail-image">
       <img id="detail-img" src="" alt="">
     </div>
@@ -77,7 +77,7 @@
 
 
 <div id="popup" class="popup-overlay">
-  <div class="popup-box glass-panel">
+  <div class="popup-box">
     <h3>MESSAGGIO PRONTO</h3>
     <p id="popup-text"></p>
     <button class="buy-btn main-btn" onclick="openInstagram()">APRI INSTAGRAM</button>
