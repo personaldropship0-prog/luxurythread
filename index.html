@@ -13,7 +13,6 @@
 
 <header class="topbar">
   <div class="logo" onclick="goHome()">Luxury Thread</div>
-
   <div class="search-box">
     <input id="searchInput" type="text" placeholder="Cerca un prodotto o brand">
     <button type="button" onclick="searchProduct()">Cerca</button>
@@ -35,24 +34,23 @@
 <section id="products" class="products"></section>
 
 <section id="search-results" class="search-section">
-  <h2 id="search-title"></h2>
+  <div class="search-card">
+    <h2 id="search-title"></h2>
+    <div id="results" class="products"></div>
 
-  <div id="results" class="products"></div>
+    <div id="request-box" class="request-box">
+      <p class="request-title">Non trovi quello che cerchi?</p>
+      <p class="request-sub">
+        Richiedi il prodotto e lo cercheremo per te.
+      </p>
+      <input id="requestInput" type="text" placeholder="Nome del prodotto">
+      <textarea id="requestNote" placeholder="Dettagli (taglia, colore, brand...)"></textarea>
+      <button type="button" onclick="sendRequest()">Invia richiesta</button>
+      <button class="back" onclick="goHome()">← Torna alla Home</button>
+    </div>
 
-  <div id="request-box" class="request-box">
-    <p class="request-title">Non trovi quello che cerchi?</p>
-    <p class="request-sub">
-      Richiedi il prodotto e lo cercheremo per te.
-    </p>
-
-    <input id="requestInput" type="text" placeholder="Nome del prodotto">
-    <textarea id="requestNote" placeholder="Dettagli (taglia, colore, brand...)"></textarea>
-
-    <button type="button" onclick="sendRequest()">Invia richiesta</button>
     <button class="back" onclick="goHome()">← Torna alla Home</button>
   </div>
-
-  <button class="back" onclick="goHome()">← Torna alla Home</button>
 </section>
 
 <section class="contact">
