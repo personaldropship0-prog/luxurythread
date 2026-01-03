@@ -1,40 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap');
 
-/* --- VARIABILI TEMA (MARMO REALE) --- */
+/* --- CONFIGURAZIONE IMMAGINI LOCALI --- */
 :root {
-    /* GIORNO: Marmo Bianco Carrara Nitido */
-    --marble-img: url('https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=2000&auto=format&fit=crop');
+    /* TEMA GIORNO */
+    /* Assicurati di avere il file "marmo-white.jpg" nella cartella "img" */
+    --marble-img: url('img/marmo-white.jpg');
     
-    --body-bg: #f5f5f5;
+    --body-bg: #f5f5f5; 
     --text-color: #000000;
     --accent-color: #000000;
     --border-color: #000000;
     --card-bg: #ffffff;
-    
-    /* Ombra bianca attorno al testo per farlo leggere sopra il marmo */
-    --text-shadow: 2px 2px 0px rgba(255,255,255,0.6);
+    --text-shadow: none; 
 }
 
 body.dark-mode {
-    /* NOTTE: Marmo Nero Marquina Lucido */
-    --marble-img: url('https://images.unsplash.com/photo-1610219666085-3b99480be639?q=80&w=2000&auto=format&fit=crop');
+    /* TEMA NOTTE (Dopo le 19:00) */
+    /* Assicurati di avere il file "marmo-black.jpg" nella cartella "img" */
+    --marble-img: url('img/marmo-black.jpg');
     
     --body-bg: #111111;
     --text-color: #ffffff;
     --accent-color: #ffffff;
     --border-color: #ffffff;
     --card-bg: #1a1a1a;
-    
-    /* Ombra nera attorno al testo per farlo leggere sopra il marmo */
-    --text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
+    --text-shadow: 0px 0px 5px rgba(0,0,0,0.8); /* Aiuta a leggere sul nero */
 }
 
-/* CLASSE PER APPLICARE IL MARMO */
+/* QUESTA CLASSE APPLICA IL MARMO */
 .marble-texture {
     background-image: var(--marble-img);
     background-size: cover;
     background-position: center;
-    /* Nessun overlay pesante, solo il marmo vero */
+    background-repeat: no-repeat;
 }
 
 /* --- BASE --- */
@@ -44,7 +42,7 @@ body {
     font-family: 'Inter', sans-serif;
     color: var(--text-color);
     background-color: var(--body-bg);
-    transition: background 0.5s, color 0.5s;
+    transition: all 0.5s ease;
 }
 
 /* --- HEADER --- */
@@ -54,7 +52,9 @@ body {
     z-index: 1000;
     padding: 10px 20px;
     border-bottom: 2px solid var(--border-color);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Ombra sotto la barra */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    
+    /* Il marmo viene applicato qui tramite la classe .marble-texture nell'HTML */
 }
 
 .header-content {
@@ -65,28 +65,28 @@ body {
     margin: 0 auto;
 }
 
-/* --- LOGO CIRCOLARE --- */
+/* --- LOGO CIRCOLARE (Corretto) --- */
 .logo-slot {
     width: 60px; 
     height: 60px;
-    border-radius: 50%; /* CERCHIO PERFETTO */
+    border-radius: 50%; /* Cerchio perfetto */
     border: 2px solid var(--border-color);
-    overflow: hidden; /* Taglia l'immagine se quadrata */
+    overflow: hidden; /* Taglia l'immagine se esce */
     cursor: pointer;
-    background: #fff; /* Sfondo bianco se l'immagine è trasparente */
+    background: #fff;
     display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; /* Impedisce al logo di schiacciarsi */
 }
 
 .logo-slot img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Riempie il cerchio */
+    object-fit: cover; /* Riempie tutto il cerchio */
+    display: block;
 }
 
 .brand-fallback {
     font-family: 'Oswald'; font-weight: bold; font-size: 1.5rem;
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
 }
 
 /* TITOLO */
@@ -98,7 +98,8 @@ body {
     text-align: center;
     margin: 0 15px;
     cursor: pointer;
-    text-shadow: var(--text-shadow); /* Per leggere sopra il marmo */
+    text-shadow: var(--text-shadow);
+    letter-spacing: -1px;
 }
 
 /* SEARCH BAR */
@@ -137,7 +138,7 @@ body {
 .filters button.active, .filters button:hover {
     background: var(--accent-color); color: var(--card-bg);
     transform: translateY(-3px);
-    box-shadow: 3px 3px 0 var(--border-color);
+    box-shadow: 4px 4px 0 var(--border-color);
 }
 
 .product-grid {
@@ -171,17 +172,17 @@ body {
 
 .product-top-bar {
     padding: 20px 40px;
-    text-align: right; /* Tasto X a destra */
+    text-align: right; 
 }
 
 .close-view-btn {
-    background: var(--card-bg); /* Sfondo bianco/nero per contrasto */
+    background: var(--card-bg); 
     border: 2px solid var(--text-color);
     color: var(--text-color);
     font-family: 'Oswald'; font-weight: 700;
     padding: 10px 25px; cursor: pointer;
     font-size: 1.1rem;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
 }
 .close-view-btn:hover { transform: scale(1.05); }
 
@@ -191,7 +192,7 @@ body {
     margin: 0 auto;
     background: var(--card-bg);
     border: 3px solid var(--border-color);
-    box-shadow: 15px 15px 0 rgba(0,0,0,0.5); /* Ombra "Deep" */
+    box-shadow: 15px 15px 0 rgba(0,0,0,0.5); 
 }
 
 .detail-image { flex: 1; border-right: 2px solid var(--border-color); }
