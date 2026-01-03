@@ -1,119 +1,104 @@
-const products = [// --- DATI PRODOTTI (10 SLOTS CON IMMAGINI REALI) ---
+// --- DATABASE 10 PRODOTTI STREETWEAR LUXURY ---
 const products = [
   { 
     id: 1, 
-    name: "Royal Oxford Loafer", 
-    category: "scarpe", 
-    price: "€850",
-    desc: "Mocassino in pelle di vitello spazzolata, suola in cuoio lavorata a mano. Un classico senza tempo.", 
-    img: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?q=80&w=1000&auto=format&fit=crop" 
+    name: "Retro Jordan 1 High", 
+    category: "sneakers", 
+    price: "€650",
+    desc: "Iconica silhouette high-top in pelle premium. Colorway esclusiva 'Mocha'. Deadstock condition.", 
+    img: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1000&auto=format&fit=crop" 
   },
   { 
     id: 2, 
-    name: "Cashmere Turtleneck", 
-    category: "maglie", 
-    price: "€420",
-    desc: "100% Cashmere mongolo, lavorazione a coste sottili. Calore e morbidezza assoluta.", 
-    img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop" 
+    name: "Oversized Heavy Hoodie", 
+    category: "hoodies", 
+    price: "€320",
+    desc: "Cotone 600gsm pesante. Taglio boxy fit oversize con spalle scese. Lavaggio vintage black.", 
+    img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop" 
   },
   { 
     id: 3, 
-    name: "Tailored Pleated Trouser", 
-    category: "pantaloni", 
-    price: "€380",
-    desc: "Pantalone sartoriale con doppia pince, taglio moderno e tessuto in lana vergine.", 
-    img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?q=80&w=1000&auto=format&fit=crop" 
-  },
-  { 
-    id: 4, 
-    name: "Noir Leather Jacket", 
-    category: "maglie", 
-    price: "€1,200",
-    desc: "Giacca in pelle nappa pieno fiore, zip asimmetrica e dettagli in argento brunito.", 
-    img: "https://images.unsplash.com/photo-1551028919-383718bccf3b?q=80&w=1000&auto=format&fit=crop" 
-  },
-  { 
-    id: 5, 
-    name: "Urban Runner Limited", 
-    category: "scarpe", 
-    price: "€650",
-    desc: "Sneaker di lusso con inserti in camoscio e tessuto tecnico. Edizione limitata.", 
-    img: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=1000&auto=format&fit=crop" 
-  },
-  { 
-    id: 6, 
-    name: "Silk Evening Shirt", 
-    category: "maglie", 
-    price: "€550",
-    desc: "Camicia da sera in seta nera, bottoni in madreperla nascosti. Eleganza notturna.", 
-    img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?q=80&w=1000&auto=format&fit=crop" 
-  },
-  { 
-    id: 7, 
-    name: "Heritage Cargo Pant", 
-    category: "pantaloni", 
-    price: "€320",
-    desc: "Reinterpretazione luxury del pantalone cargo. Cotone giapponese ad alta densità.", 
+    name: "Tech Cargo Pants V2", 
+    category: "pants", 
+    price: "€280",
+    desc: "Pantaloni tecnici in nylon ripstop. 6 tasche utility e fit regolabile alla caviglia. Water resistant.", 
     img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=1000&auto=format&fit=crop" 
   },
   { 
+    id: 4, 
+    name: "Dunk Low Panda", 
+    category: "sneakers", 
+    price: "€240",
+    desc: "Il classico streetwear. Bianco e nero, versatile, pelle di alta qualità. Must have.", 
+    img: "https://images.unsplash.com/photo-1633966887768-64f9a421a7b5?q=80&w=1000&auto=format&fit=crop" 
+  },
+  { 
+    id: 5, 
+    name: "Silver Chain Cuban", 
+    category: "accessories", 
+    price: "€150",
+    desc: "Catena a maglia cubana in acciaio inossidabile placcato argento. Chiusura a scatto industriale.", 
+    img: "https://images.unsplash.com/photo-1576020799627-aeac74358708?q=80&w=1000&auto=format&fit=crop" 
+  },
+  { 
+    id: 6, 
+    name: "Graffiti Spray Tee", 
+    category: "hoodies", 
+    price: "€180",
+    desc: "T-shirt bianca oversize con stampa graffiti artistica sul retro. Cotone organico.", 
+    img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop" 
+  },
+  { 
+    id: 7, 
+    name: "Yeezy Slide Pure", 
+    category: "sneakers", 
+    price: "€190",
+    desc: "Comfort futuristico. Schiuma EVA iniettata per una leggerezza assoluta. Colore sabbia.", 
+    img: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1000&auto=format&fit=crop" 
+  },
+  { 
     id: 8, 
-    name: "Monogram Tote", 
-    category: "accessori", 
-    price: "€1,850",
-    desc: "Borsa tote spaziosa con pattern monogrammato goffrato. Ideale per il viaggio.", 
-    img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000&auto=format&fit=crop" 
+    name: "Tactical Vest Black", 
+    category: "accessories", 
+    price: "€210",
+    desc: "Gilet tattico ispirazione military. Multi-pocket, ideale per layering su hoodie.", 
+    img: "https://images.unsplash.com/photo-1559563458-52c695292a74?q=80&w=1000&auto=format&fit=crop" 
   },
   { 
     id: 9, 
-    name: "Velvet Blazer", 
-    category: "maglie", 
-    price: "€980",
-    desc: "Blazer strutturato in velluto liscio color midnight blue. Rever a lancia.", 
-    img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop" 
+    name: "Tracksuit Acetate", 
+    category: "pants", 
+    price: "€450",
+    desc: "Pantalone tuta in acetato con bande laterali. Stile retro anni 90 rivisitato luxury.", 
+    img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" 
   },
   { 
     id: 10, 
-    name: "Minimalist Watch", 
-    category: "accessori", 
-    price: "€2,500",
-    desc: "Orologio automatico con quadrante pulito e cinturino in pelle di alligatore.", 
-    img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?q=80&w=1000&auto=format&fit=crop" 
+    name: "Beanie Logo Wool", 
+    category: "accessories", 
+    price: "€95",
+    desc: "Berretto in lana merino a coste con patch logo gommata frontale. Caldo e minimal.", 
+    img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?q=80&w=1000&auto=format&fit=crop" 
   }
 ];
 
-// --- RIFERIMENTI DOM ---
-const hero = document.getElementById("hero");
-const filters = document.getElementById("filters");
-const container = document.getElementById("products");
+// --- LOGICA IDENTICA AL CODICE ORIGINALE ---
+
+const grid = document.getElementById("products");
 const searchSection = document.getElementById("search-results");
-const results = document.getElementById("results");
-const searchTitle = document.getElementById("search-title");
+const resultsDiv = document.getElementById("results");
 const requestBox = document.getElementById("request-box");
-const popup = document.getElementById("popup");
-const popupText = document.getElementById("popup-text");
+const searchTitle = document.getElementById("search-title");
 
-// Modal Elements
-const productModal = document.getElementById("product-modal");
-const modalImg = document.getElementById("modal-img-src");
-const modalCat = document.getElementById("modal-category");
-const modalTitle = document.getElementById("modal-title");
-const modalDesc = document.getElementById("modal-desc");
-const modalPrice = document.getElementById("modal-price");
-
-// --- FUNZIONI CORE ---
-
-function renderProducts(list, targetContainer = container) {
-  targetContainer.innerHTML = "";
+// Render iniziale
+function renderProducts(list, target = grid) {
+  target.innerHTML = "";
   list.forEach(p => {
-    targetContainer.innerHTML += `
-      <div class="card" onclick="openProductModal(${p.id})">
-        <div class="card-img-container">
-          <img src="${p.img}" alt="${p.name}">
-        </div>
-        <div class="card-info">
+    target.innerHTML += `
+      <div class="card" onclick="openModal(${p.id})">
+        <img src="${p.img}" class="card-img" alt="${p.name}">
+        <div class="card-details">
           <h3>${p.name}</h3>
-          <p>${p.desc.substring(0, 40)}...</p>
           <div class="price">${p.price}</div>
         </div>
       </div>
@@ -123,113 +108,81 @@ function renderProducts(list, targetContainer = container) {
 
 // Filtri
 function filterProducts(cat) {
-  const btns = document.querySelectorAll('.filters button');
-  btns.forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
   event.target.classList.add('active');
+  
+  searchSection.style.display = 'none';
+  grid.style.display = 'grid';
 
-  hero.style.display = "none";
-  filters.style.display = "flex";
-  searchSection.style.display = "none";
-  container.style.display = "grid";
-
-  if (cat === 'all') {
-    hero.style.display = "flex";
-    renderProducts(products);
-  } else {
-    const list = products.filter(p => p.category === cat);
-    renderProducts(list);
-  }
+  if(cat === 'all') renderProducts(products);
+  else renderProducts(products.filter(p => p.category === cat));
 }
 
 // Ricerca
 function searchProduct() {
-  const q = document.getElementById("searchInput").value.toLowerCase().trim();
-  results.innerHTML = "";
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  grid.style.display = 'none';
+  searchSection.style.display = 'block';
   
-  hero.style.display = "none";
-  container.style.display = "none";
-
-  const found = products.filter(p =>
-    p.name.toLowerCase().includes(q) || p.category.includes(q)
-  );
-
-  if(found.length === 0) {
-    searchTitle.innerText = "Nessun prodotto trovato";
-    searchTitle.style.color = "#888";
-    requestBox.style.display = "block";
+  const found = products.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q));
+  
+  if(found.length > 0) {
+    searchTitle.innerText = "RISULTATI:";
+    requestBox.style.display = 'none';
+    renderProducts(found, resultsDiv);
   } else {
-    searchTitle.innerText = `Risultati per "${q}"`;
-    searchTitle.style.color = "#d6c9a5";
-    requestBox.style.display = "none";
-    renderProducts(found, results);
+    searchTitle.innerText = "NESSUN RISULTATO";
+    resultsDiv.innerHTML = "";
+    requestBox.style.display = 'block';
   }
-
-  searchSection.style.display = "block";
-  searchSection.scrollIntoView({behavior:"smooth"});
 }
 
-// Popup Request Logic
+function goHome() {
+  grid.style.display = 'grid';
+  searchSection.style.display = 'none';
+  document.getElementById("searchInput").value = "";
+  renderProducts(products);
+}
+
+// Modal
+const modal = document.getElementById("product-modal");
+function openModal(id) {
+  const p = products.find(x => x.id === id);
+  document.getElementById("modal-img-src").src = p.img;
+  document.getElementById("modal-title").innerText = p.name;
+  document.getElementById("modal-category").innerText = p.category;
+  document.getElementById("modal-price").innerText = p.price;
+  document.getElementById("modal-desc").innerText = p.desc;
+  modal.classList.add("open");
+}
+function closeProductModal() { modal.classList.remove("open"); }
+
+// Contact & Popup
+function contactForProduct() {
+  const name = document.getElementById("modal-title").innerText;
+  const price = document.getElementById("modal-price").innerText;
+  copyText(`Ciao! Vorrei acquistare: ${name} (${price})`);
+}
+
 function showRequestPopup() {
-  const product = document.getElementById("requestInput").value;
+  const item = document.getElementById("requestInput").value;
   const note = document.getElementById("requestNote").value;
-  popupText.innerText = `Ciao Luxury Thread 👋\nSto cercando:\n👉 ${product}\n${note}`;
-  popup.style.display = "flex";
+  copyText(`Richiesta Sourcing:\nProdotto: ${item}\nNote: ${note}`);
+}
+
+function copyText(text) {
+  document.getElementById("popup-text").innerText = text;
+  document.getElementById("popup").style.display = 'flex';
 }
 
 function copyAndOpenInstagram() {
-  navigator.clipboard.writeText(popupText.innerText).then(() => {
+  navigator.clipboard.writeText(document.getElementById("popup-text").innerText).then(() => {
     window.open("https://ig.me/m/luxury.thread_", "_blank");
-    popup.style.display = "none";
+    document.getElementById("popup").style.display = 'none';
   });
 }
 
-function closePopup() {
-  popup.style.display = "none";
-}
-
-// Home Reset
-function goHome() {
-  document.getElementById("searchInput").value = "";
-  hero.style.display = "flex";
-  filters.style.display = "flex";
-  container.style.display = "grid";
-  searchSection.style.display = "none";
-  renderProducts(products); 
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-// --- LOGICA MODALE (FULL SCREEN) ---
-
-function openProductModal(id) {
-  const p = products.find(prod => prod.id === id);
-  if(!p) return;
-
-  modalImg.src = p.img;
-  modalCat.innerText = p.category;
-  modalTitle.innerText = p.name;
-  modalDesc.innerText = p.desc;
-  modalPrice.innerText = p.price;
-
-  productModal.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeProductModal() {
-  productModal.classList.remove('open');
-  document.body.style.overflow = 'auto';
-}
-
-function contactForProduct() {
-  const msg = `Ciao, sono interessato al prodotto: ${modalTitle.innerText} (${modalPrice.innerText})`;
-  navigator.clipboard.writeText(msg).then(() => {
-    window.open("https://ig.me/m/luxury.thread_", "_blank");
-  });
-}
-
-// Chiudi modale cliccando fuori
-productModal.addEventListener('click', (e) => {
-  if (e.target === productModal) closeProductModal();
-});
+function closePopup() { document.getElementById("popup").style.display = 'none'; }
 
 // Init
 renderProducts(products);
