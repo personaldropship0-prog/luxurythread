@@ -20,7 +20,6 @@
 
   <header class="main-header marble-texture">
     <div class="header-content">
-      
       <div class="logo-slot" onclick="goHome()">
         <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
         <span class="brand-fallback" style="display:none">LT</span>
@@ -53,8 +52,8 @@
     <div id="no-results" class="no-results-box" style="display:none;">
       <div class="no-results-content">
         <h2>PRODOTTO NON TROVATO</h2>
-        <p>Non abbiamo quello che cerchi in catalogo?</p>
-        <button class="buy-btn main-btn" onclick="contactForSourcing()">INVIA RICHIESTA SOURCING (IG)</button>
+        <p>Non è in catalogo? Usa il servizio Concierge qui sotto.</p>
+        <button class="buy-btn main-btn" onclick="openSourcingModal()">APRI VIP SOURCING</button>
       </div>
     </div>
   </main>
@@ -89,12 +88,30 @@
     <div class="footer-content">
       <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
       <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
-      
       <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
     </div>
   </footer>
 
-</div> <div id="popup" class="popup-overlay">
+</div>
+
+<div class="floating-sourcing-btn" onclick="openSourcingModal()">
+    <span>💎 VIP CONCIERGE</span>
+</div>
+
+<div id="sourcing-modal" class="popup-overlay">
+  <div class="popup-box sourcing-box">
+    <h3>RICHIESTA SOURCING</h3>
+    <p style="font-size: 0.9rem; margin-bottom: 20px;">Dicci cosa cerchi. Noi lo troviamo.</p>
+    
+    <input type="text" id="src-model" placeholder="MODELLO (es. Jordan 4 Military)" class="modal-input">
+    <input type="text" id="src-size" placeholder="TAGLIA (es. 44 EU)" class="modal-input">
+    
+    <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA (IG)</button>
+    <button class="buy-btn sec-btn" onclick="closeSourcingModal()">CHIUDI</button>
+  </div>
+</div>
+
+<div id="popup" class="popup-overlay">
   <div class="popup-box">
     <h3>MESSAGGIO PRONTO</h3>
     <p id="popup-text"></p>
