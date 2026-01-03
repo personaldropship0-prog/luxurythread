@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap');
 
-/* --- CONFIGURAZIONE IMMAGINI LOCALI --- */
+/* --- CONFIGURAZIONE VARIABILI --- */
 :root {
-    --marble-img: url('img/marmo-white.jpg');
+    --marble-img: url('img/marmo-white.jpg'); /* Assicurati di avere questa immagine */
     --body-bg: #f5f5f5; 
     --text-color: #000000;
     --accent-color: #000000;
@@ -12,7 +12,7 @@
 }
 
 body.dark-mode {
-    --marble-img: url('img/marmo-black.jpg');
+    --marble-img: url('img/marmo-black.jpg'); /* Assicurati di avere questa immagine */
     --body-bg: #111111;
     --text-color: #ffffff;
     --accent-color: #ffffff;
@@ -21,12 +21,13 @@ body.dark-mode {
     --text-shadow: 0px 0px 8px rgba(0,0,0,1); 
 }
 
+/* Texture Marmo */
 .marble-texture {
     background-image: var(--marble-img);
     background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 
-/* --- LAYOUT GENERALE (SOLUZIONE FOOTER CHE SALE) --- */
+/* --- LAYOUT GENERALE --- */
 * { margin:0; padding:0; box-sizing:border-box; }
 
 body, html { height: 100%; }
@@ -39,19 +40,33 @@ body {
 }
 
 .page-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Occupa almeno tutto lo schermo */
+    display: flex; flex-direction: column; min-height: 100vh;
 }
+.content-area { flex: 1; width: 100%; }
 
-.content-area {
-    flex: 1; /* Spinge il footer in basso riempiendo lo spazio vuoto */
-    width: 100%;
+/* --- NEWS TICKER (NOVITÀ SCORREVOLI) --- */
+.news-ticker {
+    position: fixed; top: 0; left: 0; width: 100%; height: 30px;
+    background: var(--text-color); 
+    color: var(--body-bg);
+    overflow: hidden; white-space: nowrap;
+    line-height: 30px; z-index: 1001;
+    font-family: 'Oswald'; font-size: 0.9rem; font-weight: bold; text-transform: uppercase;
+}
+.ticker-content {
+    display: inline-block;
+    animation: scroll-left 25s linear infinite;
+    padding-left: 100%;
+}
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
 }
 
 /* --- HEADER --- */
 .main-header {
-    position: fixed; top: 0; left: 0; width: 100%;
+    position: fixed; top: 30px; /* Lascia spazio al ticker */
+    left: 0; width: 100%;
     z-index: 1000; padding: 10px 20px;
     border-bottom: 2px solid var(--border-color);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -94,7 +109,8 @@ body {
     border: none; padding: 0 15px; cursor: pointer;
 }
 
-.spacer { height: 100px; }
+/* Spacer maggiorato per header + ticker */
+.spacer { height: 140px; }
 
 /* --- HOME --- */
 .filters {
@@ -116,32 +132,45 @@ body {
     gap: 30px; padding: 20px 5% 60px; max-width: 1800px; margin: 0 auto;
 }
 
-/* BOX NESSUN RISULTATO */
-.no-results-box {
-    text-align: center; padding: 50px 20px;
-    max-width: 600px; margin: 0 auto;
-}
+/* NO RESULTS BOX */
+.no-results-box { text-align: center; padding: 50px 20px; max-width: 600px; margin: 0 auto; }
 .no-results-content {
-    background: var(--card-bg);
-    border: 2px solid var(--border-color);
-    padding: 40px;
-    box-shadow: 8px 8px 0 var(--text-color);
+    background: var(--card-bg); border: 2px solid var(--border-color);
+    padding: 40px; box-shadow: 8px 8px 0 var(--text-color);
 }
 .no-results-content h2 { font-family: 'Oswald'; margin-bottom: 10px; }
 .no-results-content p { margin-bottom: 20px; }
 
-/* CARD PRODOTTO */
+/* --- CARD PRODOTTO (ANIMAZIONI & BADGE) --- */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .card {
-    background-image: var(--marble-img);
-    background-size: cover; background-position: center;
+    position: relative; overflow: hidden;
+    background-image: var(--marble-img); background-size: cover; background-position: center;
     border: 2px solid var(--border-color);
     transition: transform 0.2s; cursor: pointer;
+    animation: fadeInUp 0.6s ease-out forwards; opacity: 0; /* Parte invisibile per animazione */
 }
 .card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--text-color); }
 .card-img { width: 100%; height: 350px; object-fit: cover; border-bottom: 2px solid var(--border-color); }
 .card-details { padding: 15px; text-shadow: var(--text-shadow); }
 .card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 5px; }
 .price { font-weight: 700; font-family: 'Oswald'; font-size: 1.2rem; }
+
+/* BADGES */
+.status-badge {
+    position: absolute; top: 10px; right: 10px; padding: 5px 10px;
+    font-family: 'Oswald'; font-weight: bold; font-size: 0.8rem;
+    z-index: 2; text-shadow: none; box-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+}
+.badge-new { background: #00ff00; color: #000; }
+.badge-sold { background: #ff0000; color: #fff; }
+
+.card.is-sold-out .card-img { filter: grayscale(100%); opacity: 0.6; }
+.card.is-sold-out { cursor: not-allowed; }
 
 /* --- PAGINA PRODOTTO --- */
 .single-product-view { display: none; padding-bottom: 50px; }
@@ -159,25 +188,19 @@ body {
     background-image: var(--marble-img); background-size: cover; background-position: center;
     border: 3px solid var(--border-color); box-shadow: 15px 15px 0 rgba(0,0,0,0.5); 
 }
-
 .detail-image { flex: 1; border-right: 2px solid var(--border-color); }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block;}
-
 .detail-info { 
     flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; 
     text-shadow: var(--text-shadow);
 }
-
 .badge {
     background: var(--accent-color); color: var(--card-bg);
-    padding: 5px 15px; align-self: start; font-family: 'Oswald'; font-weight: bold; margin-bottom: 20px;
-    text-shadow: none;
+    padding: 5px 15px; align-self: start; font-family: 'Oswald'; font-weight: bold; margin-bottom: 20px; text-shadow: none;
 }
 .detail-info h2 { font-family: 'Oswald'; font-size: 3.5rem; text-transform: uppercase; line-height: 1; margin-bottom: 20px; }
-.detail-info p { font-weight: 500; }
 .price-tag { font-family: 'Oswald'; font-size: 2.5rem; font-weight: bold; margin-bottom: 40px; }
 .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
-
 .buy-btn {
     flex: 1; padding: 15px; font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; 
     border: 2px solid var(--border-color); cursor: pointer;
@@ -189,21 +212,14 @@ body {
 /* --- FOOTER --- */
 footer {
     padding: 30px; text-align: center; font-family: 'Oswald';
-    border-top: 2px solid var(--border-color);
-    text-shadow: var(--text-shadow);
-    /* margin-top: auto è gestito dal wrapper, ma per sicurezza: */
+    border-top: 2px solid var(--border-color); text-shadow: var(--text-shadow);
     margin-top: auto; 
 }
 .footer-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .contact-link { color: inherit; font-weight: bold; }
-
-/* TASTO TEMA NEL FOOTER */
 #footer-theme-btn {
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--text-color);
-    padding: 5px 10px; cursor: pointer; border-radius: 15px;
-    font-size: 1rem; transition: 0.3s;
+    background: transparent; border: 1px solid var(--border-color); color: var(--text-color);
+    padding: 5px 10px; cursor: pointer; border-radius: 15px; font-size: 1rem; transition: 0.3s;
 }
 #footer-theme-btn:hover { background: var(--accent-color); color: var(--card-bg); }
 
@@ -218,8 +234,7 @@ footer {
     .brand-title { font-size: 32px; width: 100%; order: 1; margin-top: 10px; }
     .logo-slot { order: 2; margin-right: auto;}
     .search-bar-container { order: 3; margin-left: auto;}
-    .spacer { height: 180px; }
-    
+    .spacer { height: 220px; } /* Più spazio su mobile perché l'header si alza */
     .product-detail-container { flex-direction: column; width: 95%; }
     .detail-image { height: 350px; border-right: none; border-bottom: 2px solid var(--border-color); }
     .detail-info { padding: 20px; }
