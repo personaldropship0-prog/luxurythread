@@ -1,45 +1,76 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Il mio brand</title>
-  <meta name="description" content="Scopri i nostri prodotti. Contattaci su Instagram.">
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Nome Brand</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <h1>Il mio brand</h1>
-    <p>Prodotti artigianali – contattaci su Instagram</p>
-  </header>
+<header class="hero" id="home">
+  <h1>Nome Brand</h1>
+  <p>Abbigliamento moderno</p>
+</header>
 
-  <main class="prodotti">
+<nav class="catalogo">
+  <button onclick="showSection('scarpe')">Scarpe</button>
+  <button onclick="showSection('maglie')">Maglie</button>
+  <button onclick="showSection('pantaloni')">Pantaloni</button>
+</nav>
 
-    <div class="prodotto">
-      <img src="https://via.placeholder.com/300" alt="Prodotto 1">
-      <h2>Prodotto 1</h2>
-      <p>Descrizione del prodotto.</p>
-      <a href="https://ig.me/m/tuo_username" target="_blank" class="btn">
-        Scrivici su Instagram
-      </a>
-    </div>
+<!-- SEZIONE SCARPE -->
+<section id="scarpe" class="sezione">
+  <h2>Scarpe</h2>
 
-    <div class="prodotto">
-      <img src="https://via.placeholder.com/300" alt="Prodotto 2">
-      <h2>Prodotto 2</h2>
-      <p>Descrizione del prodotto.</p>
-      <a href="https://ig.me/m/tuo_username" target="_blank" class="btn">
-        Scrivici su Instagram
-      </a>
-    </div>
+  <div class="prodotto">
+    <img src="https://via.placeholder.com/400">
+    <h3>Scarpa Modello X</h3>
+    <p>Design minimal, materiali premium.</p>
+    <a href="https://ig.me/m/tuo_username" class="btn" target="_blank">
+      Contattaci su Instagram
+    </a>
+  </div>
 
-  </main>
+  <button onclick="goHome()" class="back">← Torna alla Home</button>
+</section>
 
-  <footer>
-    <p>© 2026 – Il mio brand</p>
-  </footer>
+<!-- SEZIONE MAGLIE -->
+<section id="maglie" class="sezione">
+  <h2>Maglie</h2>
 
+  <div class="prodotto">
+    <img src="https://via.placeholder.com/400">
+    <h3>Maglia Essential</h3>
+    <p>Taglio moderno, comfort totale.</p>
+    <a href="https://ig.me/m/tuo_username" class="btn" target="_blank">
+      Contattaci su Instagram
+    </a>
+  </div>
+
+  <button onclick="goHome()" class="back">← Torna alla Home</button>
+</section>
+
+<!-- SEZIONE PANTALONI -->
+<section id="pantaloni" class="sezione">
+  <h2>Pantaloni</h2>
+
+  <div class="prodotto">
+    <img src="https://via.placeholder.com/400">
+    <h3>Pantalone Urban</h3>
+    <p>Linea pulita, stile urbano.</p>
+    <a href="https://ig.me/m/tuo_username" class="btn" target="_blank">
+      Contattaci su Instagram
+    </a>
+  </div>
+
+  <button onclick="goHome()" class="back">← Torna alla Home</button>
+</section>
+
+<footer>
+  <p>© 2026 Nome Brand</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
