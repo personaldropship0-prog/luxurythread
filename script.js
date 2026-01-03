@@ -19,7 +19,7 @@ const noResults = document.getElementById("no-results");
 const searchInput = document.getElementById("searchInput");
 const popup = document.getElementById("popup");
 
-// 1. NIGHT MODE CHECK
+// 1. NIGHT MODE CHECK (AUTOMATICO)
 function checkDarkMode() {
     const hour = new Date().getHours();
     if (hour >= 19 || hour < 6) {
@@ -28,9 +28,17 @@ function checkDarkMode() {
         document.body.classList.remove('dark-mode');
     }
 }
+// Eseguiamo il controllo automatico all'avvio
 checkDarkMode();
 
-// 2. RENDER & FILTERS
+// 2. TOGGLE MANUALE (Per il tasto nel footer)
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    // Opzionale: salva la preferenza
+    // localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+}
+
+// 3. RENDER & FILTERS
 function renderProducts(list) {
     grid.innerHTML = "";
     if (list.length === 0) {
@@ -65,7 +73,7 @@ function performSearch() {
     renderProducts(found);
 }
 
-// 3. NAVIGATION
+// 4. NAVIGATION
 function goToProductPage(id) {
     const p = products.find(x => x.id === id);
     if(!p) return;
@@ -101,7 +109,7 @@ window.onpopstate = function(event) {
     }
 };
 
-// 4. CONTACTS
+// 5. CONTACTS
 function contactForProduct(type) {
     const name = document.getElementById("detail-title").innerText;
     const price = document.getElementById("detail-price").innerText;
