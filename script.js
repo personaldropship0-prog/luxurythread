@@ -1,15 +1,15 @@
-// ... (tutto il codice dei prodotti come prima) ...
+// ... (DATABASE PRODOTTI UGUALE A PRIMA) ...
 const products = [
-  { id: 1, name: "Retro Jordan 1 High Mocha", category: "sneakers", price: "€650", desc: "Iconica silhouette high-top in pelle premium. Colorway esclusiva. Deadstock condition.", img: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1000&auto=format&fit=crop" },
-  { id: 2, name: "Oversized Heavy Hoodie", category: "hoodies", price: "€320", desc: "Cotone 600gsm pesante. Taglio boxy fit oversize con spalle scese. Lavaggio vintage black.", img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop" },
-  { id: 3, name: "Tech Cargo Pants V2", category: "pants", price: "€280", desc: "Pantaloni tecnici in nylon ripstop. 6 tasche utility e fit regolabile alla caviglia.", img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=1000&auto=format&fit=crop" },
-  { id: 4, name: "Dunk Low Panda", category: "sneakers", price: "€240", desc: "Il classico streetwear. Bianco e nero, versatile, pelle di alta qualità.", img: "https://images.unsplash.com/photo-1633966887768-64f9a421a7b5?q=80&w=1000&auto=format&fit=crop" },
-  { id: 5, name: "Silver Chain Cuban", category: "accessories", price: "€150", desc: "Catena a maglia cubana in acciaio inossidabile placcato argento. Chiusura a scatto industriale.", img: "https://images.unsplash.com/photo-1576020799627-aeac74358708?q=80&w=1000&auto=format&fit=crop" },
-  { id: 6, name: "Graffiti Spray Tee", category: "hoodies", price: "€180", desc: "T-shirt bianca oversize con stampa graffiti artistica sul retro. Cotone organico.", img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop" },
-  { id: 7, name: "Yeezy Slide Pure", category: "sneakers", price: "€190", desc: "Comfort futuristico. Schiuma EVA iniettata per una leggerezza assoluta.", img: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1000&auto=format&fit=crop" },
-  { id: 8, name: "Tactical Vest Black", category: "accessories", price: "€210", desc: "Gilet tattico ispirazione military. Multi-pocket, ideale per layering.", img: "https://images.unsplash.com/photo-1559563458-52c695292a74?q=80&w=1000&auto=format&fit=crop" },
-  { id: 9, name: "Tracksuit Acetate", category: "pants", price: "€450", desc: "Pantalone tuta in acetato con bande laterali. Stile retro anni 90 rivisitato luxury.", img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" },
-  { id: 10, name: "Beanie Logo Wool", category: "accessories", price: "€95", desc: "Berretto in lana merino a coste con patch logo gommata frontale.", img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?q=80&w=1000&auto=format&fit=crop" }
+  { id: 1, name: "Retro Jordan 1 High Mocha", category: "sneakers", price: "€650", desc: "Iconica silhouette high-top in pelle premium.", img: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1000&auto=format&fit=crop" },
+  { id: 2, name: "Oversized Heavy Hoodie", category: "hoodies", price: "€320", desc: "Cotone 600gsm pesante. Taglio boxy fit oversize.", img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop" },
+  { id: 3, name: "Tech Cargo Pants V2", category: "pants", price: "€280", desc: "Pantaloni tecnici in nylon ripstop. 6 tasche utility.", img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=1000&auto=format&fit=crop" },
+  { id: 4, name: "Dunk Low Panda", category: "sneakers", price: "€240", desc: "Il classico streetwear. Bianco e nero, versatile.", img: "https://images.unsplash.com/photo-1633966887768-64f9a421a7b5?q=80&w=1000&auto=format&fit=crop" },
+  { id: 5, name: "Silver Chain Cuban", category: "accessories", price: "€150", desc: "Catena a maglia cubana in acciaio inossidabile placcato.", img: "https://images.unsplash.com/photo-1576020799627-aeac74358708?q=80&w=1000&auto=format&fit=crop" },
+  { id: 6, name: "Graffiti Spray Tee", category: "hoodies", price: "€180", desc: "T-shirt bianca oversize con stampa graffiti artistica.", img: "https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop" },
+  { id: 7, name: "Yeezy Slide Pure", category: "sneakers", price: "€190", desc: "Comfort futuristico. Schiuma EVA iniettata.", img: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=1000&auto=format&fit=crop" },
+  { id: 8, name: "Tactical Vest Black", category: "accessories", price: "€210", desc: "Gilet tattico ispirazione military. Multi-pocket.", img: "https://images.unsplash.com/photo-1559563458-52c695292a74?q=80&w=1000&auto=format&fit=crop" },
+  { id: 9, name: "Tracksuit Acetate", category: "pants", price: "€450", desc: "Pantalone tuta in acetato con bande laterali.", img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000&auto=format&fit=crop" },
+  { id: 10, name: "Beanie Logo Wool", category: "accessories", price: "€95", desc: "Berretto in lana merino a coste con patch logo.", img: "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?q=80&w=1000&auto=format&fit=crop" }
 ];
 
 const homeView = document.getElementById("home-view");
@@ -32,7 +32,6 @@ checkDarkMode();
 
 // 2. TOGGLE MANUALE
 function toggleTheme() {
-    // Questo inverte la classe: se c'è la toglie, se non c'è la mette
     document.body.classList.toggle('dark-mode');
 }
 
@@ -40,8 +39,10 @@ function toggleTheme() {
 function renderProducts(list) {
     grid.innerHTML = "";
     if (list.length === 0) {
+        // SE NON CI SONO PRODOTTI: Mostra il box "Nessun risultato"
         noResults.style.display = "block";
     } else {
+        // SE CI SONO PRODOTTI: Nascondi il box e mostra la griglia
         noResults.style.display = "none";
         list.forEach(p => {
             grid.innerHTML += `
@@ -67,6 +68,7 @@ function filterProducts(cat) {
 
 function performSearch() {
     const q = searchInput.value.toLowerCase().trim();
+    // Filtra per nome o categoria
     const found = products.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q));
     renderProducts(found);
 }
@@ -107,13 +109,23 @@ window.onpopstate = function(event) {
     }
 };
 
-// 5. CONTACTS
+// 5. CONTACTS & SOURCING
 function contactForProduct(type) {
     const name = document.getElementById("detail-title").innerText;
     const price = document.getElementById("detail-price").innerText;
     let msg = type === 'buy' ? 
         `Ciao! Voglio acquistare: ${name} (${price}).` : 
-        `Ciao! Cerco un prodotto simile a: ${name}.`;
+        `Ciao! Cerco informazioni su: ${name}.`;
+    
+    document.getElementById("popup-text").innerText = msg;
+    popup.style.display = 'flex';
+}
+
+// NUOVA FUNZIONE PER SOURCING GENERICO (Quando la ricerca fallisce)
+function contactForSourcing() {
+    const searchTerm = searchInput.value;
+    let msg = `Ciao! Sto cercando "${searchTerm}" ma non è sul sito. Potete trovarlo?`;
+    if(searchTerm === "") msg = "Ciao! Vorrei fare una richiesta di sourcing per un prodotto.";
     
     document.getElementById("popup-text").innerText = msg;
     popup.style.display = 'flex';
