@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap');
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: 'Inter', sans-serif;
@@ -16,38 +12,44 @@ body {
 .bg {
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    120deg,
-    #0f0f0f,
-    #1c1c1c,
-    #2a241c,
-    #0f0f0f
-  );
+  background: linear-gradient(120deg, #0f0f0f, #1c1c1c, #2a241c, #0f0f0f);
   background-size: 400% 400%;
   animation: bgMove 18s ease infinite;
-  z-index: -1;
+  z-index: -2;
 }
 
-/* HERO */
-.hero {
+/* overlay per contrasto */
+.overlay {
+  position: relative;
+  background: rgba(0,0,0,0.4);
+  padding: 120px 20px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  color: #f5f5f5;
 }
 
-/* TITOLO 3D */
+.overlay-section {
+  position: relative;
+  background: rgba(0,0,0,0.5);
+  padding: 100px 20px;
+  border-radius: 20px;
+  max-width: 900px;
+  margin: 60px auto;
+  animation: fadeInScale 0.8s ease;
+  color: #f5f5f5;
+}
+
+/* HERO TITLE */
 .title-3d {
   font-family: 'Playfair Display', serif;
   font-size: clamp(60px, 12vw, 160px);
   letter-spacing: 8px;
   color: #f5f5f5;
-  text-shadow:
-    1px 1px 0 #ccc,
-    2px 2px 0 #aaa,
-    4px 4px 12px rgba(0,0,0,0.6);
+  text-shadow: 1px 1px 0 #ccc, 2px 2px 0 #aaa, 4px 4px 12px rgba(0,0,0,0.6);
   animation: titleFloat 6s ease-in-out infinite;
 }
 
@@ -82,46 +84,22 @@ body {
   color: #111;
 }
 
-/* SEZIONI */
-.sezione {
-  display: none;
-  padding: 120px 20px;
-  text-align: center;
-  animation: fadeUp 1s ease;
-}
-
-.sezione h2 {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  margin-bottom: 60px;
-}
-
 /* CARD PRODOTTO */
 .card {
   max-width: 460px;
-  margin: auto;
-  background: rgba(255,255,255,0.96);
+  margin: 30px auto;
+  background: rgba(255,255,255,0.95);
   padding: 30px;
   border-radius: 20px;
   box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+  animation: fadeUp 0.8s ease;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 14px;
-}
+.card img { width: 100%; border-radius: 14px; }
+.card h3 { margin-top: 25px; font-size: 22px; color: #111; }
+.card p { margin-top: 10px; color: #333; }
 
-.card h3 {
-  margin-top: 25px;
-  font-size: 22px;
-}
-
-.card p {
-  margin-top: 10px;
-  color: #555;
-}
-
-/* CTA */
+/* BOTTONI */
 .btn {
   display: inline-block;
   margin-top: 25px;
@@ -139,7 +117,6 @@ body {
   color: #111;
 }
 
-/* BACK */
 .back {
   margin-top: 40px;
   background: none;
@@ -151,12 +128,7 @@ body {
 }
 
 /* FOOTER */
-footer {
-  text-align: center;
-  padding: 40px;
-  color: #aaa;
-  font-size: 14px;
-}
+footer { text-align: center; padding: 40px; color: #aaa; font-size: 14px; }
 
 /* ANIMAZIONI */
 @keyframes bgMove {
@@ -166,8 +138,13 @@ footer {
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(60px); }
+  from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
 }
 
 @keyframes titleFloat {
