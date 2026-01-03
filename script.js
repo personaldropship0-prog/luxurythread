@@ -1,18 +1,17 @@
-// DATI PRODOTTI
 const products = [
-  { name: "Signature Leather", category: "scarpe", desc: "Scarpe in pelle premium" },
-  { name: "Essential Knit", category: "maglie", desc: "Maglia sartoriale elegante" },
-  { name: "Tailored Urban", category: "pantaloni", desc: "Pantaloni moderni" }
+  { name:"Signature Leather", category:"scarpe", desc:"Scarpe in pelle premium" },
+  { name:"Essential Knit", category:"maglie", desc:"Maglia sartoriale elegante" },
+  { name:"Tailored Urban", category:"pantaloni", desc:"Pantaloni moderni" }
 ];
 
-// ELEMENTI DOM
+const hero = document.getElementById("hero");
+const filters = document.getElementById("filters");
 const container = document.getElementById("products");
 const searchSection = document.getElementById("search-results");
 const results = document.getElementById("results");
 const searchTitle = document.getElementById("search-title");
 const requestBox = document.getElementById("request-box");
 
-// RENDER
 function renderProducts(list) {
   container.innerHTML = "";
   list.forEach(p => {
@@ -26,22 +25,25 @@ function renderProducts(list) {
   });
 }
 
-// FILTRI
 function filterProducts(cat) {
+  hero.style.display = "none";
+  filters.style.display = "none";
   searchSection.style.display = "none";
-  requestBox.style.display = "none";
 
-  if (cat === "all") {
-    renderProducts(products);
-  } else {
-    renderProducts(products.filter(p => p.category === cat));
-  }
+  const list = cat === "all"
+    ? products
+    : products.filter(p => p.category === cat);
+
+  renderProducts(list);
+  container.scrollIntoView({ behavior: "smooth" });
 }
 
-// CERCA
 function searchProduct() {
-  const q = document.getElementById("searchInput").value.toLowerCase();
+  const q = document.getElementById("searchInput").value.toLowerCase().trim();
   results.innerHTML = "";
+
+  hero.style.display = "none";
+  filters.style.display = "none";
 
   const found = products.filter(p =>
     p.name.toLowerCase().includes(q) ||
@@ -65,9 +67,9 @@ function searchProduct() {
   }
 
   searchSection.style.display = "block";
+  searchSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
-// RICHIESTA
 function sendRequest() {
   const product = document.getElementById("requestInput").value;
   const note = document.getElementById("requestNote").value;
@@ -79,11 +81,11 @@ function sendRequest() {
   window.open(`https://ig.me/m/luxury.thread_?text=${text}`, "_blank");
 }
 
-// HOME
 function goHome() {
+  hero.style.display = "flex";
+  filters.style.display = "flex";
   searchSection.style.display = "none";
-  window.scrollTo(0,0);
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// INIT
 renderProducts(products);
