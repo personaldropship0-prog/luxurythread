@@ -15,17 +15,17 @@
   <div class="logo" onclick="goHome()">Luxury Thread</div>
 
   <div class="search-box">
-    <input id="searchInput" type="text" placeholder="Cerca un prodotto">
-    <button onclick="searchProduct()">Cerca</button>
+    <input id="searchInput" type="text" placeholder="Cerca un prodotto o brand">
+    <button type="button" onclick="searchProduct()">Cerca</button>
   </div>
 </header>
 
-<section class="hero">
+<section class="hero" id="hero">
   <h1 class="title-3d">LUXURY<br>THREAD</h1>
   <p class="subtitle">Curated fashion. On demand sourcing.</p>
 </section>
 
-<nav class="filters">
+<nav class="filters" id="filters">
   <button onclick="filterProducts('all')">Tutti</button>
   <button onclick="filterProducts('scarpe')">Scarpe</button>
   <button onclick="filterProducts('maglie')">Maglie</button>
@@ -41,12 +41,14 @@
 
   <div id="request-box" class="request-box">
     <p class="request-title">Non trovi quello che cerchi?</p>
-    <p class="request-sub">Richiedi il prodotto e lo cercheremo per te.</p>
+    <p class="request-sub">
+      Richiedi il prodotto e proveremo a reperirlo per te.
+    </p>
 
-    <input id="requestInput" type="text" placeholder="Nome prodotto">
-    <textarea id="requestNote" placeholder="Dettagli (opzionale)"></textarea>
+    <input id="requestInput" type="text" placeholder="Nome del prodotto">
+    <textarea id="requestNote" placeholder="Dettagli (taglia, colore, brand...)"></textarea>
 
-    <button onclick="sendRequest()">Invia richiesta</button>
+    <button type="button" onclick="sendRequest()">Invia richiesta</button>
   </div>
 
   <button class="back" onclick="goHome()">← Torna alla Home</button>
@@ -65,8 +67,6 @@
   © 2026 Luxury Thread
 </footer>
 
-<!-- 🔴 SCRIPT SEMPRE ALLA FINE -->
 <script src="script.js"></script>
-
 </body>
 </html>
