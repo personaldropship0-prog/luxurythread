@@ -1,225 +1,308 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Inter:wght@300;400;600&display=swap');
 
 :root {
-    --marble-img: url('img/marmo-white.jpg'); 
-    --body-bg: #f5f5f5; 
+    /* IL MARMO ORA È LO SFONDO GLOBALE */
+    --bg-image: url('img/marmo-white.jpg'); 
+    
+    /* VARIABILI VETRO (LIGHT MODE) */
+    --glass-bg: rgba(255, 255, 255, 0.65); /* Vetro bianco semitrasparente */
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    --blur-amt: 12px; /* Quanto sfoca lo sfondo */
+    
     --text-color: #000000;
     --accent-color: #000000;
-    --border-color: #000000;
-    --card-bg: #ffffff;
-    --text-shadow: 0px 0px 8px rgba(255,255,255,1); 
 }
 
 body.dark-mode {
-    --marble-img: url('img/marmo-black.jpg'); 
-    --body-bg: #111111;
+    --bg-image: url('img/marmo-black.jpg'); 
+    
+    /* VARIABILI VETRO (DARK MODE - SMOKED GLASS) */
+    --glass-bg: rgba(0, 0, 0, 0.65); /* Vetro nero semitrasparente */
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+    
     --text-color: #ffffff;
     --accent-color: #ffffff;
-    --border-color: #ffffff;
-    --card-bg: #1a1a1a;
-    --text-shadow: 0px 0px 8px rgba(0,0,0,1); 
-}
-
-.marble-texture {
-    background-image: var(--marble-img);
-    background-size: cover; background-position: center; background-repeat: no-repeat;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 body, html { height: 100%; }
 
+/* SFONDO FISSO MARMO */
 body {
     font-family: 'Inter', sans-serif; color: var(--text-color);
-    background-color: var(--body-bg); transition: all 0.5s ease;
+    background-image: var(--bg-image);
+    background-size: cover; 
+    background-attachment: fixed; /* Il marmo sta fermo mentre scorri */
+    background-position: center;
+    transition: background-image 0.5s ease;
 }
 
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
 .content-area { flex: 1; width: 100%; }
 
-/* TICKER */
+/* --- CLASSE MAGICA "GLASS" --- */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amt)); /* Effetto sfocatura iOS */
+    -webkit-backdrop-filter: blur(var(--blur-amt));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* TICKER (Solido per contrasto) */
 .news-ticker {
     position: fixed; top: 0; left: 0; width: 100%; height: 30px;
-    background: var(--text-color); color: var(--body-bg);
+    background: var(--text-color); color: var(--glass-bg); /* Testo prende colore vetro */
     overflow: hidden; white-space: nowrap; line-height: 30px; z-index: 1001;
     font-family: 'Oswald'; font-size: 0.9rem; font-weight: bold; text-transform: uppercase;
 }
 .ticker-content { display: inline-block; animation: scroll-left 25s linear infinite; padding-left: 100%; }
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* HEADER */
+/* HEADER - Ora è una lastra di vetro */
 .main-header {
     position: fixed; top: 30px; left: 0; width: 100%;
     z-index: 1000; padding: 10px 20px;
-    border-bottom: 2px solid var(--border-color);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    
+    /* APPLICAZIONE GLASS */
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amt));
+    -webkit-backdrop-filter: blur(var(--blur-amt));
+    border-bottom: 1px solid var(--glass-border);
 }
+
 .header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1800px; margin: 0 auto; }
 .logo-slot {
-    width: 60px; height: 60px; border-radius: 50%; border: 2px solid var(--border-color);
-    overflow: hidden; cursor: pointer; background: #fff; flex-shrink: 0; margin-right: 15px;
+    width: 60px; height: 60px; border-radius: 50%; 
+    border: 1px solid var(--text-color);
+    overflow: hidden; cursor: pointer; flex-shrink: 0; margin-right: 15px;
     display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.2); /* Leggero fill */
 }
 .logo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .brand-fallback { font-family: 'Oswald'; font-weight: bold; font-size: 1.5rem; }
 .brand-title {
     font-family: 'Oswald', sans-serif; font-size: clamp(24px, 5vw, 48px);
     font-weight: 700; text-transform: uppercase; text-align: center; cursor: pointer;
-    text-shadow: var(--text-shadow); flex-grow: 1;
+    flex-grow: 1; letter-spacing: 2px;
 }
-.search-bar { display: flex; background: var(--card-bg); border: 2px solid var(--border-color); height: 40px; }
+
+/* SEARCH BAR TRASPARENTE */
+.search-bar { 
+    display: flex; height: 40px; 
+    border: 1px solid var(--text-color);
+    border-radius: 20px; /* Più rotondo stile iOS */
+    overflow: hidden;
+    background: rgba(255,255,255,0.1); 
+}
 .search-bar input {
-    border: none; padding: 0 10px; background: transparent;
+    border: none; padding: 0 15px; background: transparent;
     font-family: 'Oswald'; text-transform: uppercase; color: var(--text-color); outline: none; width: 150px;
 }
-.search-bar button { background: var(--accent-color); color: var(--card-bg); border: none; padding: 0 15px; cursor: pointer; }
+.search-bar input::placeholder { color: var(--text-color); opacity: 0.6; }
+.search-bar button { background: transparent; color: var(--text-color); border: none; padding: 0 15px; cursor: pointer; border-left: 1px solid rgba(0,0,0,0.1); }
 .spacer { height: 140px; }
 
-/* GRID */
+/* FILTRI */
 .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; padding: 30px; }
 .filters button {
-    padding: 10px 25px; background: var(--card-bg); border: 2px solid var(--border-color);
+    padding: 8px 20px; 
+    background: var(--glass-bg); /* Bottoni vetro */
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--text-color);
     font-family: 'Oswald'; font-weight: 700; text-transform: uppercase; cursor: pointer; color: var(--text-color);
+    border-radius: 20px; /* iOS Style rounded */
+    transition: 0.3s;
 }
 .filters button.active, .filters button:hover {
-    background: var(--accent-color); color: var(--card-bg); transform: translateY(-3px); box-shadow: 4px 4px 0 var(--border-color);
+    background: var(--text-color); color: var(--bg-image); /* Inversione cool */
+    color: #888; /* Trucco per contrasto in dark/light mode dinamico se serve, o usa var */
 }
+/* Fix colore testo hover in base al tema */
+body:not(.dark-mode) .filters button:hover { color: white; }
+body.dark-mode .filters button:hover { color: black; }
+
+
+/* GRID - CARD VETRO */
 .product-grid {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px; padding: 20px 5% 60px; max-width: 1800px; margin: 0 auto;
 }
-.no-results-box { text-align: center; padding: 50px 20px; max-width: 600px; margin: 0 auto; }
-.no-results-content { background: var(--card-bg); border: 2px solid var(--border-color); padding: 40px; box-shadow: 8px 8px 0 var(--text-color); }
-.no-results-content h2 { font-family: 'Oswald'; margin-bottom: 10px; }
 
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .card {
     overflow: hidden;
-    background-image: var(--marble-img); background-size: cover; background-position: center;
-    border: 2px solid var(--border-color); transition: transform 0.2s; cursor: pointer;
+    /* GLASS EFFECT CARD */
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amt));
+    -webkit-backdrop-filter: blur(var(--blur-amt));
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 16px; /* iOS Rounded corners */
+    
+    transition: transform 0.3s, box-shadow 0.3s; cursor: pointer;
     animation: fadeInUp 0.6s ease-out forwards; opacity: 0; 
 }
-.card:hover { transform: translate(-5px, -5px); box-shadow: 8px 8px 0 var(--text-color); }
-.card-img { width: 100%; height: 350px; object-fit: cover; border-bottom: 2px solid var(--border-color); }
-.card-details { padding: 15px; text-shadow: var(--text-shadow); }
-.card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 5px; }
-.price { font-weight: 700; font-family: 'Oswald'; font-size: 1.2rem; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+.card-img { width: 100%; height: 350px; object-fit: cover; border-bottom: 1px solid var(--glass-border); }
+.card-details { padding: 20px; text-align: left; }
+.card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
+.price { font-weight: 700; font-family: 'Oswald'; font-size: 1.2rem; opacity: 0.8; }
 
-/* PRODUCT PAGE */
+/* PRODUCT PAGE - GLASS CONTAINER */
 .single-product-view { display: none; padding-bottom: 50px; }
 .product-top-bar { padding: 20px 40px; text-align: right; }
 .close-view-btn {
-    background: var(--card-bg); border: 2px solid var(--text-color); color: var(--text-color);
+    background: var(--glass-bg); border: 1px solid var(--text-color); color: var(--text-color);
     font-family: 'Oswald'; font-weight: 700; padding: 10px 25px; cursor: pointer; font-size: 1.1rem;
-    box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+    border-radius: 30px; backdrop-filter: blur(10px);
 }
 .product-detail-container {
     display: flex; max-width: 1300px; margin: 0 auto;
-    background-image: var(--marble-img); background-size: cover; background-position: center;
-    border: 3px solid var(--border-color); box-shadow: 15px 15px 0 rgba(0,0,0,0.5); 
+    /* GRANDE LASTRA DI VETRO */
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px); /* Blur più forte qui */
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    overflow: hidden;
 }
-.detail-image { flex: 1; border-right: 2px solid var(--border-color); }
+.detail-image { flex: 1; }
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block;}
-.detail-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; text-shadow: var(--text-shadow); }
+.detail-info { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
 
-/* BADGES ROW */
 .badges-row { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-.badge { background: var(--accent-color); color: var(--card-bg); padding: 5px 15px; font-family: 'Oswald'; font-weight: bold; text-shadow: none; }
+.badge { background: var(--text-color); color: var(--glass-bg); padding: 5px 15px; font-family: 'Oswald'; font-weight: bold; border-radius: 4px;}
 .verified-badge { 
     border: 1px solid var(--text-color); color: var(--text-color); padding: 5px 15px; 
-    font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
+    font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; border-radius: 4px;
 }
 
 .detail-info h2 { font-family: 'Oswald'; font-size: 3.5rem; text-transform: uppercase; line-height: 1; margin-bottom: 20px; }
 .price-tag { font-family: 'Oswald'; font-size: 2.5rem; font-weight: bold; margin-bottom: 10px; }
-
-/* TRUST TEXT */
-.trust-icons-text {
-    font-family: 'Inter'; font-size: 0.9rem; margin-bottom: 30px; opacity: 0.8; font-weight: 600;
-}
+.trust-icons-text { font-family: 'Inter'; font-size: 0.9rem; margin-bottom: 30px; opacity: 0.8; font-weight: 600; }
 
 .action-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
 .buy-btn {
     flex: 1; padding: 15px; font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; 
-    border: 2px solid var(--border-color); cursor: pointer;
+    border: 1px solid var(--text-color); cursor: pointer; border-radius: 12px;
 }
-.main-btn { background: var(--accent-color); color: var(--card-bg); text-shadow: none;}
-.sec-btn { background: transparent; color: var(--text-color); border-color: var(--text-color); }
-.sec-btn:hover { background: rgba(255,255,255,0.2); }
+.main-btn { background: var(--text-color); color: #fff; } /* Usa colore solido per CTA */
+body.dark-mode .main-btn { color: #000; } /* Testo nero su bottone bianco in dark mode */
+
+.sec-btn { background: transparent; color: var(--text-color); }
+.sec-btn:hover { background: rgba(128,128,128,0.1); }
 .sec-btn-small { background: transparent; color: var(--text-color); border: none; font-size: 0.8rem; font-family:'Oswald'; cursor: pointer; margin-top: 10px; text-decoration: underline;}
 
-/* FOOTER */
+/* FOOTER GLASS */
 footer {
     padding: 30px; text-align: center; font-family: 'Oswald';
-    border-top: 2px solid var(--border-color); text-shadow: var(--text-shadow); margin-top: auto; 
+    border-top: 1px solid var(--glass-border); margin-top: auto; 
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amt));
 }
 .footer-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .contact-link { color: inherit; font-weight: bold; }
 .footer-bottom-row { display: flex; align-items: center; gap: 15px; margin-top: 5px;}
 .footer-divider { font-size: 1.2rem; opacity: 0.5; }
 #footer-theme-btn {
-    background: transparent; border: 1px solid var(--border-color); color: var(--text-color);
+    background: transparent; border: 1px solid var(--text-color); color: var(--text-color);
     padding: 5px 10px; cursor: pointer; border-radius: 5px; font-size: 1rem; transition: 0.3s;
 }
 .reviews-link { cursor: pointer; text-decoration: underline; font-weight: bold; letter-spacing: 1px; font-size: 0.9rem; }
-.reviews-link:hover { opacity: 0.7; }
 
-/* POPUPS & CONCIERGE */
+/* POPUPS & CONCIERGE GLASS */
 .popup-overlay { 
     display: none; position: fixed; inset: 0; 
-    background: rgba(0,0,0,0.85); 
+    background: rgba(0,0,0,0.4); /* Sfondo scuro leggero */
+    backdrop-filter: blur(5px); /* Sfoca tutto il sito dietro */
     z-index: 2000; justify-content: center; align-items: center;
 }
 .popup-box { 
-    background: var(--card-bg); padding: 30px; border: 2px solid var(--border-color); 
+    /* VETRO PURO */
+    background: var(--glass-bg); 
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    padding: 30px; 
     text-align: center; max-width: 380px; width: 90%; position: relative;
-    box-shadow: 0 0 40px rgba(0,0,0,0.6); text-shadow: none;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    border-radius: 24px; /* Molto arrotondato iOS */
 }
+
+/* Header Popup */
 .popup-header { margin-bottom: 20px; }
 .popup-header h3 { font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 2px; font-size: 1.5rem; margin-bottom: 5px;}
-.header-line { width: 50px; height: 3px; background: var(--accent-color); margin: 0 auto; }
+.header-line { width: 50px; height: 3px; background: var(--text-color); margin: 0 auto; border-radius: 2px; }
+
+/* Input nel vetro */
 .input-group { position: relative; margin-bottom: 25px; text-align: left;}
 .modal-input-line {
     width: 100%; padding: 10px 5px;
-    background: transparent; border: none; border-bottom: 2px solid var(--border-color);
+    background: rgba(255,255,255,0.05); /* Leggero scavo */
+    border: none; border-bottom: 1px solid var(--text-color);
     color: var(--text-color); font-family: 'Oswald'; text-transform: uppercase;
     outline: none; font-size: 1.1rem; transition: border-color 0.3s;
+    border-radius: 5px 5px 0 0;
 }
-.modal-input-line:focus { border-bottom-color: #888; }
 .input-group label {
     font-size: 0.7rem; font-weight: bold; font-family: 'Inter'; letter-spacing: 1px;
     color: var(--text-color); opacity: 0.6; display: block; margin-top: 5px;
 }
-.popup-actions { display: flex; flex-direction: column; gap: 5px; margin-top: 10px;}
+.popup-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 10px;}
 
-/* REVIEWS SPECIFIC */
+/* REVIEWS */
 .reviews-list { text-align: left; max-height: 300px; overflow-y: auto; padding-right: 5px; margin-bottom: 20px; }
-.review-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(128,128,128,0.2); }
-.review-item:last-child { border-bottom: none; }
+.review-item { 
+    margin-bottom: 15px; padding: 15px; 
+    background: rgba(255,255,255,0.05); /* Box interno */
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
 .review-item .stars { color: var(--text-color); font-size: 0.8rem; margin-bottom: 5px; }
-.review-item p { font-style: italic; font-size: 0.95rem; margin-bottom: 5px; font-family: 'Inter'; }
-.review-author { font-size: 0.8rem; font-weight: bold; font-family: 'Oswald'; opacity: 0.7; }
+.review-item p { font-style: italic; font-size: 0.9rem; margin-bottom: 5px; font-family: 'Inter'; }
+.review-author { font-size: 0.75rem; font-weight: bold; font-family: 'Oswald'; opacity: 0.7; }
 
-/* BUTTON VIP: PIÙ DISCRETO E GHOST */
+/* FLOATING BTN - GEM STYLE */
 .floating-sourcing-btn {
     position: fixed; bottom: 20px; right: 20px;
-    background: var(--text-color); color: var(--body-bg);
-    padding: 8px 16px; /* Molto piccolo */
+    /* Effetto gemma di vetro */
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: var(--text-color);
+    
+    padding: 8px 16px; 
     border-radius: 30px; 
     font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
-    font-size: 0.7rem; /* Font minuscolo */
+    font-size: 0.7rem; 
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Ombra leggera */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
     z-index: 1500;
     transition: all 0.3s ease;
-    border: 1px solid var(--body-bg);
-    opacity: 0.5; /* SEMITRASPARENTE DI BASE */
+    opacity: 0.6; 
 }
 .floating-sourcing-btn:hover { 
-    transform: translateY(-2px); 
-    opacity: 1; /* OPACO SOLO IN HOVER */
-    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+    transform: translateY(-2px) scale(1.05); 
+    opacity: 1; 
+    background: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
 }
 
+/* NO RESULTS BOX */
+.no-results-content { 
+    background: var(--glass-bg); 
+    backdrop-filter: blur(var(--blur-amt));
+    border: 1px solid var(--glass-border); 
+    border-radius: 20px;
+    padding: 40px; box-shadow: none;
+}
+
+/* MOBILE */
 @media(max-width: 768px) {
     .header-content { flex-wrap: wrap; justify-content: center; gap: 10px; }
     .brand-title { font-size: 32px; width: 100%; order: 1; margin-top: 10px; }
@@ -227,8 +310,8 @@ footer {
     .search-bar-container { order: 3; margin-left: auto;}
     .spacer { height: 220px; }
     .product-detail-container { flex-direction: column; width: 95%; }
-    .detail-image { height: 350px; border-right: none; border-bottom: 2px solid var(--border-color); }
-    .detail-info { padding: 20px; }
+    .detail-image { height: 350px; border-right: none; border-bottom: 1px solid var(--glass-border); }
+    .detail-info { padding: 25px; }
     
     .floating-sourcing-btn { bottom: 15px; right: 15px; padding: 6px 12px; font-size: 0.65rem; opacity: 0.7; }
 }
