@@ -18,23 +18,24 @@
     </div>
   </div>
 
-  <header class="main-header">
-    <div class="header-content">
-      <div class="logo-slot" onclick="goHome()">
-        <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
-        <span class="brand-fallback" style="display:none">LT</span>
-      </div>
-      
-      <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
-
-      <div class="search-bar-container">
-        <div class="search-bar">
-          <input type="text" id="searchInput" placeholder="SEARCH...">
-          <button onclick="performSearch()">🔍</button>
-        </div>
-      </div>
+<header class="main-header">
+  <div class="header-content">
+    
+    <div class="logo-slot" onclick="goHome()">
+      <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
+      <span class="brand-fallback" style="display:none">LT</span>
     </div>
-  </header>
+    
+    <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
+
+    <div class="search-trigger-container">
+      <button class="search-trigger-btn" onclick="openSearchOverlay()">
+        🔍 <span class="desktop-only">CERCA</span>
+      </button>
+    </div>
+
+  </div>
+</header>
 
   <main id="home-view" class="content-area">
     <div class="spacer"></div>
@@ -180,3 +181,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
