@@ -1,19 +1,19 @@
-/* --- DATI PRODOTTI FITTIZI --- */
+/* --- DATI PRODOTTI STREETWEAR (Esempio) --- */
 const products = [
-    { id:1, name: "Calacatta Gold", price: "€120.00", category: "marble", img: "img/p1.jpg", verified: true, badges:["Best Seller"] },
-    { id:2, name: "Nero Marquinia", price: "€95.00", category: "marble", img: "img/p2.jpg", verified: true, badges:[] },
-    { id:3, name: "Travertino Classico", price: "€80.00", category: "travertine", img: "img/p3.jpg", verified: false, badges:["Nuovo Arrivo"] },
-    { id:4, name: "Statuario Venato", price: "€150.00", category: "marble", img: "img/p4.jpg", verified: true, badges:["Premium"] },
-    { id:5, name: "Onyx Pink", price: "€210.00", category: "onyx", img: "img/p5.jpg", verified: true, badges:["Raro"] },
-    { id:6, name: "Granito Alaska", price: "€75.00", category: "granite", img: "img/p6.jpg", verified: false, badges:[] },
-    { id:7, name: "Arabescato", price: "€130.00", category: "marble", img: "img/p7.jpg", verified: true, badges:[] },
-    { id:8, name: "Blue Bahia", price: "€180.00", category: "granite", img: "img/p8.jpg", verified: true, badges:["Esclusivo"] },
+    { id:1, name: "Jordan 1 Retro High Mocha", price: "€480", category: "sneakers", img: "img/shoe1.jpg" },
+    { id:2, name: "Yeezy Boost 350 V2 Onyx", price: "€320", category: "sneakers", img: "img/shoe2.jpg" },
+    { id:3, name: "Essentials Hoodie Fear of God", price: "€140", category: "hoodies", img: "img/hoodie1.jpg" },
+    { id:4, name: "Travis Scott x Jordan 1 Low", price: "€1250", category: "sneakers", img: "img/shoe3.jpg" },
+    { id:5, name: "Palm Angels Track Pants", price: "€290", category: "pants", img: "img/pants1.jpg" },
+    { id:6, name: "Supreme Box Logo Crewneck", price: "€350", category: "hoodies", img: "img/hoodie2.jpg" },
+    { id:7, name: "Chrome Hearts Trucker Hat", price: "€450", category: "accessories", img: "img/acc1.jpg" },
+    { id:8, name: "Dunk Low Panda", price: "€180", category: "sneakers", img: "img/shoe4.jpg" },
 ];
 
 /* --- ELEMENTI DOM --- */
 const grid = document.getElementById('product-grid');
 const noResults = document.getElementById('no-results');
-const searchInput = document.getElementById('search-input');
+const searchInput = document.getElementById('searchInput');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const themeBtn = document.getElementById('footer-theme-btn');
 const body = document.body;
@@ -26,14 +26,14 @@ const productView = document.getElementById('single-product-view');
 const detailImg = document.getElementById('detail-img');
 const detailTitle = document.getElementById('detail-title');
 const detailPrice = document.getElementById('detail-price');
-const detailBadges = document.getElementById('detail-badges');
+const detailCategory = document.getElementById('detail-category');
 
 /* Modali */
-const modalOverlay = document.getElementById('modal-overlay');
-const buyModal = document.getElementById('buy-modal');
+const modalOverlay = document.getElementById('sourcing-modal'); // Riutilizzato per overlay generico
+const sourcingModal = document.getElementById('sourcing-modal');
 const reviewsModal = document.getElementById('reviews-modal');
 
-/* Header e Ticker */
+/* Header e Ticker Scroll Logic */
 const mainHeader = document.querySelector('.main-header');
 const newsTicker = document.querySelector('.news-ticker');
 let lastScrollY = window.scrollY;
@@ -41,48 +41,52 @@ let lastScrollY = window.scrollY;
 /* --- INIZIALIZZAZIONE --- */
 renderProducts(products);
 
-/* --- SCROLL LOGIC: Nasconde Header e Ticker --- */
+/* --- SCROLL: NASCONDE MENU E TICKER --- */
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    // Se scorri giù per più di 50px
+    if (window.scrollY > 50) {
         if (window.scrollY > lastScrollY) {
-            // SCROLL GIÙ: Nascondi tutto
+            // SCROLL GIÙ: Nascondi
             mainHeader.classList.add('hidden');
-            if(newsTicker) newsTicker.classList.add('hidden');
+            newsTicker.classList.add('hidden');
         } else {
-            // SCROLL SU: Mostra tutto
+            // SCROLL SU: Mostra
             mainHeader.classList.remove('hidden');
-            if(newsTicker) newsTicker.classList.remove('hidden');
+            newsTicker.classList.remove('hidden');
         }
     } else {
-        // In cima alla pagina: Mostra tutto
+        // In cima: Mostra
         mainHeader.classList.remove('hidden');
-        if(newsTicker) newsTicker.classList.remove('hidden');
+        newsTicker.classList.remove('hidden');
     }
     lastScrollY = window.scrollY;
 });
 
-/* --- FILTRI E RICERCA --- */
+/* --- LOGICA FILTRI --- */
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelector('.filter-btn.active').classList.remove('active');
+        // Gestione classe active
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        filterProducts();
+        
+        const cat = btn.dataset.filter;
+        
+        if (cat === 'all') {
+            renderProducts(products);
+        } else {
+            const filtered = products.filter(p => p.category === cat);
+            renderProducts(filtered);
+        }
     });
 });
 
-searchInput.addEventListener('input', filterProducts);
-
-function filterProducts() {
-    const category = document.querySelector('.filter-btn.active').dataset.filter;
-    const term = searchInput.value.toLowerCase();
-
-    const filtered = products.filter(p => {
-        const matchesCat = (category === 'all') || (p.category === category);
-        const matchesTerm = p.name.toLowerCase().includes(term);
-        return matchesCat && matchesTerm;
+/* --- LOGICA RICERCA --- */
+if(searchInput) {
+    searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase();
+        const filtered = products.filter(p => p.name.toLowerCase().includes(term));
+        renderProducts(filtered);
     });
-
-    renderProducts(filtered);
 }
 
 /* --- RENDER PRODOTTI --- */
@@ -101,7 +105,7 @@ function renderProducts(list) {
         card.onclick = () => openProduct(p);
         
         card.innerHTML = `
-            <img src="${p.img}" alt="${p.name}" class="card-img">
+            <img src="${p.img}" alt="${p.name}" class="card-img" onerror="this.src='https://via.placeholder.com/300?text=No+Image'">
             <div class="card-details">
                 <h3>${p.name}</h3>
                 <div class="price">${p.price}</div>
@@ -111,69 +115,55 @@ function renderProducts(list) {
     });
 }
 
-/* --- APERTURA PRODOTTO --- */
+/* --- APERTURA SCHEDA PRODOTTO --- */
 function openProduct(p) {
-    // Popola Dati
     detailImg.src = p.img;
+    // Fallback immagine se non esiste
+    detailImg.onerror = function() { this.src = 'https://via.placeholder.com/500?text=Image+N/A'; };
+    
     detailTitle.textContent = p.name;
     detailPrice.textContent = p.price;
-    
-    // Badges
-    detailBadges.innerHTML = '';
-    if(p.verified) detailBadges.innerHTML += `<span class="verified-badge">Verified Stock</span>`;
-    p.badges.forEach(b => {
-        detailBadges.innerHTML += `<span class="badge">${b}</span>`;
-    });
+    detailCategory.textContent = p.category.toUpperCase();
 
-    // Switch View
+    // Nascondi home, mostra prodotto
     homeView.style.display = 'none';
     productView.style.display = 'block';
     
-    // Reset scroll
     window.scrollTo(0,0);
 }
 
 function closeProduct() {
     productView.style.display = 'none';
     homeView.style.display = 'block';
-    // Fix layout glitch
-    window.dispatchEvent(new Event('resize'));
+}
+
+/* --- GESTIONE LOGO --- */
+function goHome() {
+    closeProduct();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* --- MODALI --- */
+function openSourcingModal() {
+    document.getElementById('sourcing-modal').style.display = 'flex';
+}
+function closeSourcingModal() {
+    document.getElementById('sourcing-modal').style.display = 'none';
+}
+
+function openReviewsModal() {
+    document.getElementById('reviews-modal').style.display = 'flex';
+}
+function closeModal() {
+    document.querySelectorAll('.popup-overlay').forEach(el => el.style.display = 'none');
 }
 
 /* --- THEME TOGGLE --- */
 themeBtn.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    themeBtn.textContent = body.classList.contains('dark-mode') ? "Light Mode" : "Dark Mode";
 });
 
-/* --- MODALS --- */
-function openBuyModal() {
-    modalOverlay.style.display = 'flex';
-    buyModal.style.display = 'block';
-    reviewsModal.style.display = 'none';
+/* --- SOCIAL --- */
+function openInstagram() {
+    window.open('https://instagram.com', '_blank');
 }
-
-function openReviewsModal() {
-    modalOverlay.style.display = 'flex';
-    buyModal.style.display = 'none';
-    reviewsModal.style.display = 'block';
-}
-
-function closeModal() {
-    modalOverlay.style.display = 'none';
-}
-
-// Chiudi cliccando fuori
-modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) closeModal();
-});
-
-/* --- LOGO CLICK --- */
-// Ricarica la pagina o torna alla home se clicchi sul logo
-document.querySelector('.logo-slot').addEventListener('click', () => {
-    if(productView.style.display === 'block') {
-        closeProduct();
-    } else {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    }
-});
