@@ -7,7 +7,7 @@
     
     /* COLORI FONDAMENTALI */
     --text-color: #000000;       /* Colore testo principale (Nero) */
-    --inverted-text: #ffffff;    /* IL FIX: Colore testo quando lo sfondo è scuro (Bianco) */
+    --inverted-text: #ffffff;    /* FIX: Colore testo quando lo sfondo è scuro (Bianco) */
     
     /* VARIABILI VETRO (LIGHT MODE) */
     --glass-bg-base: rgba(255, 255, 255, 0.5);
@@ -52,18 +52,18 @@ body {
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
 .content-area { flex: 1; width: 100%; }
 
-/* --- TICKER (FIXATO) --- */
+/* --- TICKER --- */
 .news-ticker {
     position: fixed; top: 0; left: 0; width: 100%; height: 30px;
-    background: var(--text-color); /* Sfondo Nero (in light mode) */
-    color: var(--inverted-text);   /* Testo Bianco (in light mode) */
+    background: var(--text-color); 
+    color: var(--inverted-text);
     overflow: hidden; white-space: nowrap; line-height: 30px; z-index: 1001;
     font-family: 'Oswald'; font-size: 0.9rem; font-weight: bold; text-transform: uppercase;
 }
 .ticker-content { display: inline-block; animation: scroll-left 25s linear infinite; padding-left: 100%; }
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* --- HEADER --- */
+/* --- HEADER (STICKY & SCROLL EFFECT) --- */
 .main-header {
     position: fixed; top: 30px; left: 0; width: 100%;
     z-index: 1000; padding: 15px 30px;
@@ -73,6 +73,16 @@ body {
     -webkit-backdrop-filter: blur(var(--blur-amt));
     border-bottom: var(--glass-border);
     box-shadow: var(--glass-shadow);
+    
+    /* Transizione per scomparsa */
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+/* Classe aggiunta via JS per nascondere l'header */
+.main-header.hidden {
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .header-content { display: flex; align-items: center; justify-content: space-between; max-width: 1800px; margin: 0 auto; }
@@ -115,7 +125,7 @@ body {
 
 .spacer { height: 160px; }
 
-/* --- FILTRI (HOVER FIX) --- */
+/* --- FILTRI --- */
 .filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 30px; }
 .filters button {
     padding: 10px 25px; 
@@ -127,8 +137,8 @@ body {
     border-radius: 30px; transition: 0.3s; letter-spacing: 1px;
 }
 .filters button.active, .filters button:hover {
-    background: var(--text-color);      /* Sfondo Nero */
-    color: var(--inverted-text);        /* Testo Bianco (FIX) */
+    background: var(--text-color);      
+    color: var(--inverted-text);        /* FIX: Colore testo inverso */
     transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     border-color: transparent;
 }
@@ -185,11 +195,11 @@ body {
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block;}
 .detail-info { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
 
-/* BADGES (FIXATO CATEGORY) */
+/* BADGES */
 .badges-row { display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
 .badge { 
-    background: var(--text-color);   /* Sfondo Nero */
-    color: var(--inverted-text);     /* Testo Bianco (FIX) */
+    background: var(--text-color);   
+    color: var(--inverted-text);     /* FIX: Colore testo inverso */
     padding: 8px 20px; font-family: 'Oswald'; font-weight: bold; border-radius: 6px; letter-spacing: 1px;
 }
 .verified-badge { 
@@ -201,7 +211,7 @@ body {
 .price-tag { font-family: 'Oswald'; font-size: 3rem; font-weight: 800; margin-bottom: 15px; }
 .trust-icons-text { font-family: 'Inter'; font-size: 1rem; margin-bottom: 40px; opacity: 0.8; font-weight: 600; word-spacing: 3px; }
 
-/* ACTION BUTTONS (FIXATO ACQUISTA ORA) */
+/* ACTION BUTTONS */
 .action-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
 .buy-btn {
     flex: 1; padding: 18px; font-family: 'Oswald'; font-weight: 800; text-transform: uppercase; 
@@ -209,7 +219,7 @@ body {
 }
 .main-btn { 
     background: var(--text-color); 
-    color: var(--inverted-text); /* FIX: Testo Bianco su Sfondo Nero */
+    color: var(--inverted-text); /* FIX */
     box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
 }
 .main-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); opacity: 0.9; }
@@ -279,7 +289,7 @@ footer {
 .review-item p { font-style: italic; font-size: 1rem; margin-bottom: 10px; font-family: 'Inter'; line-height: 1.4; }
 .review-author { font-size: 0.8rem; font-weight: 800; font-family: 'Oswald'; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase;}
 
-/* FLOATING BTN */
+/* FLOATING BTN - VIP REQUEST (DESTRA) */
 .floating-sourcing-btn {
     position: fixed; bottom: 25px; right: 25px;
     background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
@@ -293,6 +303,29 @@ footer {
     transform: translateY(-4px) scale(1.05); opacity: 1; 
     box-shadow: 0 15px 35px rgba(0,0,0,0.3), inset 0 0 0 1px rgba(255,255,255,0.5);
     background-color: var(--text-color); color: var(--inverted-text); border:none;
+}
+
+/* FLOATING BTN - HOME (SINISTRA - INIZIALMENTE NASCOSTO) */
+.floating-home-btn {
+    position: fixed; bottom: 25px; left: 25px;
+    background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
+    backdrop-filter: blur(20px); border: var(--glass-border); color: var(--text-color);
+    padding: 10px 20px; border-radius: 40px; 
+    font-family: 'Oswald'; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; 
+    cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.3); 
+    z-index: 1500; 
+    
+    /* Stato nascosto iniziale */
+    opacity: 0; transform: translateY(20px) scale(0.9); pointer-events: none;
+    transition: all 0.4s ease;
+}
+.floating-home-btn.visible {
+    opacity: 1; transform: translateY(0) scale(1); pointer-events: all;
+}
+.floating-home-btn:hover {
+    transform: translateY(-4px) scale(1.05);
+    background-color: var(--text-color); color: var(--inverted-text);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
 /* NO RESULTS */
@@ -312,5 +345,7 @@ footer {
     .detail-image { height: 350px; border-right: none; border-bottom: var(--glass-border); }
     .detail-info { padding: 30px; }
     .detail-info h2 { font-size: 2.5rem; }
+    
     .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.8; }
+    .floating-home-btn { bottom: 20px; left: 20px; padding: 8px 16px; font-size: 0.7rem; }
 }
