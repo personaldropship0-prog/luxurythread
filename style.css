@@ -375,3 +375,67 @@ footer {
     .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.8; }
     .floating-home-btn { top: 40px; padding: 8px 16px; font-size: 0.7rem; }
 }
+/* --- GESTIONE SEARCH OVERLAY (NIKE STYLE) --- */
+
+function openSearchOverlay() {
+    const overlay = document.getElementById('search-overlay');
+    const input = document.getElementById('searchInput');
+    
+    // Mostra overlay
+    overlay.classList.add('active');
+    
+    // Disabilita lo scroll della pagina principale
+    document.body.style.overflow = 'hidden';
+    
+    // Focus automatico sull'input dopo breve ritardo (per l'animazione)
+    setTimeout(() => {
+        input.focus();
+    }, 100);
+}
+
+function closeSearchOverlay() {
+    const overlay = document.getElementById('search-overlay');
+    
+    // Nascondi overlay
+    overlay.classList.remove('active');
+    
+    // Riabilita lo scroll
+    document.body.style.overflow = '';
+}
+
+// Funzione helper per i link rapidi (es. "Jordan")
+function quickSearch(term) {
+    const input = document.getElementById('searchInput');
+    input.value = term;
+    performSearch();
+}
+
+/* --- MODIFICA ALLA FUNZIONE ESISTENTE performSearch --- */
+// (Sovrascrivi o modifica la tua vecchia performSearch con questa logica)
+
+function performSearch() {
+    const input = document.getElementById('searchInput');
+    const query = input.value.toLowerCase();
+    
+    // Esegui il filtro
+    const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+    renderProducts(filtered);
+    
+    // Chiudi l'overlay della ricerca
+    closeSearchOverlay();
+    
+    // Se siamo nella pagina prodotto, torniamo alla home per vedere i risultati
+    goBackToHome(); 
+    
+    // Opzionale: scrolla un po' giù verso i prodotti
+    const grid = document.getElementById('products-grid');
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Event listener per il tasto ESC (chiude la ricerca)
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeSearchOverlay();
+    }
+});
+
