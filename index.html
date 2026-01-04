@@ -5,7 +5,6 @@
   <title>Luxury Thread | Ultimate Edition</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
@@ -21,17 +20,17 @@
 
   <header class="main-header">
     <div class="header-content">
-      <div class="logo-slot">
+      <div class="logo-slot" onclick="goHome()">
         <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
         <span class="brand-fallback" style="display:none">LT</span>
       </div>
       
-      <h1 class="brand-title">LUXURY THREAD</h1>
+      <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
 
       <div class="search-bar-container">
         <div class="search-bar">
           <input type="text" id="searchInput" placeholder="SEARCH...">
-          <button id="searchBtn">🔍</button>
+          <button onclick="performSearch()">🔍</button>
         </div>
       </div>
     </div>
@@ -41,14 +40,14 @@
     <div class="spacer"></div>
     
     <nav class="filters">
-      <button class="filter-btn active" data-filter="all">ALL</button>
-      <button class="filter-btn" data-filter="sneakers">SNEAKERS</button>
-      <button class="filter-btn" data-filter="hoodies">HOODIES</button>
-      <button class="filter-btn" data-filter="pants">PANTS</button>
-      <button class="filter-btn" data-filter="accessories">ACCESSORIES</button>
+      <button onclick="filterProducts('all')" class="active">ALL</button>
+      <button onclick="filterProducts('sneakers')">SNEAKERS</button>
+      <button onclick="filterProducts('hoodies')">HOODIES</button>
+      <button onclick="filterProducts('pants')">PANTS</button>
+      <button onclick="filterProducts('accessories')">ACCESSORIES</button>
     </nav>
 
-    <section id="product-grid" class="product-grid"></section>
+    <section id="products-grid" class="product-grid"></section>
 
     <div id="no-results" class="no-results-box" style="display:none;">
       <div class="no-results-content">
@@ -59,11 +58,12 @@
     </div>
   </main>
 
-  <section id="single-product-view" class="single-product-view content-area" style="display:none;">
+
+  <section id="single-product-page" class="single-product-view content-area">
     <div class="spacer"></div>
     
     <div class="product-top-bar">
-      <button class="close-view-btn" onclick="closeProduct()">✕ TORNA ALLA HOME</button>
+      <button class="close-view-btn" onclick="goBackToHome()">✕ TORNA ALLA HOME</button>
     </div>
 
     <div class="product-detail-container">
@@ -77,7 +77,7 @@
         </div>
         
         <h2 id="detail-title">PRODUCT NAME</h2>
-        <p id="detail-desc">Descrizione prodotto non disponibile.</p>
+        <p id="detail-desc">Description goes here.</p>
         <div id="detail-price" class="price-tag">€000</div>
         
         <div class="trust-icons-text">
@@ -85,11 +85,9 @@
         </div>
 
         <div class="action-buttons">
-          <button class="buy-btn main-btn" onclick="openInstagram()">ACQUISTA ORA (DM)</button>
-          <button class="buy-btn sec-btn" onclick="openSourcingModal()">INFO PRODOTTO</button>
+          <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA (DM)</button>
+          <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
         </div>
-        
-        <button class="sec-btn-small" onclick="openReviewsModal()">Leggi recensioni verificate</button>
       </div>
     </div>
   </section>
@@ -100,7 +98,7 @@
       <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
       
       <div class="footer-bottom-row">
-        <button id="footer-theme-btn" title="Cambia Tema">Dark Mode</button>
+        <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
         <span class="footer-divider">|</span>
         <span class="reviews-link" onclick="openReviewsModal()">REVIEWS (5.0 ★)</span>
       </div>
@@ -111,6 +109,10 @@
 
 <div class="floating-sourcing-btn" onclick="openSourcingModal()">
     <span>💎 VIP REQUEST</span>
+</div>
+
+<div class="floating-home-btn" onclick="scrollToTop()">
+    <span>🏠 HOME</span>
 </div>
 
 <div id="sourcing-modal" class="popup-overlay">
@@ -131,8 +133,8 @@
     </div>
     
     <div class="popup-actions">
-      <button class="buy-btn main-btn" onclick="alert('Richiesta inviata al team sourcing!'); closeModal()">INVIA RICHIESTA</button>
-      <button class="buy-btn sec-btn-small" onclick="closeModal()">CHIUDI</button>
+      <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
+      <button class="buy-btn sec-btn-small" onclick="closeSourcingModal()">CHIUDI</button>
     </div>
   </div>
 </div>
@@ -162,7 +164,16 @@
       </div>
     </div>
 
-    <button class="buy-btn sec-btn-small" onclick="closeModal()">CHIUDI</button>
+    <button class="buy-btn sec-btn-small" onclick="closeReviewsModal()">CHIUDI</button>
+  </div>
+</div>
+
+<div id="popup" class="popup-overlay">
+  <div class="popup-box">
+    <h3>MESSAGGIO PRONTO</h3>
+    <p id="popup-text"></p>
+    <button class="buy-btn main-btn" onclick="openInstagram()">VAI SU INSTAGRAM</button>
+    <button class="buy-btn sec-btn" onclick="closePopup()">CHIUDI</button>
   </div>
 </div>
 
