@@ -88,7 +88,12 @@
     <div class="footer-content">
       <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
       <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
-      <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
+      
+      <div class="footer-bottom-row">
+        <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
+        <span class="footer-divider">|</span>
+        <span class="reviews-link" onclick="openReviewsModal()">REVIEWS ★★★★★</span>
+      </div>
     </div>
   </footer>
 
@@ -104,23 +109,50 @@
       <h3>VIP REQUEST</h3>
       <div class="header-line"></div>
     </div>
-    
-    <p style="font-size: 0.85rem; margin-bottom: 25px; opacity: 0.7;">Inserisci i dettagli. Il nostro team troverà l'item per te.</p>
+    <p style="font-size: 0.85rem; margin-bottom: 25px; opacity: 0.7;">Troviamo l'item per te.</p>
     
     <div class="input-group">
       <input type="text" id="src-model" placeholder=" " class="modal-input-line">
-      <label>MODELLO (Es. Jordan 4)</label>
+      <label>MODELLO</label>
     </div>
-
     <div class="input-group">
       <input type="text" id="src-size" placeholder=" " class="modal-input-line">
-      <label>TAGLIA (Es. 44 EU)</label>
+      <label>TAGLIA</label>
     </div>
     
     <div class="popup-actions">
       <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
-      <button class="buy-btn sec-btn-small" onclick="closeSourcingModal()">ANNULLA</button>
+      <button class="buy-btn sec-btn-small" onclick="closeSourcingModal()">CHIUDI</button>
     </div>
+  </div>
+</div>
+
+<div id="reviews-modal" class="popup-overlay">
+  <div class="popup-box reviews-box">
+    <div class="popup-header">
+      <h3>CLIENT FEEDBACK</h3>
+      <div class="header-line"></div>
+    </div>
+    
+    <div class="reviews-list">
+      <div class="review-item">
+        <div class="stars">★★★★★</div>
+        <p>"Servizio impeccabile. Le J4 sono arrivate in 2 giorni a Milano. Legit 100%."</p>
+        <span class="review-author">— @marcorossi</span>
+      </div>
+      <div class="review-item">
+        <div class="stars">★★★★★</div>
+        <p>"Grazie per aver trovato la felpa Supreme che cercavo da mesi."</p>
+        <span class="review-author">— @alessio_99</span>
+      </div>
+      <div class="review-item">
+        <div class="stars">★★★★★</div>
+        <p>"Packaging pazzesco e comunicazione veloce. Consigliatissimi."</p>
+        <span class="review-author">— @federica.m</span>
+      </div>
+    </div>
+
+    <button class="buy-btn sec-btn-small" onclick="closeReviewsModal()">CHIUDI</button>
   </div>
 </div>
 
