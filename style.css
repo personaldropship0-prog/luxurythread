@@ -6,8 +6,8 @@
     --bg-image: url('img/marmo-white.jpg'); 
     
     /* COLORI FONDAMENTALI */
-    --text-color: #000000;       /* Colore testo principale (Nero) */
-    --inverted-text: #ffffff;    /* Colore testo quando lo sfondo è scuro (Bianco) */
+    --text-color: #000000;       
+    --inverted-text: #ffffff;    
     
     /* VARIABILI VETRO (LIGHT MODE) */
     --glass-bg-base: rgba(255, 255, 255, 0.5);
@@ -24,8 +24,8 @@ body.dark-mode {
     --bg-image: url('img/marmo-black.jpg'); 
     
     /* COLORI INVERTITI PER DARK MODE */
-    --text-color: #ffffff;       /* Testo principale Bianco */
-    --inverted-text: #000000;    /* Testo sui bottoni pieni Nero */
+    --text-color: #ffffff;       
+    --inverted-text: #000000;    
     
     /* VARIABILI VETRO (DARK MODE) */
     --glass-bg-base: rgba(0, 0, 0, 0.6);
@@ -50,7 +50,7 @@ body {
 }
 
 .page-wrapper { display: flex; flex-direction: column; min-height: 100vh; }
-.content-area { flex: 1; width: 100%; }
+.content-area { flex: 1; width: 100%; display: flex; flex-direction: column; }
 
 /* --- TICKER --- */
 .news-ticker {
@@ -73,12 +73,9 @@ body {
     -webkit-backdrop-filter: blur(var(--blur-amt));
     border-bottom: var(--glass-border);
     box-shadow: var(--glass-shadow);
-    
-    /* Transizione per scomparsa verso l'alto */
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
 }
 
-/* Classe aggiunta via JS per nascondere l'header */
 .main-header.hidden {
     transform: translateY(-150%);
     opacity: 0;
@@ -98,7 +95,6 @@ body {
 .logo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .brand-fallback { font-family: 'Oswald'; font-weight: bold; font-size: 1.5rem; }
 
-/* TITOLO BRAND */
 .brand-title {
     font-family: 'Oswald', sans-serif;
     font-size: clamp(32px, 8vw, 64px);
@@ -109,7 +105,6 @@ body {
 }
 .brand-title:hover { letter-spacing: 8px; transform: scale(1.02); }
 
-/* SEARCH BAR */
 .search-bar { 
     display: flex; height: 40px; 
     border: 1px solid var(--text-color); border-radius: 30px; overflow: hidden;
@@ -126,7 +121,7 @@ body {
 .spacer { height: 160px; }
 
 /* --- FILTRI --- */
-.filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 30px; }
+.filters { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; padding: 30px 30px 10px 30px; /* Ridotto padding inferiore */ }
 .filters button {
     padding: 10px 25px; 
     background: var(--glass-bg-base);
@@ -143,18 +138,16 @@ body {
     border-color: transparent;
 }
 
-/* --- GRID SYSTEM (FIX SPAZIATURA) --- */
+/* --- GRID SYSTEM --- */
 .product-grid {
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
     gap: 40px; 
-    /* Aumentato padding sotto a 150px per staccare il footer */
     padding: 20px 5% 150px; 
     max-width: 1800px; 
     margin: 0 auto;
-    /* FIX: Forza altezza minima anche con 1 solo risultato */
     min-height: 60vh; 
-    align-content: start; /* Impedisce stiramento verticale dei box */
+    align-content: start; 
 }
 
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
@@ -180,22 +173,28 @@ body {
 .card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; font-size: 1.1rem; }
 .price { font-weight: 700; font-family: 'Oswald'; font-size: 1.3rem; opacity: 0.9; }
 
-/* --- NO RESULTS BOX (FIX SPAZIATURA) --- */
+/* --- NO RESULTS BOX (CORRETTO) --- */
 #no-results {
     width: 100%;
-    min-height: 50vh; /* Centra il messaggio verticalmente nello spazio */
+    /* Usa lo spazio rimanente ma non forza il contenuto al centro verticale */
     display: flex;       
-    justify-content: center;
-    align-items: center; 
-    padding: 20px;
+    justify-content: center; /* Centra orizzontalmente */
+    align-items: flex-start; /* Allinea in ALTO, non al centro */
+    
+    padding-top: 30px; /* Distanza minima dai filtri */
+    margin-bottom: auto; /* Spinge il footer in basso */
+    min-height: 40vh; /* Altezza minima per estetica */
 }
+
 .no-results-content { 
     background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
     backdrop-filter: blur(var(--blur-amt)); border: var(--glass-border);
     box-shadow: var(--glass-shadow); border-radius: 30px; 
     padding: 60px 40px; 
     text-align: center;
-    max-width: 600px; width: 100%;
+    max-width: 600px; 
+    width: 100%;
+    margin: 0 auto; /* Forza la centratura orizzontale */
     animation: fadeInUp 0.5s ease-out;
 }
 .no-results-content h2 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 15px; color: var(--text-color); }
@@ -350,14 +349,12 @@ footer {
     cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.3); 
     z-index: 1500; 
     
-    /* Stato iniziale: Nascosto SOPRA lo schermo e centrato */
     opacity: 0; 
     transform: translateX(-50%) translateY(-150%); 
     pointer-events: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Quando visibile */
 .floating-home-btn.visible {
     opacity: 1; 
     transform: translateX(-50%) translateY(0); 
