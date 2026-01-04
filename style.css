@@ -2,32 +2,27 @@
 
 /* --- CONFIGURAZIONE PREMIUM GLASS & COLORI --- */
 :root {
-    /* SFONDO GLOBALE */
     --bg-image: url('img/marmo-white.jpg'); 
-    
-    /* COLORI FONDAMENTALI */
-    --text-color: #000000;       
+    --text-color: #000000;        
     --inverted-text: #ffffff;    
     
-    /* VARIABILI VETRO (LIGHT MODE) */
+    /* VETRO LIGHT */
     --glass-bg-base: rgba(255, 255, 255, 0.5);
     --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 100%);
     --glass-border: 1px solid rgba(255, 255, 255, 0.6);
     --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15), inset 0 0 0 1px rgba(255,255,255,0.3);
     --blur-amt: 25px;
     
-    /* Ombra del titolo */
+    /* Ombra titolo */
     --title-glow: 2px 2px 4px rgba(0,0,0,0.4), 0 0 25px rgba(255,255,255,0.9);
 }
 
 body.dark-mode {
     --bg-image: url('img/marmo-black.jpg'); 
-    
-    /* COLORI INVERTITI PER DARK MODE */
-    --text-color: #ffffff;       
+    --text-color: #ffffff;        
     --inverted-text: #000000;    
     
-    /* VARIABILI VETRO (DARK MODE) */
+    /* VETRO DARK */
     --glass-bg-base: rgba(0, 0, 0, 0.6);
     --glass-gradient: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.3) 100%);
     --glass-border: 1px solid rgba(255, 255, 255, 0.2);
@@ -63,7 +58,7 @@ body {
 .ticker-content { display: inline-block; animation: scroll-left 25s linear infinite; padding-left: 100%; }
 @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* --- HEADER (STICKY & SCROLL EFFECT) --- */
+/* --- HEADER --- */
 .main-header {
     position: fixed; top: 30px; left: 0; width: 100%;
     z-index: 1000; padding: 15px 30px;
@@ -104,18 +99,79 @@ body {
 }
 .brand-title:hover { letter-spacing: 8px; transform: scale(1.02); }
 
-.search-bar { 
-    display: flex; height: 40px; 
-    border: 1px solid var(--text-color); border-radius: 30px; overflow: hidden;
-    background: rgba(255,255,255,0.15); backdrop-filter: blur(5px);
+/* --- NIKE STYLE SEARCH OVERLAY & BUTTON --- */
+
+/* Bottone Trigger nell'Header */
+.search-trigger-btn {
+    background: transparent; border: none;
+    color: var(--text-color);
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    padding: 8px 15px; border-radius: 20px; transition: 0.3s;
+    border: 1px solid transparent;
 }
-.search-bar input {
-    border: none; padding: 0 20px; background: transparent;
-    font-family: 'Oswald'; text-transform: uppercase; color: var(--text-color); outline: none; width: 160px; font-weight: 500;
+.search-trigger-btn:hover {
+    background: rgba(128,128,128, 0.1);
+    border-color: rgba(128,128,128, 0.3);
 }
-.search-bar input::placeholder { color: var(--text-color); opacity: 0.7; }
-.search-bar button { background: transparent; color: var(--text-color); border: none; padding: 0 20px; cursor: pointer; border-left: 1px solid rgba(128,128,128,0.3); transition: 0.3s;}
-.search-bar button:hover { background: var(--text-color); color: var(--inverted-text); }
+
+/* Overlay Principale */
+.search-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+    z-index: 2500; 
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.search-overlay.active { opacity: 1; visibility: visible; }
+
+/* Contenuto Overlay (Scende dall'alto) */
+.search-overlay-content {
+    background-color: var(--glass-bg-base);
+    background-image: var(--glass-gradient);
+    backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+    border-bottom: 1px solid rgba(128,128,128,0.2);
+    padding: 40px 10% 20px;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    display: flex; flex-direction: column; gap: 25px;
+    position: relative; z-index: 2;
+}
+.search-overlay.active .search-overlay-content { transform: translateY(0); }
+
+/* Elementi interni Search */
+.search-top-row { display: flex; justify-content: space-between; align-items: center; }
+.search-brand { font-family: 'Oswald'; font-weight: 800; font-size: 1.5rem; letter-spacing: 2px; }
+.close-search-btn {
+    background: transparent; border: none; font-family: 'Inter'; font-weight: 600;
+    font-size: 0.9rem; cursor: pointer; color: var(--text-color); opacity: 0.7; transition: 0.3s;
+}
+.close-search-btn:hover { opacity: 1; transform: scale(1.05); }
+
+.search-input-wrapper {
+    position: relative; display: flex; align-items: center;
+    background: rgba(128,128,128, 0.05); border-radius: 10px;
+    padding: 10px 20px; transition: 0.3s;
+}
+.search-input-wrapper:hover, .search-input-wrapper:focus-within { background: rgba(128,128,128, 0.1); }
+.search-input-wrapper input {
+    width: 100%; border: none; background: transparent;
+    font-family: 'Oswald'; font-size: 2rem; font-weight: 600; text-transform: uppercase;
+    color: var(--text-color); outline: none; padding-left: 15px;
+}
+.search-input-wrapper input::placeholder { color: var(--text-color); opacity: 0.3; }
+.search-icon-btn { background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-color); }
+
+.quick-links { display: flex; gap: 15px; font-family: 'Inter'; font-size: 0.9rem; color: var(--text-color); flex-wrap: wrap;}
+.quick-links span { opacity: 0.8; }
+.quick-links a { font-weight: 700; cursor: pointer; opacity: 0.5; transition: 0.2s; text-decoration: underline; }
+.quick-links a:hover { opacity: 1; }
+
+.search-backdrop {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100vh;
+    background: rgba(0,0,0,0.6); opacity: 0; transition: opacity 0.5s; z-index: 1;
+}
+.search-overlay.active .search-backdrop { opacity: 1; }
 
 .spacer { height: 160px; }
 
@@ -131,7 +187,7 @@ body {
     border-radius: 30px; transition: 0.3s; letter-spacing: 1px;
 }
 .filters button.active, .filters button:hover {
-    background: var(--text-color);      
+    background: var(--text-color);        
     color: var(--inverted-text);
     transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     border-color: transparent;
@@ -170,11 +226,8 @@ body {
 .card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; font-size: 1.1rem; }
 .price { font-weight: 700; font-family: 'Oswald'; font-size: 1.3rem; opacity: 0.9; }
 
-/* --- NO RESULTS BOX (MODIFICATO SPAZIATURA) --- */
-#no-results {
-    text-align: center; padding: 60px 20px; width: 100%;
-    animation: fadeInUp 0.5s ease-out;
-}
+/* NO RESULTS */
+#no-results { text-align: center; padding: 60px 20px; width: 100%; animation: fadeInUp 0.5s ease-out; }
 .no-results-content { 
     background-color: var(--glass-bg-base); 
     background-image: var(--glass-gradient);
@@ -184,14 +237,8 @@ body {
     border-radius: 30px; 
     padding: 40px; display: inline-block; max-width: 500px;
 }
-.no-results-content h2 {
-    font-family: 'Oswald'; text-transform: uppercase; font-size: 2rem; margin-bottom: 15px;
-    color: var(--text-color);
-}
-/* QUI È LA MODIFICA: margin-bottom aumentato a 30px per staccare il bottone */
-.no-results-content p {
-    font-family: 'Inter'; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8;
-}
+.no-results-content h2 { font-family: 'Oswald'; text-transform: uppercase; font-size: 2rem; margin-bottom: 15px; color: var(--text-color); }
+.no-results-content p { font-family: 'Inter'; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8; }
 
 /* PRODUCT PAGE */
 .single-product-view { display: none; padding-bottom: 60px; }
@@ -218,35 +265,21 @@ body {
 .detail-image img { width: 100%; height: 100%; object-fit: cover; display: block;}
 .detail-info { flex: 1; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
 
-/* BADGES */
 .badges-row { display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
-.badge { 
-    background: var(--text-color);   
-    color: var(--inverted-text);     
-    padding: 8px 20px; font-family: 'Oswald'; font-weight: bold; border-radius: 6px; letter-spacing: 1px;
-}
-.verified-badge { 
-    border: 2px solid var(--text-color); color: var(--text-color); padding: 8px 20px; 
-    font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 6px;
-}
+.badge { background: var(--text-color); color: var(--inverted-text); padding: 8px 20px; font-family: 'Oswald'; font-weight: bold; border-radius: 6px; letter-spacing: 1px; }
+.verified-badge { border: 2px solid var(--text-color); color: var(--text-color); padding: 8px 20px; font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; border-radius: 6px; }
 
 .detail-info h2 { font-family: 'Oswald'; font-size: 4rem; text-transform: uppercase; line-height: 0.9; margin-bottom: 25px; letter-spacing: -1px; text-shadow: var(--title-glow); }
 .price-tag { font-family: 'Oswald'; font-size: 3rem; font-weight: 800; margin-bottom: 15px; }
 .trust-icons-text { font-family: 'Inter'; font-size: 1rem; margin-bottom: 40px; opacity: 0.8; font-weight: 600; word-spacing: 3px; }
 
-/* ACTION BUTTONS */
 .action-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
 .buy-btn {
     flex: 1; padding: 18px; font-family: 'Oswald'; font-weight: 800; text-transform: uppercase; 
     border: 2px solid var(--text-color); cursor: pointer; border-radius: 16px; letter-spacing: 1px; transition: 0.3s;
 }
-.main-btn { 
-    background: var(--text-color); 
-    color: var(--inverted-text); 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
-}
+.main-btn { background: var(--text-color); color: var(--inverted-text); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
 .main-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); opacity: 0.9; }
-
 .sec-btn { background: transparent; color: var(--text-color); backdrop-filter: blur(5px); }
 .sec-btn:hover { background: rgba(128,128,128,0.1); }
 .sec-btn-small { background: transparent; color: var(--text-color); border: none; font-size: 0.9rem; font-family:'Oswald'; cursor: pointer; margin-top: 15px; text-decoration: underline; letter-spacing: 1px;}
@@ -312,7 +345,7 @@ footer {
 .review-item p { font-style: italic; font-size: 1rem; margin-bottom: 10px; font-family: 'Inter'; line-height: 1.4; }
 .review-author { font-size: 0.8rem; font-weight: 800; font-family: 'Oswald'; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase;}
 
-/* FLOATING BTN - VIP REQUEST (DESTRA BASSO) */
+/* FLOATING BTN */
 .floating-sourcing-btn {
     position: fixed; bottom: 25px; right: 25px;
     background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
@@ -328,44 +361,31 @@ footer {
     background-color: var(--text-color); color: var(--inverted-text); border:none;
 }
 
-/* FLOATING BTN - HOME (ALTO CENTRO - SCROLL REVEAL) */
 .floating-home-btn {
-    position: fixed; 
-    top: 40px;      /* Subito sotto il ticker */
-    left: 50%;      /* Centrato */
-    
+    position: fixed; top: 40px; left: 50%; 
     background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
     backdrop-filter: blur(20px); border: var(--glass-border); color: var(--text-color);
     padding: 10px 20px; border-radius: 40px; 
     font-family: 'Oswald'; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 0.75rem; 
     cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.3); 
-    z-index: 1500; 
-    
-    /* Stato iniziale: Nascosto SOPRA lo schermo e centrato */
-    opacity: 0; 
-    transform: translateX(-50%) translateY(-150%); 
-    pointer-events: none;
+    z-index: 1500; opacity: 0; transform: translateX(-50%) translateY(-150%); pointer-events: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-/* Quando visibile */
-.floating-home-btn.visible {
-    opacity: 1; 
-    transform: translateX(-50%) translateY(0); 
-    pointer-events: all;
-}
-
-.floating-home-btn:hover {
-    transform: translateX(-50%) scale(1.05);
-    background-color: var(--text-color); color: var(--inverted-text);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-}
+.floating-home-btn.visible { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: all; }
+.floating-home-btn:hover { transform: translateX(-50%) scale(1.05); background-color: var(--text-color); color: var(--inverted-text); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
 
 @media(max-width: 768px) {
     .brand-title { font-size: 36px; letter-spacing: 3px; }
     .header-content { flex-wrap: wrap; justify-content: center; gap: 15px; }
     .logo-slot { order: 2; margin-right: auto; margin-left: 10px;}
-    .search-bar-container { order: 3; margin-left: auto; margin-right: 10px;}
+    .search-trigger-container { order: 3; margin-left: auto; margin-right: 10px;}
+    
+    .desktop-only { display: none; }
+    .search-input-wrapper input { font-size: 1.4rem; }
+    .search-brand { display: none; }
+    .search-top-row { justify-content: flex-end; }
+    .search-overlay-content { padding: 30px 5%; }
+
     .spacer { height: 240px; }
     .product-detail-container { flex-direction: column; width: 95%; }
     .detail-image { height: 350px; border-right: none; border-bottom: var(--glass-border); }
@@ -375,67 +395,3 @@ footer {
     .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.8; }
     .floating-home-btn { top: 40px; padding: 8px 16px; font-size: 0.7rem; }
 }
-/* --- GESTIONE SEARCH OVERLAY (NIKE STYLE) --- */
-
-function openSearchOverlay() {
-    const overlay = document.getElementById('search-overlay');
-    const input = document.getElementById('searchInput');
-    
-    // Mostra overlay
-    overlay.classList.add('active');
-    
-    // Disabilita lo scroll della pagina principale
-    document.body.style.overflow = 'hidden';
-    
-    // Focus automatico sull'input dopo breve ritardo (per l'animazione)
-    setTimeout(() => {
-        input.focus();
-    }, 100);
-}
-
-function closeSearchOverlay() {
-    const overlay = document.getElementById('search-overlay');
-    
-    // Nascondi overlay
-    overlay.classList.remove('active');
-    
-    // Riabilita lo scroll
-    document.body.style.overflow = '';
-}
-
-// Funzione helper per i link rapidi (es. "Jordan")
-function quickSearch(term) {
-    const input = document.getElementById('searchInput');
-    input.value = term;
-    performSearch();
-}
-
-/* --- MODIFICA ALLA FUNZIONE ESISTENTE performSearch --- */
-// (Sovrascrivi o modifica la tua vecchia performSearch con questa logica)
-
-function performSearch() {
-    const input = document.getElementById('searchInput');
-    const query = input.value.toLowerCase();
-    
-    // Esegui il filtro
-    const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-    renderProducts(filtered);
-    
-    // Chiudi l'overlay della ricerca
-    closeSearchOverlay();
-    
-    // Se siamo nella pagina prodotto, torniamo alla home per vedere i risultati
-    goBackToHome(); 
-    
-    // Opzionale: scrolla un po' giù verso i prodotti
-    const grid = document.getElementById('products-grid');
-    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// Event listener per il tasto ESC (chiude la ricerca)
-document.addEventListener('keydown', function(event) {
-    if (event.key === "Escape") {
-        closeSearchOverlay();
-    }
-});
-
