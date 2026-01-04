@@ -143,12 +143,22 @@ body {
     border-color: transparent;
 }
 
-/* GRID */
+/* --- GRID SYSTEM (FIX SPAZIATURA) --- */
 .product-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 40px; padding: 20px 5% 80px; max-width: 1800px; margin: 0 auto;
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 40px; 
+    /* Aumentato padding sotto a 150px per staccare il footer */
+    padding: 20px 5% 150px; 
+    max-width: 1800px; 
+    margin: 0 auto;
+    /* FIX: Forza altezza minima anche con 1 solo risultato */
+    min-height: 60vh; 
+    align-content: start; /* Impedisce stiramento verticale dei box */
 }
+
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
 .card {
     overflow: hidden;
     background-color: var(--glass-bg-base);
@@ -169,6 +179,28 @@ body {
 .card-details { padding: 25px; text-align: left; }
 .card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; font-size: 1.1rem; }
 .price { font-weight: 700; font-family: 'Oswald'; font-size: 1.3rem; opacity: 0.9; }
+
+/* --- NO RESULTS BOX (FIX SPAZIATURA) --- */
+#no-results {
+    width: 100%;
+    min-height: 50vh; /* Centra il messaggio verticalmente nello spazio */
+    display: flex;       
+    justify-content: center;
+    align-items: center; 
+    padding: 20px;
+}
+.no-results-content { 
+    background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
+    backdrop-filter: blur(var(--blur-amt)); border: var(--glass-border);
+    box-shadow: var(--glass-shadow); border-radius: 30px; 
+    padding: 60px 40px; 
+    text-align: center;
+    max-width: 600px; width: 100%;
+    animation: fadeInUp 0.5s ease-out;
+}
+.no-results-content h2 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 15px; color: var(--text-color); }
+.no-results-content p { font-family: 'Inter'; margin-bottom: 30px; }
+
 
 /* PRODUCT PAGE */
 .single-product-view { display: none; padding-bottom: 60px; }
@@ -305,11 +337,11 @@ footer {
     background-color: var(--text-color); color: var(--inverted-text); border:none;
 }
 
-/* FLOATING BTN - HOME (ALTO CENTRO - INIZIALMENTE NASCOSTO SOPRA) */
+/* FLOATING BTN - HOME (ALTO CENTRO - SCROLL REVEAL) */
 .floating-home-btn {
     position: fixed; 
-    top: 40px;      /* Posizionato subito sotto la ticker bar (30px + margine) */
-    left: 50%;      /* Centrato orizzontalmente */
+    top: 40px;      /* Subito sotto il ticker */
+    left: 50%;      /* Centrato */
     
     background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
     backdrop-filter: blur(20px); border: var(--glass-border); color: var(--text-color);
@@ -325,7 +357,7 @@ footer {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Quando diventa visibile (Scende giù) */
+/* Quando visibile */
 .floating-home-btn.visible {
     opacity: 1; 
     transform: translateX(-50%) translateY(0); 
@@ -336,13 +368,6 @@ footer {
     transform: translateX(-50%) scale(1.05);
     background-color: var(--text-color); color: var(--inverted-text);
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-}
-
-/* NO RESULTS */
-.no-results-content { 
-    background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
-    backdrop-filter: blur(var(--blur-amt)); border: var(--glass-border);
-    box-shadow: var(--glass-shadow); border-radius: 30px; padding: 50px; 
 }
 
 @media(max-width: 768px) {
@@ -357,7 +382,5 @@ footer {
     .detail-info h2 { font-size: 2.5rem; }
     
     .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.8; }
-    
-    /* Mobile: Tasto Home più piccolo ma sempre in alto */
     .floating-home-btn { top: 40px; padding: 8px 16px; font-size: 0.7rem; }
 }
