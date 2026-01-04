@@ -18,6 +18,7 @@ const noResults = document.getElementById("no-results");
 const searchInput = document.getElementById("searchInput");
 const popup = document.getElementById("popup");
 const sourcingModal = document.getElementById("sourcing-modal");
+const reviewsModal = document.getElementById("reviews-modal");
 
 function checkDarkMode() {
     const hour = new Date().getHours();
@@ -111,6 +112,7 @@ function contactForProduct(type) {
     popup.style.display = 'flex';
 }
 
+/* SOURCING MODAL */
 function openSourcingModal() { sourcingModal.style.display = "flex"; }
 function closeSourcingModal() { sourcingModal.style.display = "none"; }
 
@@ -124,6 +126,11 @@ function sendSourcingRequest() {
         closeSourcingModal();
     });
 }
+
+/* REVIEWS MODAL */
+function openReviewsModal() { reviewsModal.style.display = "flex"; }
+function closeReviewsModal() { reviewsModal.style.display = "none"; }
+
 function openInstagram() {
     navigator.clipboard.writeText(document.getElementById("popup-text").innerText).then(() => {
         window.open("https://ig.me/m/luxury.thread_", "_blank");
@@ -133,8 +140,10 @@ function openInstagram() {
 function closePopup() { popup.style.display = 'none'; }
 function goHome() { searchInput.value=""; filterProducts('all'); showHomeView(); }
 
+/* CHIUSURA CLICK ESTERNO */
 window.onclick = function(event) {
     if (event.target == sourcingModal) closeSourcingModal();
+    if (event.target == reviewsModal) closeReviewsModal();
     if (event.target == popup) closePopup();
 }
 
