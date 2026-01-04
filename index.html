@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Luxury Thread | Glass Edition</title>
+  <title>Luxury Thread | Streetwear Sourcing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -18,7 +18,7 @@
     </div>
   </div>
 
-  <header class="main-header">
+  <header class="main-header marble-texture">
     <div class="header-content">
       <div class="logo-slot" onclick="goHome()">
         <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
@@ -52,7 +52,7 @@
     <div id="no-results" class="no-results-box" style="display:none;">
       <div class="no-results-content">
         <h2>PRODOTTO NON TROVATO</h2>
-        <p>Il nostro team di sourcing può trovarlo per te.</p>
+        <p>Non preoccuparti. Usa il servizio VIP Concierge qui sotto.</p>
         <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
       </div>
     </div>
@@ -71,19 +71,11 @@
         <img id="detail-img" src="" alt="">
       </div>
       <div class="detail-info">
-        <div class="badges-row">
-            <span id="detail-category" class="badge">CATEGORY</span>
-            <span class="verified-badge">✓ AUTHENTIC VERIFIED</span>
-        </div>
-        
+        <span id="detail-category" class="badge">CATEGORY</span>
         <h2 id="detail-title">PRODUCT NAME</h2>
         <p id="detail-desc">Description goes here.</p>
         <div id="detail-price" class="price-tag">€000</div>
         
-        <div class="trust-icons-text">
-            <span>📦 Double Box Shipping</span> • <span>🔒 Secure Payment (PayPal)</span>
-        </div>
-
         <div class="action-buttons">
           <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA (DM)</button>
           <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
@@ -92,7 +84,7 @@
     </div>
   </section>
 
-  <footer>
+  <footer class="marble-texture">
     <div class="footer-content">
       <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
       <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
@@ -100,7 +92,7 @@
       <div class="footer-bottom-row">
         <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
         <span class="footer-divider">|</span>
-        <span class="reviews-link" onclick="openReviewsModal()">REVIEWS (5.0 ★)</span>
+        <span class="reviews-link" onclick="openReviewsModal()">REVIEWS ★★★★★</span>
       </div>
     </div>
   </footer>
@@ -108,7 +100,7 @@
 </div>
 
 <div class="floating-sourcing-btn" onclick="openSourcingModal()">
-    <span>💎 VIP REQUEST</span>
+    <span>💎 VIP CONCIERGE</span>
 </div>
 
 <div id="sourcing-modal" class="popup-overlay">
@@ -117,7 +109,7 @@
       <h3>VIP REQUEST</h3>
       <div class="header-line"></div>
     </div>
-    <p style="font-size: 0.85rem; margin-bottom: 25px; opacity: 0.7;">Servizio esclusivo di ricerca prodotti.</p>
+    <p style="font-size: 0.85rem; margin-bottom: 25px; opacity: 0.7;">Troviamo l'item per te.</p>
     
     <div class="input-group">
       <input type="text" id="src-model" placeholder=" " class="modal-input-line">
@@ -145,18 +137,18 @@
     <div class="reviews-list">
       <div class="review-item">
         <div class="stars">★★★★★</div>
-        <p>"Ero scettico sull'acquisto via DM, ma le scarpe sono passate subito su CheckCheck. Autenticità 100% confermata."</p>
-        <span class="review-author">— @matteo.g (Verified Buyer)</span>
+        <p>"Servizio impeccabile. Le J4 sono arrivate in 2 giorni a Milano. Legit 100%."</p>
+        <span class="review-author">— @marcorossi</span>
       </div>
       <div class="review-item">
         <div class="stars">★★★★★</div>
-        <p>"Spedizione a Roma in meno di 24h. Pacco double-boxed arrivato immacolato."</p>
-        <span class="review-author">— @luca_sneakers</span>
+        <p>"Grazie per aver trovato la felpa Supreme che cercavo da mesi."</p>
+        <span class="review-author">— @alessio_99</span>
       </div>
       <div class="review-item">
         <div class="stars">★★★★★</div>
-        <p>"Cercavo questa hoodie da mesi. Il team di Luxury Thread me l'ha trovata in Giappone in 2 giorni."</p>
-        <span class="review-author">— @alessia.vntg</span>
+        <p>"Packaging pazzesco e comunicazione veloce. Consigliatissimi."</p>
+        <span class="review-author">— @federica.m</span>
       </div>
     </div>
 
