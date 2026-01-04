@@ -140,10 +140,16 @@ footer {
 }
 .footer-content { display: flex; flex-direction: column; align-items: center; gap: 15px; }
 .contact-link { color: inherit; font-weight: bold; }
+.footer-bottom-row { display: flex; align-items: center; gap: 15px; margin-top: 5px;}
+.footer-divider { font-size: 1.2rem; opacity: 0.5; }
 #footer-theme-btn {
     background: transparent; border: 1px solid var(--border-color); color: var(--text-color);
-    padding: 5px 10px; cursor: pointer; border-radius: 15px; font-size: 1rem; transition: 0.3s;
+    padding: 5px 10px; cursor: pointer; border-radius: 5px; font-size: 1rem; transition: 0.3s;
 }
+.reviews-link {
+    cursor: pointer; text-decoration: underline; font-weight: bold; letter-spacing: 1px; font-size: 0.9rem;
+}
+.reviews-link:hover { opacity: 0.7; }
 
 /* POPUPS & CONCIERGE */
 .popup-overlay { 
@@ -153,18 +159,16 @@ footer {
 }
 .popup-box { 
     background: var(--card-bg); padding: 30px; border: 2px solid var(--border-color); 
-    text-align: center; max-width: 380px; /* RIMPICCIOLITO */
-    width: 90%; position: relative;
-    box-shadow: 0 0 40px rgba(0,0,0,0.6); 
-    text-shadow: none;
+    text-align: center; max-width: 380px; width: 90%; position: relative;
+    box-shadow: 0 0 40px rgba(0,0,0,0.6); text-shadow: none;
 }
 
-/* Header del popup */
+/* Header Popup */
 .popup-header { margin-bottom: 20px; }
 .popup-header h3 { font-family: 'Oswald'; text-transform: uppercase; letter-spacing: 2px; font-size: 1.5rem; margin-bottom: 5px;}
 .header-line { width: 50px; height: 3px; background: var(--accent-color); margin: 0 auto; }
 
-/* Input stile Luxury (Solo linea sotto) */
+/* Input Minimal */
 .input-group { position: relative; margin-bottom: 25px; text-align: left;}
 .modal-input-line {
     width: 100%; padding: 10px 5px;
@@ -177,24 +181,35 @@ footer {
     font-size: 0.7rem; font-weight: bold; font-family: 'Inter'; letter-spacing: 1px;
     color: var(--text-color); opacity: 0.6; display: block; margin-top: 5px;
 }
-
 .popup-actions { display: flex; flex-direction: column; gap: 5px; margin-top: 10px;}
 
-/* BUTTON GALLEGGIANTE */
+/* REVIEWS MODAL SPECIFIC */
+.reviews-list { text-align: left; max-height: 300px; overflow-y: auto; padding-right: 5px; margin-bottom: 20px; }
+.review-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(128,128,128,0.2); }
+.review-item:last-child { border-bottom: none; }
+.review-item .stars { color: var(--text-color); font-size: 0.8rem; margin-bottom: 5px; }
+.review-item p { font-style: italic; font-size: 0.95rem; margin-bottom: 5px; font-family: 'Inter'; }
+.review-author { font-size: 0.8rem; font-weight: bold; font-family: 'Oswald'; opacity: 0.7; }
+
+/* BUTTON VIP (AGGIORNATO: MENO INVASIVO) */
 .floating-sourcing-btn {
-    position: fixed; bottom: 30px; right: 30px;
+    position: fixed; bottom: 25px; right: 25px;
     background: var(--text-color); color: var(--body-bg);
-    padding: 15px 30px; border-radius: 50px; 
+    padding: 10px 20px; /* Ridotto */
+    border-radius: 30px; 
     font-family: 'Oswald'; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;
-    cursor: pointer; box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-    z-index: 1500; transition: transform 0.3s;
-    border: 2px solid var(--body-bg); animation: pulse-slow 3s infinite;
+    font-size: 0.8rem; /* Font più piccolo */
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 1500;
+    transition: all 0.3s ease;
+    border: 1px solid var(--body-bg);
+    opacity: 0.9; /* Leggermente trasparente di base */
 }
-.floating-sourcing-btn:hover { transform: scale(1.1); }
-@keyframes pulse-slow {
-    0% { box-shadow: 0 0 0 0 rgba(100, 100, 100, 0.4); }
-    70% { box-shadow: 0 0 0 10px rgba(100, 100, 100, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(100, 100, 100, 0); }
+.floating-sourcing-btn:hover { 
+    transform: translateY(-2px); 
+    opacity: 1; 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
 }
 
 /* MOBILE */
@@ -207,5 +222,6 @@ footer {
     .product-detail-container { flex-direction: column; width: 95%; }
     .detail-image { height: 350px; border-right: none; border-bottom: 2px solid var(--border-color); }
     .detail-info { padding: 20px; }
-    .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 0.8rem; }
+    
+    .floating-sourcing-btn { bottom: 15px; right: 15px; padding: 8px 15px; font-size: 0.7rem; }
 }
