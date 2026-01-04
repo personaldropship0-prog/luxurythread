@@ -6,8 +6,8 @@
     --bg-image: url('img/marmo-white.jpg'); 
     
     /* COLORI FONDAMENTALI */
-    --text-color: #000000;       
-    --inverted-text: #ffffff;    
+    --text-color: #000000;       /* Colore testo principale (Nero) */
+    --inverted-text: #ffffff;    /* FIX: Colore testo quando lo sfondo è scuro (Bianco) */
     
     /* VARIABILI VETRO (LIGHT MODE) */
     --glass-bg-base: rgba(255, 255, 255, 0.5);
@@ -24,8 +24,8 @@ body.dark-mode {
     --bg-image: url('img/marmo-black.jpg'); 
     
     /* COLORI INVERTITI PER DARK MODE */
-    --text-color: #ffffff;       
-    --inverted-text: #000000;    
+    --text-color: #ffffff;       /* Testo principale Bianco */
+    --inverted-text: #000000;    /* Testo sui bottoni pieni Nero */
     
     /* VARIABILI VETRO (DARK MODE) */
     --glass-bg-base: rgba(0, 0, 0, 0.6);
@@ -73,9 +73,12 @@ body {
     -webkit-backdrop-filter: blur(var(--blur-amt));
     border-bottom: var(--glass-border);
     box-shadow: var(--glass-shadow);
+    
+    /* Transizione per scomparsa */
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
 }
 
+/* Classe aggiunta via JS per nascondere l'header */
 .main-header.hidden {
     transform: translateY(-150%);
     opacity: 0;
@@ -93,7 +96,9 @@ body {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .logo-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.brand-fallback { font-family: 'Oswald'; font-weight: bold; font-size: 1.5rem; }
 
+/* TITOLO BRAND */
 .brand-title {
     font-family: 'Oswald', sans-serif;
     font-size: clamp(32px, 8vw, 64px);
@@ -104,6 +109,7 @@ body {
 }
 .brand-title:hover { letter-spacing: 8px; transform: scale(1.02); }
 
+/* SEARCH BAR */
 .search-bar { 
     display: flex; height: 40px; 
     border: 1px solid var(--text-color); border-radius: 30px; overflow: hidden;
@@ -132,23 +138,17 @@ body {
 }
 .filters button.active, .filters button:hover {
     background: var(--text-color);      
-    color: var(--inverted-text);
+    color: var(--inverted-text);        /* FIX: Colore testo inverso */
     transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     border-color: transparent;
 }
 
-/* --- GRID SYSTEM --- */
+/* GRID */
 .product-grid {
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 40px; 
-    padding: 20px 5% 80px; 
-    max-width: 1800px; 
-    margin: 0 auto;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 40px; padding: 20px 5% 80px; max-width: 1800px; margin: 0 auto;
 }
-
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-
 .card {
     overflow: hidden;
     background-color: var(--glass-bg-base);
@@ -169,29 +169,6 @@ body {
 .card-details { padding: 25px; text-align: left; }
 .card h3 { font-family: 'Oswald'; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; font-size: 1.1rem; }
 .price { font-weight: 700; font-family: 'Oswald'; font-size: 1.3rem; opacity: 0.9; }
-
-/* --- NO RESULTS BOX (MODIFICATO SPAZIATURA) --- */
-#no-results {
-    text-align: center; padding: 60px 20px; width: 100%;
-    animation: fadeInUp 0.5s ease-out;
-}
-.no-results-content { 
-    background-color: var(--glass-bg-base); 
-    background-image: var(--glass-gradient);
-    backdrop-filter: blur(var(--blur-amt)); 
-    border: var(--glass-border);
-    box-shadow: var(--glass-shadow); 
-    border-radius: 30px; 
-    padding: 40px; display: inline-block; max-width: 500px;
-}
-.no-results-content h2 {
-    font-family: 'Oswald'; text-transform: uppercase; font-size: 2rem; margin-bottom: 15px;
-    color: var(--text-color);
-}
-/* QUI È LA MODIFICA: margin-bottom aumentato a 30px per staccare il bottone */
-.no-results-content p {
-    font-family: 'Inter'; font-size: 1.1rem; margin-bottom: 30px; opacity: 0.8;
-}
 
 /* PRODUCT PAGE */
 .single-product-view { display: none; padding-bottom: 60px; }
@@ -222,7 +199,7 @@ body {
 .badges-row { display: flex; gap: 12px; margin-bottom: 25px; flex-wrap: wrap; }
 .badge { 
     background: var(--text-color);   
-    color: var(--inverted-text);     
+    color: var(--inverted-text);     /* FIX: Colore testo inverso */
     padding: 8px 20px; font-family: 'Oswald'; font-weight: bold; border-radius: 6px; letter-spacing: 1px;
 }
 .verified-badge { 
@@ -242,7 +219,7 @@ body {
 }
 .main-btn { 
     background: var(--text-color); 
-    color: var(--inverted-text); 
+    color: var(--inverted-text); /* FIX */
     box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
 }
 .main-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); opacity: 0.9; }
@@ -312,7 +289,7 @@ footer {
 .review-item p { font-style: italic; font-size: 1rem; margin-bottom: 10px; font-family: 'Inter'; line-height: 1.4; }
 .review-author { font-size: 0.8rem; font-weight: 800; font-family: 'Oswald'; opacity: 0.8; letter-spacing: 1px; text-transform: uppercase;}
 
-/* FLOATING BTN - VIP REQUEST (DESTRA BASSO) */
+/* FLOATING BTN - VIP REQUEST (DESTRA) */
 .floating-sourcing-btn {
     position: fixed; bottom: 25px; right: 25px;
     background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
@@ -328,12 +305,9 @@ footer {
     background-color: var(--text-color); color: var(--inverted-text); border:none;
 }
 
-/* FLOATING BTN - HOME (ALTO CENTRO - SCROLL REVEAL) */
+/* FLOATING BTN - HOME (SINISTRA - INIZIALMENTE NASCOSTO) */
 .floating-home-btn {
-    position: fixed; 
-    top: 40px;      /* Subito sotto il ticker */
-    left: 50%;      /* Centrato */
-    
+    position: fixed; bottom: 25px; left: 25px;
     background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
     backdrop-filter: blur(20px); border: var(--glass-border); color: var(--text-color);
     padding: 10px 20px; border-radius: 40px; 
@@ -341,24 +315,24 @@ footer {
     cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.3); 
     z-index: 1500; 
     
-    /* Stato iniziale: Nascosto SOPRA lo schermo e centrato */
-    opacity: 0; 
-    transform: translateX(-50%) translateY(-150%); 
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Stato nascosto iniziale */
+    opacity: 0; transform: translateY(20px) scale(0.9); pointer-events: none;
+    transition: all 0.4s ease;
 }
-
-/* Quando visibile */
 .floating-home-btn.visible {
-    opacity: 1; 
-    transform: translateX(-50%) translateY(0); 
-    pointer-events: all;
+    opacity: 1; transform: translateY(0) scale(1); pointer-events: all;
 }
-
 .floating-home-btn:hover {
-    transform: translateX(-50%) scale(1.05);
+    transform: translateY(-4px) scale(1.05);
     background-color: var(--text-color); color: var(--inverted-text);
     box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+}
+
+/* NO RESULTS */
+.no-results-content { 
+    background-color: var(--glass-bg-base); background-image: var(--glass-gradient);
+    backdrop-filter: blur(var(--blur-amt)); border: var(--glass-border);
+    box-shadow: var(--glass-shadow); border-radius: 30px; padding: 50px; 
 }
 
 @media(max-width: 768px) {
@@ -373,5 +347,5 @@ footer {
     .detail-info h2 { font-size: 2.5rem; }
     
     .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.8; }
-    .floating-home-btn { top: 40px; padding: 8px 16px; font-size: 0.7rem; }
+    .floating-home-btn { bottom: 20px; left: 20px; padding: 8px 16px; font-size: 0.7rem; }
 }
