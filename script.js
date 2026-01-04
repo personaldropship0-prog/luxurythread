@@ -1,169 +1,163 @@
-/* --- DATI PRODOTTI STREETWEAR (Esempio) --- */
+// DATABASE PRODOTTI (Simulato)
 const products = [
-    { id:1, name: "Jordan 1 Retro High Mocha", price: "€480", category: "sneakers", img: "img/shoe1.jpg" },
-    { id:2, name: "Yeezy Boost 350 V2 Onyx", price: "€320", category: "sneakers", img: "img/shoe2.jpg" },
-    { id:3, name: "Essentials Hoodie Fear of God", price: "€140", category: "hoodies", img: "img/hoodie1.jpg" },
-    { id:4, name: "Travis Scott x Jordan 1 Low", price: "€1250", category: "sneakers", img: "img/shoe3.jpg" },
-    { id:5, name: "Palm Angels Track Pants", price: "€290", category: "pants", img: "img/pants1.jpg" },
-    { id:6, name: "Supreme Box Logo Crewneck", price: "€350", category: "hoodies", img: "img/hoodie2.jpg" },
-    { id:7, name: "Chrome Hearts Trucker Hat", price: "€450", category: "accessories", img: "img/acc1.jpg" },
-    { id:8, name: "Dunk Low Panda", price: "€180", category: "sneakers", img: "img/shoe4.jpg" },
+    { id: 1, name: "Jordan 1 Retro High OG", category: "sneakers", price: 450, img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80", desc: "Iconica silhouette Chicago colorway. Pelle premium." },
+    { id: 2, name: "Yeezy Boost 350 V2", category: "sneakers", price: 320, img: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?auto=format&fit=crop&w=800&q=80", desc: "Comfort imbattibile con tecnologia Boost." },
+    { id: 3, name: "Supreme Box Logo Hoodie", category: "hoodies", price: 800, img: "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?auto=format&fit=crop&w=800&q=80", desc: "Il classico streetwear. Heavyweight cotton." },
+    { id: 4, name: "Essentials Fear of God", category: "hoodies", price: 180, img: "https://images.unsplash.com/photo-1556906781-9a412961d28c?auto=format&fit=crop&w=800&q=80", desc: "Minimalismo di lusso. Oversized fit." },
+    { id: 5, name: "Gallery Dept. Flared Sweatpants", category: "pants", price: 450, img: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80", desc: "Hand painted vintage wash." },
+    { id: 6, name: "Chrome Hearts Ring", category: "accessories", price: 650, img: "https://images.unsplash.com/photo-1617038224558-2834fd2d6323?auto=format&fit=crop&w=800&q=80", desc: "Argento sterling .925 lavorato a mano a LA." }
 ];
 
-/* --- ELEMENTI DOM --- */
-const grid = document.getElementById('product-grid');
-const noResults = document.getElementById('no-results');
-const searchInput = document.getElementById('searchInput');
-const filterBtns = document.querySelectorAll('.filter-btn');
-const themeBtn = document.getElementById('footer-theme-btn');
-const body = document.body;
+// INIT
+document.addEventListener("DOMContentLoaded", () => {
+    renderProducts(products);
+    
+    // --- FUNZIONE SCROLL ANIMATA ---
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.main-header');
+        const homeBtn = document.querySelector('.floating-home-btn');
+        const scrollPosition = window.scrollY;
 
-/* Viste */
-const homeView = document.getElementById('home-view');
-const productView = document.getElementById('single-product-view');
-
-/* Elementi Dettaglio */
-const detailImg = document.getElementById('detail-img');
-const detailTitle = document.getElementById('detail-title');
-const detailPrice = document.getElementById('detail-price');
-const detailCategory = document.getElementById('detail-category');
-
-/* Modali */
-const modalOverlay = document.getElementById('sourcing-modal'); // Riutilizzato per overlay generico
-const sourcingModal = document.getElementById('sourcing-modal');
-const reviewsModal = document.getElementById('reviews-modal');
-
-/* Header e Ticker Scroll Logic */
-const mainHeader = document.querySelector('.main-header');
-const newsTicker = document.querySelector('.news-ticker');
-let lastScrollY = window.scrollY;
-
-/* --- INIZIALIZZAZIONE --- */
-renderProducts(products);
-
-/* --- SCROLL: NASCONDE MENU E TICKER --- */
-window.addEventListener('scroll', () => {
-    // Se scorri giù per più di 50px
-    if (window.scrollY > 50) {
-        if (window.scrollY > lastScrollY) {
-            // SCROLL GIÙ: Nascondi
-            mainHeader.classList.add('hidden');
-            newsTicker.classList.add('hidden');
+        // Se scorri giù più di 100px
+        if (scrollPosition > 100) {
+            header.classList.add('hidden');       // Nascondi Header (va su)
+            homeBtn.classList.add('visible');     // Mostra Tasto Home (da sotto)
         } else {
-            // SCROLL SU: Mostra
-            mainHeader.classList.remove('hidden');
-            newsTicker.classList.remove('hidden');
-        }
-    } else {
-        // In cima: Mostra
-        mainHeader.classList.remove('hidden');
-        newsTicker.classList.remove('hidden');
-    }
-    lastScrollY = window.scrollY;
-});
-
-/* --- LOGICA FILTRI --- */
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Gestione classe active
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        
-        const cat = btn.dataset.filter;
-        
-        if (cat === 'all') {
-            renderProducts(products);
-        } else {
-            const filtered = products.filter(p => p.category === cat);
-            renderProducts(filtered);
+            // Se sei tornato in cima
+            header.classList.remove('hidden');    // Mostra Header (torna giù)
+            homeBtn.classList.remove('visible');  // Nascondi Tasto Home
         }
     });
 });
 
-/* --- LOGICA RICERCA --- */
-if(searchInput) {
-    searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = products.filter(p => p.name.toLowerCase().includes(term));
-        renderProducts(filtered);
+// FUNZIONE PER TORNARE SU (Collegata al nuovo tasto Home)
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
     });
 }
 
-/* --- RENDER PRODOTTI --- */
+// RENDER GRID
 function renderProducts(list) {
-    grid.innerHTML = '';
-    
-    if(list.length === 0) {
-        noResults.style.display = 'block';
-        return;
-    }
-    noResults.style.display = 'none';
+    const grid = document.getElementById('products-grid');
+    const noResults = document.getElementById('no-results');
+    grid.innerHTML = "";
 
-    list.forEach(p => {
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.onclick = () => openProduct(p);
-        
-        card.innerHTML = `
-            <img src="${p.img}" alt="${p.name}" class="card-img" onerror="this.src='https://via.placeholder.com/300?text=No+Image'">
-            <div class="card-details">
-                <h3>${p.name}</h3>
-                <div class="price">${p.price}</div>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
+    if (list.length === 0) {
+        noResults.style.display = "block";
+    } else {
+        noResults.style.display = "none";
+        list.forEach(p => {
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.onclick = () => openProduct(p.id);
+            card.innerHTML = `
+                <img src="${p.img}" class="card-img" alt="${p.name}">
+                <div class="card-details">
+                    <h3>${p.name}</h3>
+                    <div class="price">€${p.price}</div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
 }
 
-/* --- APERTURA SCHEDA PRODOTTO --- */
-function openProduct(p) {
-    detailImg.src = p.img;
-    // Fallback immagine se non esiste
-    detailImg.onerror = function() { this.src = 'https://via.placeholder.com/500?text=Image+N/A'; };
-    
-    detailTitle.textContent = p.name;
-    detailPrice.textContent = p.price;
-    detailCategory.textContent = p.category.toUpperCase();
+// FILTRI
+function filterProducts(category) {
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
 
-    // Nascondi home, mostra prodotto
-    homeView.style.display = 'none';
-    productView.style.display = 'block';
+    if (category === 'all') renderProducts(products);
+    else renderProducts(products.filter(p => p.category === category));
+}
+
+// SEARCH
+function performSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+    renderProducts(filtered);
     
+    // Se siamo nella single view, chiudiamola per mostrare i risultati
+    goBackToHome();
+}
+// Enter key su search
+document.getElementById('searchInput').addEventListener("keyup", function(event) {
+    if (event.key === "Enter") performSearch();
+});
+
+// NAVIGAZIONE PAGINE (SPA Logic)
+function openProduct(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+
+    // Popola dati
+    document.getElementById('detail-img').src = p.img;
+    document.getElementById('detail-title').innerText = p.name;
+    document.getElementById('detail-desc').innerText = p.desc;
+    document.getElementById('detail-price').innerText = "€" + p.price;
+    document.getElementById('detail-category').innerText = p.category.toUpperCase();
+
+    // Switch view
+    document.getElementById('home-view').style.display = 'none';
+    document.getElementById('single-product-page').style.display = 'block';
+    
+    // Scrolla in cima
     window.scrollTo(0,0);
 }
 
-function closeProduct() {
-    productView.style.display = 'none';
-    homeView.style.display = 'block';
+function goBackToHome() {
+    document.getElementById('single-product-page').style.display = 'none';
+    document.getElementById('home-view').style.display = 'block';
 }
 
-/* --- GESTIONE LOGO --- */
 function goHome() {
-    closeProduct();
-    window.scrollTo({top: 0, behavior: 'smooth'});
+    goBackToHome();
+    filterProducts('all');
+    // Resetta tasto all attivo
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    document.querySelector('.filters button:first-child').classList.add('active');
+    scrollToTop();
 }
 
-/* --- MODALI --- */
-function openSourcingModal() {
-    document.getElementById('sourcing-modal').style.display = 'flex';
-}
-function closeSourcingModal() {
-    document.getElementById('sourcing-modal').style.display = 'none';
+// POPUP & MODALS
+function contactForProduct(type) {
+    const title = document.getElementById('detail-title').innerText;
+    let msg = "";
+    if (type === 'buy') msg = `Ciao, sono interessato ad acquistare: ${title}. È ancora disponibile?`;
+    else msg = `Ciao, vorrei maggiori info su: ${title}.`;
+
+    document.getElementById('popup-text').innerText = msg;
+    document.getElementById('popup').style.display = 'flex';
 }
 
-function openReviewsModal() {
-    document.getElementById('reviews-modal').style.display = 'flex';
-}
-function closeModal() {
-    document.querySelectorAll('.popup-overlay').forEach(el => el.style.display = 'none');
-}
+function closePopup() { document.getElementById('popup').style.display = 'none'; }
 
-/* --- THEME TOGGLE --- */
-themeBtn.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-});
-
-/* --- SOCIAL --- */
 function openInstagram() {
-    window.open('https://instagram.com', '_blank');
+    window.open("https://instagram.com/luxury.thread_", "_blank");
+    closePopup();
+}
+
+// SOURCING MODAL
+function openSourcingModal() { document.getElementById('sourcing-modal').style.display = 'flex'; }
+function closeSourcingModal() { document.getElementById('sourcing-modal').style.display = 'none'; }
+
+function sendSourcingRequest() {
+    const model = document.getElementById('src-model').value;
+    const size = document.getElementById('src-size').value;
+    if(!model) { alert("Inserisci il modello"); return; }
+    
+    const msg = `Ciao, richiesta sourcing VIP per: ${model} (Taglia: ${size})`;
+    window.open(`https://ig.me/m/luxury.thread_?text=${encodeURIComponent(msg)}`, "_blank");
+    closeSourcingModal();
+}
+
+// REVIEWS MODAL
+function openReviewsModal() { document.getElementById('reviews-modal').style.display = 'flex'; }
+function closeReviewsModal() { document.getElementById('reviews-modal').style.display = 'none'; }
+
+// DARK MODE TOGGLE
+function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
 }
