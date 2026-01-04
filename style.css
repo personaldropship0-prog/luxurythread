@@ -374,24 +374,55 @@ footer {
 .floating-home-btn.visible { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: all; }
 .floating-home-btn:hover { transform: translateX(-50%) scale(1.05); background-color: var(--text-color); color: var(--inverted-text); box-shadow: 0 15px 35px rgba(0,0,0,0.3); }
 
+/* --- MOBILE OPTIMIZATION --- */
 @media(max-width: 768px) {
-    .brand-title { font-size: 36px; letter-spacing: 3px; }
-    .header-content { flex-wrap: wrap; justify-content: center; gap: 15px; }
-    .logo-slot { order: 2; margin-right: auto; margin-left: 10px;}
-    .search-trigger-container { order: 3; margin-left: auto; margin-right: 10px;}
     
-    .desktop-only { display: none; }
-    .search-input-wrapper input { font-size: 1.4rem; }
-    .search-brand { display: none; }
+    /* Titolo più piccolo */
+    .brand-title { font-size: 32px; letter-spacing: 2px; }
+    
+    /* Layout Header Mobile */
+    .header-content { flex-wrap: nowrap; gap: 10px; } 
+    /* Nota: ho messo nowrap per tenerli sulla stessa riga se ci stanno */
+
+    .logo-slot { width: 50px; height: 50px; margin-right: 0; }
+
+    /* --- MODIFICA TASTO CERCA MOBILE --- */
+    .search-trigger-container { margin-left: auto; }
+
+    /* 1. Mostriamo la scritta anche su mobile */
+    .desktop-only { 
+        display: inline-block !important; 
+        font-size: 0.85rem; 
+        margin-left: 5px;
+        font-weight: 700;
+    }
+
+    /* 2. Rendiamo il bottone evidente (tipo "pillola") */
+    .search-trigger-btn {
+        background: rgba(255, 255, 255, 0.15); /* Sfondo semitrasparente */
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--text-color);   /* Bordo visibile */
+        padding: 8px 16px;
+        border-radius: 20px;
+        color: var(--text-color);
+    }
+    
+    /* Search Overlay su mobile */
+    .search-input-wrapper input { font-size: 1.2rem; }
+    .search-brand { display: none; } /* Nasconde scritta LT SEARCH nell'overlay */
     .search-top-row { justify-content: flex-end; }
     .search-overlay-content { padding: 30px 5%; }
 
-    .spacer { height: 240px; }
-    .product-detail-container { flex-direction: column; width: 95%; }
-    .detail-image { height: 350px; border-right: none; border-bottom: var(--glass-border); }
-    .detail-info { padding: 30px; }
-    .detail-info h2 { font-size: 2.5rem; }
+    /* Layout Griglia e Spazi */
+    .spacer { height: 180px; } /* Spazio sotto l'header */
     
-    .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.8; }
-    .floating-home-btn { top: 40px; padding: 8px 16px; font-size: 0.7rem; }
+    /* Scheda Prodotto Mobile */
+    .product-detail-container { flex-direction: column; width: 95%; margin-top: 20px;}
+    .detail-image { height: 350px; border-right: none; border-bottom: var(--glass-border); }
+    .detail-info { padding: 25px; }
+    .detail-info h2 { font-size: 2.2rem; }
+    
+    /* Bottoni Fluttuanti */
+    .floating-sourcing-btn { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; opacity: 0.9; }
+    .floating-home-btn { top: 90px; padding: 8px 16px; font-size: 0.7rem; } /* Abbassato un po' */
 }
