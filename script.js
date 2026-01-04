@@ -1,3 +1,4 @@
+// --- DATABASE PRODOTTI (PULITO) ---
 const products = [
   { id: 1, name: "Retro Jordan 1 High Mocha", category: "sneakers", price: "€650", desc: "Iconica silhouette high-top in pelle premium. Colorway esclusiva.", img: "https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?q=80&w=1000&auto=format&fit=crop" },
   { id: 2, name: "Oversized Heavy Hoodie", category: "hoodies", price: "€320", desc: "Cotone 600gsm pesante. Taglio boxy fit oversize.", img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop" },
@@ -18,8 +19,8 @@ const noResults = document.getElementById("no-results");
 const searchInput = document.getElementById("searchInput");
 const popup = document.getElementById("popup");
 const sourcingModal = document.getElementById("sourcing-modal");
-const reviewsModal = document.getElementById("reviews-modal");
 
+// 1. NIGHT MODE
 function checkDarkMode() {
     const hour = new Date().getHours();
     if (hour >= 19 || hour < 6) document.body.classList.add('dark-mode');
@@ -28,6 +29,7 @@ function checkDarkMode() {
 checkDarkMode();
 function toggleTheme() { document.body.classList.toggle('dark-mode'); }
 
+// 2. SEARCH
 searchInput.addEventListener("keyup", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
@@ -47,6 +49,7 @@ function performSearch() {
     window.scrollTo(0, 0);
 }
 
+// 3. RENDER (Standard)
 function renderProducts(list) {
     grid.innerHTML = "";
     if (list.length === 0) {
@@ -76,14 +79,17 @@ function filterProducts(cat) {
     else renderProducts(products.filter(p => p.category === cat));
 }
 
+// 4. NAVIGATION
 function goToProductPage(id) {
     const p = products.find(x => x.id === id);
     if(!p) return; 
+
     document.getElementById("detail-img").src = p.img;
     document.getElementById("detail-title").innerText = p.name;
     document.getElementById("detail-category").innerText = p.category;
     document.getElementById("detail-price").innerText = p.price;
     document.getElementById("detail-desc").innerText = p.desc;
+
     homeView.style.display = 'none';
     productView.style.display = 'block';
     window.scrollTo(0, 0);
@@ -100,7 +106,12 @@ function showHomeView() {
     homeView.style.display = 'block';
     history.replaceState(null, "", window.location.pathname);
 }
-window.onpopstate = function(event) { if (!event.state || event.state.view !== 'product') showHomeView(); };
+
+window.onpopstate = function(event) {
+    if (!event.state || event.state.view !== 'product') showHomeView();
+};
+
+// 5. CONTACTS & VIP CONCIERGE (FUNZIONANTE)
 
 function contactForProduct(type) {
     const name = document.getElementById("detail-title").innerText;
@@ -108,28 +119,36 @@ function contactForProduct(type) {
     let msg = type === 'buy' ? 
         `Ciao! Voglio acquistare: ${name} (${price}).` : 
         `Ciao! Cerco informazioni su: ${name}.`;
+    
     document.getElementById("popup-text").innerText = msg;
     popup.style.display = 'flex';
 }
 
-/* SOURCING MODAL */
-function openSourcingModal() { sourcingModal.style.display = "flex"; }
-function closeSourcingModal() { sourcingModal.style.display = "none"; }
+// Funzioni Modale Concierge
+function openSourcingModal() {
+    sourcingModal.style.display = "flex";
+}
+function closeSourcingModal() {
+    sourcingModal.style.display = "none";
+}
 
 function sendSourcingRequest() {
     const model = document.getElementById("src-model").value;
     const size = document.getElementById("src-size").value;
-    if(!model || !size) { alert("Inserisci modello e taglia."); return; }
+
+    if(!model || !size) {
+        alert("Inserisci modello e taglia per procedere.");
+        return;
+    }
+
     const clipboardMsg = `Ciao! Richiesta VIP Concierge:\nModello: ${model}\nTaglia: ${size}\nPotete trovarla?`;
+    
+    // Copia e apre IG
     navigator.clipboard.writeText(clipboardMsg).then(() => {
         window.open("https://ig.me/m/luxury.thread_", "_blank");
         closeSourcingModal();
     });
 }
-
-/* REVIEWS MODAL */
-function openReviewsModal() { reviewsModal.style.display = "flex"; }
-function closeReviewsModal() { reviewsModal.style.display = "none"; }
 
 function openInstagram() {
     navigator.clipboard.writeText(document.getElementById("popup-text").innerText).then(() => {
@@ -140,11 +159,11 @@ function openInstagram() {
 function closePopup() { popup.style.display = 'none'; }
 function goHome() { searchInput.value=""; filterProducts('all'); showHomeView(); }
 
-/* CHIUSURA CLICK ESTERNO */
+// CLOSE ON CLICK OUTSIDE
 window.onclick = function(event) {
     if (event.target == sourcingModal) closeSourcingModal();
-    if (event.target == reviewsModal) closeReviewsModal();
     if (event.target == popup) closePopup();
 }
 
+// Init
 renderProducts(products);
