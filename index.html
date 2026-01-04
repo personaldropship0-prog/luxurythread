@@ -1,182 +1,158 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Luxury Thread | Ultimate Edition</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Stone Market</title>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
+<body class="light-mode">
 
-<body>
-
-<div class="page-wrapper">
-
-  <div class="news-ticker">
-    <div class="ticker-content">
-      WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · MILAN BASED · TOKYO CONNECTIONS · 
-      WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
-    </div>
-  </div>
-
-  <header class="main-header">
-    <div class="header-content">
-      <div class="logo-slot" onclick="goHome()">
-        <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
-        <span class="brand-fallback" style="display:none">LT</span>
-      </div>
-      
-      <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
-
-      <div class="search-bar-container">
-        <div class="search-bar">
-          <input type="text" id="searchInput" placeholder="SEARCH...">
-          <button onclick="performSearch()">🔍</button>
+    <div class="news-ticker">
+        <div class="ticker-content">
+            SPEDIZIONE GRATUITA IN TUTTA ITALIA PER ORDINI SUPERIORI A 50MQ  +++  NUOVI ARRIVI: ONICE ROSA E MARMO DI CARRARA  +++  RICHIEDI UNA CONSULENZA GRATUITA
         </div>
-      </div>
     </div>
-  </header>
 
-  <main id="home-view" class="content-area">
+    <header class="main-header">
+        <div class="header-content">
+            <div class="logo-slot">
+                <img src="img/logo.jpg" alt="Logo" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block'">
+                <span id="fallback-logo" class="brand-fallback" style="display:none;">LS</span>
+            </div>
+
+            <h1 class="brand-title" onclick="location.reload()">MARMO ELITE</h1>
+
+            <div class="search-bar-container">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Cerca pietra...">
+                    <button><i class="fas fa-search"></i>CERCA</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
     <div class="spacer"></div>
-    
-    <nav class="filters">
-      <button onclick="filterProducts('all')" class="active">ALL</button>
-      <button onclick="filterProducts('sneakers')">SNEAKERS</button>
-      <button onclick="filterProducts('hoodies')">HOODIES</button>
-      <button onclick="filterProducts('pants')">PANTS</button>
-      <button onclick="filterProducts('accessories')">ACCESSORIES</button>
-    </nav>
 
-    <section id="products-grid" class="product-grid"></section>
+    <div class="page-wrapper">
+        <div class="content-area">
+            
+            <div id="home-view">
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">Tutti</button>
+                    <button class="filter-btn" data-filter="marble">Marmi</button>
+                    <button class="filter-btn" data-filter="granite">Graniti</button>
+                    <button class="filter-btn" data-filter="onyx">Onici</button>
+                    <button class="filter-btn" data-filter="travertine">Travertini</button>
+                </div>
 
-    <div id="no-results" class="no-results-box" style="display:none;">
-      <div class="no-results-content">
-        <h2>PRODOTTO NON TROVATO</h2>
-        <p>Il nostro team di sourcing può trovarlo per te.</p>
-        <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
-      </div>
+                <div class="product-grid" id="product-grid"></div>
+
+                <div id="no-results" style="display: none;">
+                    <div class="no-results-content">
+                        <h2>Nessun Risultato</h2>
+                        <p>Il nostro team di esperti può trovare la pietra che cerchi direttamente dalle cave.</p>
+                        <button class="buy-btn main-btn" onclick="alert('Apro modulo richiesta sourcing...')">Richiesta Sourcing</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="single-product-view" class="single-product-view">
+                <div class="product-top-bar">
+                    <button class="close-view-btn" onclick="closeProduct()">X CHIUDI</button>
+                </div>
+                
+                <div class="product-detail-container">
+                    <div class="detail-image">
+                        <img id="detail-img" src="" alt="Dettaglio Marmo">
+                    </div>
+                    <div class="detail-info">
+                        <div class="badges-row" id="detail-badges"></div>
+                        <h2 id="detail-title">Nome Prodotto</h2>
+                        <div class="price-tag" id="detail-price">€0.00</div>
+                        
+                        <p class="trust-icons-text">
+                            ✓ DISPONIBILITÀ IMMEDIATA &nbsp; | &nbsp; 🛡️ GARANZIA DI QUALITÀ
+                        </p>
+
+                        <div class="action-buttons">
+                            <button class="buy-btn main-btn" onclick="openBuyModal()">ACQUISTA ORA</button>
+                            <button class="buy-btn sec-btn" onclick="alert('Aggiunto ai campioni')">ORDINA CAMPIONE</button>
+                        </div>
+                        <button class="sec-btn-small" onclick="openReviewsModal()">Leggi le recensioni verificate</button>
+                    </div>
+                </div>
+            </div>
+
+        </div> <footer>
+            <div class="footer-content">
+                <div>
+                    <a href="#" class="contact-link">INFO@MARMOELITE.COM</a>
+                    <span class="footer-divider">|</span>
+                    <a href="#" class="contact-link">+39 02 1234 5678</a>
+                </div>
+                <div class="footer-bottom-row">
+                    <button id="footer-theme-btn">Dark Mode</button>
+                    <span class="reviews-link" onclick="openReviewsModal()">Dicono di noi</span>
+                </div>
+                <div style="opacity: 0.5; font-size: 0.8rem; margin-top: 20px;">
+                    © 2024 MARMO ELITE - LUXURY STONE MARKET
+                </div>
+            </div>
+        </footer>
     </div>
-  </main>
 
+    <button class="floating-sourcing-btn" onclick="alert('Apro chat VIP...')">
+        VIP REQUEST
+    </button>
 
-  <section id="single-product-page" class="single-product-view content-area">
-    <div class="spacer"></div>
-    
-    <div class="product-top-bar">
-      <button class="close-view-btn" onclick="goBackToHome()">✕ TORNA ALLA HOME</button>
-    </div>
-
-    <div class="product-detail-container">
-      <div class="detail-image">
-        <img id="detail-img" src="" alt="">
-      </div>
-      <div class="detail-info">
-        <div class="badges-row">
-            <span id="detail-category" class="badge">CATEGORY</span>
-            <span class="verified-badge">✓ AUTHENTIC VERIFIED</span>
+    <div class="popup-overlay" id="modal-overlay">
+        <div class="popup-box" id="buy-modal" style="display:none;">
+            <div class="popup-header">
+                <h3>Richiesta Ordine</h3>
+                <div class="header-line"></div>
+            </div>
+            <div class="input-group">
+                <label>METRATURA (MQ)</label>
+                <input type="number" class="modal-input-line" placeholder="Es. 50">
+            </div>
+            <div class="input-group">
+                <label>EMAIL / TELEFONO</label>
+                <input type="text" class="modal-input-line" placeholder="Contatto">
+            </div>
+            <div class="popup-actions">
+                <button class="buy-btn main-btn" onclick="alert('Richiesta inviata!'); closeModal()">INVIA RICHIESTA</button>
+                <button class="buy-btn sec-btn" onclick="closeModal()">ANNULLA</button>
+            </div>
         </div>
-        
-        <h2 id="detail-title">PRODUCT NAME</h2>
-        <p id="detail-desc">Description goes here.</p>
-        <div id="detail-price" class="price-tag">€000</div>
-        
-        <div class="trust-icons-text">
-            <span>📦 Double Box Shipping</span> • <span>🔒 Secure Payment (PayPal)</span>
+
+        <div class="popup-box" id="reviews-modal" style="display:none;">
+            <div class="popup-header">
+                <h3>Recensioni Clienti</h3>
+                <div class="header-line"></div>
+            </div>
+            <div class="reviews-list">
+                <div class="review-item">
+                    <div class="stars">★★★★★</div>
+                    <p>"Qualità del Calacatta incredibile. Spedizione a Milano in 2 giorni."</p>
+                    <div class="review-author">- Arch. Rossi</div>
+                </div>
+                <div class="review-item">
+                    <div class="stars">★★★★☆</div>
+                    <p>"Servizio eccellente, il blocco di Onice è un'opera d'arte."</p>
+                    <div class="review-author">- Studio Design VE</div>
+                </div>
+                <div class="review-item">
+                    <div class="stars">★★★★★</div>
+                    <p>"Affidabili e precisi. Il Travertino è perfetto per l'esterno."</p>
+                    <div class="review-author">- Marco B.</div>
+                </div>
+            </div>
+            <button class="buy-btn sec-btn" onclick="closeModal()">CHIUDI</button>
         </div>
-
-        <div class="action-buttons">
-          <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA (DM)</button>
-          <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-content">
-      <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
-      <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
-      
-      <div class="footer-bottom-row">
-        <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
-        <span class="footer-divider">|</span>
-        <span class="reviews-link" onclick="openReviewsModal()">REVIEWS (5.0 ★)</span>
-      </div>
-    </div>
-  </footer>
-
-</div>
-
-<div class="floating-sourcing-btn" onclick="openSourcingModal()">
-    <span>💎 VIP REQUEST</span>
-</div>
-
-<div class="floating-home-btn" onclick="scrollToTop()">
-    <span>🏠 HOME</span>
-</div>
-
-<div id="sourcing-modal" class="popup-overlay">
-  <div class="popup-box sourcing-box">
-    <div class="popup-header">
-      <h3>VIP REQUEST</h3>
-      <div class="header-line"></div>
-    </div>
-    <p style="font-size: 0.85rem; margin-bottom: 25px; opacity: 0.7;">Servizio esclusivo di ricerca prodotti.</p>
-    
-    <div class="input-group">
-      <input type="text" id="src-model" placeholder=" " class="modal-input-line">
-      <label>MODELLO</label>
-    </div>
-    <div class="input-group">
-      <input type="text" id="src-size" placeholder=" " class="modal-input-line">
-      <label>TAGLIA</label>
-    </div>
-    
-    <div class="popup-actions">
-      <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
-      <button class="buy-btn sec-btn-small" onclick="closeSourcingModal()">CHIUDI</button>
-    </div>
-  </div>
-</div>
-
-<div id="reviews-modal" class="popup-overlay">
-  <div class="popup-box reviews-box">
-    <div class="popup-header">
-      <h3>CLIENT FEEDBACK</h3>
-      <div class="header-line"></div>
-    </div>
-    
-    <div class="reviews-list">
-      <div class="review-item">
-        <div class="stars">★★★★★</div>
-        <p>"Ero scettico sull'acquisto via DM, ma le scarpe sono passate subito su CheckCheck. Autenticità 100% confermata."</p>
-        <span class="review-author">— @matteo.g (Verified Buyer)</span>
-      </div>
-      <div class="review-item">
-        <div class="stars">★★★★★</div>
-        <p>"Spedizione a Roma in meno di 24h. Pacco double-boxed arrivato immacolato."</p>
-        <span class="review-author">— @luca_sneakers</span>
-      </div>
-      <div class="review-item">
-        <div class="stars">★★★★★</div>
-        <p>"Cercavo questa hoodie da mesi. Il team di Luxury Thread me l'ha trovata in Giappone in 2 giorni."</p>
-        <span class="review-author">— @alessia.vntg</span>
-      </div>
     </div>
 
-    <button class="buy-btn sec-btn-small" onclick="closeReviewsModal()">CHIUDI</button>
-  </div>
-</div>
-
-<div id="popup" class="popup-overlay">
-  <div class="popup-box">
-    <h3>MESSAGGIO PRONTO</h3>
-    <p id="popup-text"></p>
-    <button class="buy-btn main-btn" onclick="openInstagram()">VAI SU INSTAGRAM</button>
-    <button class="buy-btn sec-btn" onclick="closePopup()">CHIUDI</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
