@@ -17,47 +17,50 @@
       WORLDWIDE SHIPPING ✈ · AUTHENTIC GUARANTEED 100% · SOURCING SERVICE AVAILABLE · DM FOR INQUIRIES · 
     </div>
   </div>
-<div id="search-overlay" class="search-overlay">
-  <div class="search-overlay-content">
-    
-    <div class="search-top-row">
-      <span class="search-brand">LT SEARCH</span>
-      <button class="close-search-btn" onclick="closeSearchOverlay()">ANNULLA</button>
-    </div>
 
-    <div class="search-input-wrapper">
-      <button class="search-icon-btn" onclick="performSearch()">🔍</button>
-      <input type="text" id="searchInput" placeholder="Cerca sneakers, brand, taglie..." autocomplete="off">
-    </div>
+  <div id="search-overlay" class="search-overlay">
+    <div class="search-overlay-content">
+      
+      <div class="search-top-row">
+        <span class="search-brand">LT SEARCH</span>
+        <button class="close-search-btn" onclick="closeSearchOverlay()">ANNULLA</button>
+      </div>
 
-    <div class="quick-links">
-      <span>Popolari:</span>
-      <a onclick="quickSearch('Jordan')">Jordan</a>
-      <a onclick="quickSearch('Yeezy')">Yeezy</a>
-      <a onclick="quickSearch('Hoodie')">Hoodie</a>
-    </div>
+      <div class="search-input-wrapper">
+        <button class="search-icon-btn" onclick="performSearch()">🔍</button>
+        <input type="text" id="searchInput" placeholder="Cerca sneakers, brand..." autocomplete="off">
+      </div>
 
+      <div class="quick-links">
+        <span>Popolari:</span>
+        <a onclick="quickSearch('Jordan')">Jordan</a>
+        <a onclick="quickSearch('Yeezy')">Yeezy</a>
+        <a onclick="quickSearch('Hoodie')">Hoodie</a>
+        <a onclick="quickSearch('Chrome Hearts')">Chrome Hearts</a>
+      </div>
+
+    </div>
+    <div class="search-backdrop" onclick="closeSearchOverlay()"></div>
   </div>
-  <div class="search-backdrop" onclick="closeSearchOverlay()"></div>
-</div>
-<header class="main-header">
-  <div class="header-content">
-    
-    <div class="logo-slot" onclick="goHome()">
-      <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
-      <span class="brand-fallback" style="display:none">LT</span>
-    </div>
-    
-    <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
 
-    <div class="search-trigger-container">
-      <button class="search-trigger-btn" onclick="openSearchOverlay()">
-        🔍 <span class="desktop-only">CERCA</span>
-      </button>
-    </div>
+  <header class="main-header">
+    <div class="header-content">
+      
+      <div class="logo-slot" onclick="goHome()">
+        <img src="img/logo.png" alt="LT" onerror="this.style.display='none'; document.querySelector('.brand-fallback').style.display='flex'">
+        <span class="brand-fallback" style="display:none">LT</span>
+      </div>
+      
+      <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
 
-  </div>
-</header>
+      <div class="search-trigger-container">
+        <button class="search-trigger-btn" onclick="openSearchOverlay()">
+            🔍 <span class="desktop-only">CERCA</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
 
   <main id="home-view" class="content-area">
     <div class="spacer"></div>
@@ -203,5 +206,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
-
