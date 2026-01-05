@@ -1,8 +1,7 @@
 // --- DATABASE PRODOTTI AMPLIATO ---
 const products = [
     // TRENDING (5 Prodotti)
-    { id: 1, name: "Jordan 1 High Chicago", category: "sneakers", price: 1850, img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80", desc: "Il Graal delle sneakers. Condizioni DS." },
-    { id: 2, name: "Travis Scott x Jordan 1 Low", category: "sneakers", price: 1200, img: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?auto=format&fit=crop&w=800&q=80", desc: "Mocha colorway invertita. Edizione limitata." },
+  
     { id: 3, name: "Supreme Box Logo Camo", category: "hoodies", price: 450, img: "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?auto=format&fit=crop&w=800&q=80", desc: "FW23 release. Heavyweight cotton." },
     { id: 4, name: "Yeezy Slide Pure", category: "sneakers", price: 140, img: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=800&q=80", desc: "Comfort assoluto. Schiuma EVA iniettata." },
     { id: 5, name: "Off-White Industrial Belt", category: "accessories", price: 220, img: "https://images.unsplash.com/photo-1505022610485-0249ba5b3675?auto=format&fit=crop&w=800&q=80", desc: "Gialla iconica con cuciture rosse." },
@@ -203,3 +202,4 @@ function toggleTheme() { document.body.classList.toggle('dark-mode'); }
 // Listeners
 document.getElementById('searchInput').addEventListener("keyup", function(event) { if (event.key === "Enter") performSearch(); });
 document.addEventListener('keydown', function(event) { if (event.key === "Escape") closeSearchOverlay(); });
+
