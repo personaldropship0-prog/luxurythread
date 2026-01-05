@@ -3,7 +3,6 @@ const products = [
     // TRENDING (5 Prodotti)
   
     { id: 3, name: "Supreme Box Logo Camo", category: "hoodies", price: 450, img: "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?auto=format&fit=crop&w=800&q=80", desc: "FW23 release. Heavyweight cotton." },
-    { id: 4, name: "Yeezy Slide Pure", category: "sneakers", price: 140, img: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=800&q=80", desc: "Comfort assoluto. Schiuma EVA iniettata." },
     { id: 5, name: "Off-White Industrial Belt", category: "accessories", price: 220, img: "https://images.unsplash.com/photo-1505022610485-0249ba5b3675?auto=format&fit=crop&w=800&q=80", desc: "Gialla iconica con cuciture rosse." },
 
     // CINTURE (6 Prodotti)
@@ -202,4 +201,5 @@ function toggleTheme() { document.body.classList.toggle('dark-mode'); }
 // Listeners
 document.getElementById('searchInput').addEventListener("keyup", function(event) { if (event.key === "Enter") performSearch(); });
 document.addEventListener('keydown', function(event) { if (event.key === "Escape") closeSearchOverlay(); });
+
 
