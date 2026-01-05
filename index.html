@@ -2,13 +2,14 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>Luxury Thread | Ultimate Edition</title>
+  <title>LUXURY THREAD</title>
   
   <link rel="icon" type="image/png" sizes="32x32" href="img/logo (1).png">
   <link rel="apple-touch-icon" href="img/logo (1).png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css?v=5"> </head>
+  <link rel="stylesheet" href="style.css?v=6">
+</head>
 
 <body>
 
@@ -16,139 +17,130 @@
 
   <div class="news-ticker">
     <div class="ticker-content">
-      WORLDWIDE SHIPPING · AUTHENTIC GUARANTEED · SOURCING SERVICE AVAILABLE · MILAN BASED · 
-      WORLDWIDE SHIPPING · AUTHENTIC GUARANTEED · SOURCING SERVICE AVAILABLE · MILAN BASED · 
+      COMPLIMENTARY SHIPPING ON ALL ORDERS OVER €500 · AUTHENTICITY GUARANTEED · MILAN · TOKYO · 
+      COMPLIMENTARY SHIPPING ON ALL ORDERS OVER €500 · AUTHENTICITY GUARANTEED · MILAN · TOKYO · 
     </div>
-  </div>
-
-  <div id="search-overlay" class="search-overlay">
-    <div class="search-overlay-content">
-      <div class="search-top-row">
-        <span class="search-brand">LT SEARCH</span>
-        <button class="close-search-btn" onclick="closeSearchOverlay()">CHIUDI</button>
-      </div>
-      <div class="search-input-wrapper">
-        <button class="search-icon-btn" onclick="performSearch()">🔍</button>
-        <input type="text" id="searchInput" placeholder="Cerca prodotto..." autocomplete="off">
-      </div>
-    </div>
-    <div class="search-backdrop" onclick="closeSearchOverlay()"></div>
   </div>
 
   <header class="main-header">
-    <div class="header-content">
-      
-      <div class="logo-slot" onclick="goHome()">
-        <img src="img/logo.png" alt="LT"> 
-      </div>
-      
-      <h1 class="brand-title" onclick="goHome()">LUXURY THREAD</h1>
+    <div class="header-inner">
+      <button class="nav-btn" onclick="openSearchOverlay()">CERCA</button>
 
-      <div class="search-trigger-container">
-        <button class="search-trigger-btn" onclick="openSearchOverlay()">
-            🔍 <span class="desktop-only">CERCA</span>
-        </button>
+      <div class="brand-center" onclick="goHome()">
+        <h1>LUXURY THREAD</h1>
       </div>
 
+      <button class="nav-btn" onclick="openSourcingModal()">SOURCING</button>
     </div>
   </header>
 
+  <div id="search-overlay" class="search-overlay">
+    <button class="close-overlay-btn" onclick="closeSearchOverlay()">CHIUDI ✕</button>
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="CERCA UN PRODOTTO..." autocomplete="off">
+        <button onclick="performSearch()">VAI</button>
+    </div>
+  </div>
+
   <main id="main-view" class="content-area">
-    <div class="spacer"></div>
     
-    <nav class="filters">
-      <button onclick="loadSection('trending')" class="active" id="btn-trending">HOME</button>
-      <button onclick="loadSection('belts')" id="btn-belts">CINTURE</button>
-      <button onclick="loadSection('wallets')" id="btn-wallets">PORTAFOGLI</button>
-      <button onclick="loadSection('bags')" id="btn-bags">BORSELLI</button>
+    <nav class="category-nav">
+      <ul>
+        <li onclick="loadSection('trending')" id="btn-trending" class="active">HOME</li>
+        <li onclick="loadSection('belts')" id="btn-belts">CINTURE</li>
+        <li onclick="loadSection('wallets')" id="btn-wallets">PORTAFOGLI</li>
+        <li onclick="loadSection('bags')" id="btn-bags">BORSELLI</li>
+      </ul>
     </nav>
 
-    <div class="section-header">
-        <h2 id="current-section-title">DI TENDENZA ADESSO</h2>
+    <div class="section-title-container">
+        <h2 id="current-section-title">DI TENDENZA</h2>
     </div>
 
     <section id="products-grid" class="product-grid">
         </section>
 
-    <div id="no-results" class="no-results-box" style="display:none;">
-      <div class="no-results-content">
-        <h2>NESSUN RISULTATO</h2>
-        <p>Non abbiamo trovato quello che cerchi.</p>
-        <button class="buy-btn main-btn" onclick="openSourcingModal()">RICHIESTA SOURCING</button>
-      </div>
+    <div id="no-results" class="no-results-msg" style="display:none;">
+      <p>NESSUN PRODOTTO TROVATO.</p>
+      <button class="action-btn" onclick="openSourcingModal()">RICHIEDI AL TEAM</button>
     </div>
+
   </main>
 
-
-  <section id="single-product-page" class="single-product-view content-area">
-    <div class="spacer"></div>
-    <div class="product-top-bar">
-      <button class="close-view-btn" onclick="goBackToHome()">← TORNA INDIETRO</button>
+  <section id="single-product-page" class="product-view">
+    <div class="pv-header">
+        <button onclick="goBackToHome()">← INDIETRO</button>
     </div>
-
-    <div class="product-detail-container">
-      <div class="detail-image">
-        <img id="detail-img" src="" alt="">
-      </div>
-      <div class="detail-info">
-        <div class="badges-row">
-            <span class="verified-badge">AUTHENTIC VERIFIED</span>
+    
+    <div class="pv-container">
+        <div class="pv-image">
+            <img id="detail-img" src="" alt="">
         </div>
-        <h2 id="detail-title">PRODUCT NAME</h2>
-        <p id="detail-desc">Description.</p>
-        <div id="detail-price" class="price-tag">€000</div>
-        
-        <div class="action-buttons">
-          <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA (DM)</button>
-          <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO</button>
+        <div class="pv-info">
+            <span class="pv-cat">LUXURY THREAD / VERIFIED</span>
+            <h1 id="detail-title">NOME PRODOTTO</h1>
+            <p id="detail-desc">Descrizione prodotto.</p>
+            <div id="detail-price" class="pv-price">€0.00</div>
+            
+            <div class="pv-actions">
+                <button class="action-btn primary" onclick="contactForProduct('buy')">ACQUISTA ORA</button>
+                <button class="action-btn secondary" onclick="contactForProduct('info')">RICHIEDI INFO</button>
+            </div>
+            
+            <div class="pv-meta">
+                <p>SPEDIZIONE ASSICURATA</p>
+                <p>AUTENTICITÀ GARANTITA 100%</p>
+            </div>
         </div>
-      </div>
     </div>
   </section>
 
   <footer>
-    <div class="footer-content">
-      <p>© 2026 LUXURY THREAD</p>
-      <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM</a>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <h4>ASSISTENZA</h4>
+        <a onclick="openSourcingModal()">Personal Shopper</a>
+        <a href="https://ig.me/m/luxury.thread_" target="_blank">Instagram DM</a>
+      </div>
+      <div class="footer-col">
+        <h4>PREFERENZE</h4>
+        <button id="theme-toggle" onclick="toggleTheme()">MODALITÀ SCURA</button>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 LUXURY THREAD MILANO</p>
+      </div>
     </div>
   </footer>
 
 </div>
 
-<div class="floating-sourcing-btn" onclick="openSourcingModal()">
-    <span>VIP REQUEST</span>
-</div>
-
-<div id="sourcing-modal" class="popup-overlay">
-  <div class="popup-box sourcing-box">
-    <div class="popup-header">
-      <h3>VIP REQUEST</h3>
+<div id="sourcing-modal" class="modal-overlay">
+  <div class="modal-box">
+    <h3>VIP SOURCING</h3>
+    <div class="input-line">
+      <label>MODELLO DESIDERATO</label>
+      <input type="text" id="src-model">
     </div>
-    <div class="input-group">
-      <input type="text" id="src-model" placeholder=" " class="modal-input-line">
-      <label>MODELLO</label>
-    </div>
-    <div class="input-group">
-      <input type="text" id="src-size" placeholder=" " class="modal-input-line">
+    <div class="input-line">
       <label>TAGLIA</label>
+      <input type="text" id="src-size">
     </div>
-    <div class="popup-actions">
-      <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA</button>
-      <button class="buy-btn sec-btn-small" onclick="closeSourcingModal()">CHIUDI</button>
+    <div class="modal-btns">
+      <button class="action-btn primary" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
+      <button class="action-btn secondary" onclick="closeSourcingModal()">ANNULLA</button>
     </div>
   </div>
 </div>
 
-<div id="popup" class="popup-overlay">
-  <div class="popup-box">
+<div id="popup" class="modal-overlay">
+  <div class="modal-box center-text">
     <h3>CONTATTA</h3>
-    <p id="popup-text"></p>
-    <button class="buy-btn main-btn" onclick="openInstagram()">VAI SU INSTAGRAM</button>
-    <button class="buy-btn sec-btn" onclick="closePopup()">CHIUDI</button>
+    <p id="popup-text" style="margin-bottom:20px; font-size: 0.9rem;"></p>
+    <button class="action-btn primary" onclick="openInstagram()">APRI INSTAGRAM</button>
+    <button class="action-btn secondary" style="margin-top:10px;" onclick="closePopup()">CHIUDI</button>
   </div>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-
