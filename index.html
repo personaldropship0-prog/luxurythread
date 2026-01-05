@@ -2,14 +2,15 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  
   <title>Luxury Thread | Ultimate Edition</title>
   
-  <link rel="icon" type="image/png" sizes="32x32" href="img/logoc (1).png">
-  <link rel="apple-touch-icon" href="img/logoc (1).png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css?v=3"> </head>
+  <link rel="stylesheet" href="style.css?v=4">
+</head>
+
 <body>
 
 <div class="page-wrapper">
@@ -31,15 +32,15 @@
 
       <div class="search-input-wrapper">
         <button class="search-icon-btn" onclick="performSearch()">🔍</button>
-        <input type="text" id="searchInput" placeholder="Cerca sneakers, brand..." autocomplete="off">
+        <input type="text" id="searchInput" placeholder="Cerca sneakers, cinture, brand..." autocomplete="off">
       </div>
 
       <div class="quick-links">
         <span>Popolari:</span>
         <a onclick="quickSearch('Jordan')">Jordan</a>
-        <a onclick="quickSearch('Yeezy')">Yeezy</a>
-        <a onclick="quickSearch('Hoodie')">Hoodie</a>
-        <a onclick="quickSearch('Chrome Hearts')">Chrome Hearts</a>
+        <a onclick="quickSearch('Gucci')">Gucci</a>
+        <a onclick="quickSearch('Prada')">Prada</a>
+        <a onclick="quickSearch('Bottega')">Bottega</a>
       </div>
 
     </div>
@@ -69,14 +70,44 @@
     <div class="spacer"></div>
     
     <nav class="filters">
-      <button onclick="filterProducts('all')" class="active">ALL</button>
+      <button onclick="goHome()" class="active" id="btn-home">HOME</button>
       <button onclick="filterProducts('sneakers')">SNEAKERS</button>
       <button onclick="filterProducts('hoodies')">HOODIES</button>
-      <button onclick="filterProducts('pants')">PANTS</button>
-      <button onclick="filterProducts('accessories')">ACCESSORIES</button>
+      <button onclick="filterProducts('belts')">CINTURE</button>
+      <button onclick="filterProducts('wallets')">PORTAFOGLI</button>
+      <button onclick="filterProducts('bags')">BORSELLI</button>
     </nav>
 
-    <section id="products-grid" class="product-grid"></section>
+    <div id="home-sections">
+        
+        <div class="section-header">
+            <h2>🔥 DI TENDENZA ADESSO</h2>
+        </div>
+        <section id="grid-trending" class="product-grid"></section>
+
+        <div class="section-header">
+            <h2>CINTURE</h2>
+        </div>
+        <section id="grid-belts" class="product-grid"></section>
+
+        <div class="section-header">
+            <h2>PORTAFOGLI</h2>
+        </div>
+        <section id="grid-wallets" class="product-grid"></section>
+
+        <div class="section-header">
+            <h2>BORSELLI</h2>
+        </div>
+        <section id="grid-bags" class="product-grid"></section>
+
+    </div>
+
+    <div id="search-results-view" style="display:none;">
+        <div class="section-header">
+            <h2 id="search-title">RISULTATI</h2>
+        </div>
+        <section id="products-grid" class="product-grid"></section>
+    </div>
 
     <div id="no-results" class="no-results-box" style="display:none;">
       <div class="no-results-content">
@@ -90,7 +121,6 @@
 
   <section id="single-product-page" class="single-product-view content-area">
     <div class="spacer"></div>
-    
     <div class="product-top-bar">
       <button class="close-view-btn" onclick="goBackToHome()">✕ TORNA ALLA HOME</button>
     </div>
@@ -104,15 +134,12 @@
             <span id="detail-category" class="badge">CATEGORY</span>
             <span class="verified-badge">✓ AUTHENTIC VERIFIED</span>
         </div>
-        
         <h2 id="detail-title">PRODUCT NAME</h2>
         <p id="detail-desc">Description goes here.</p>
         <div id="detail-price" class="price-tag">€000</div>
-        
         <div class="trust-icons-text">
             <span>📦 Double Box Shipping</span> • <span>🔒 Secure Payment (PayPal)</span>
         </div>
-
         <div class="action-buttons">
           <button class="buy-btn main-btn" onclick="contactForProduct('buy')">ACQUISTA ORA (DM)</button>
           <button class="buy-btn sec-btn" onclick="contactForProduct('info')">INFO PRODOTTO</button>
@@ -125,7 +152,6 @@
     <div class="footer-content">
       <p>© 2026 LUXURY THREAD · MILAN · TOKYO</p>
       <a href="https://ig.me/m/luxury.thread_" target="_blank" class="contact-link">INSTAGRAM DM</a>
-      
       <div class="footer-bottom-row">
         <button id="footer-theme-btn" onclick="toggleTheme()" title="Cambia Tema">🌙 / ☀️</button>
         <span class="footer-divider">|</span>
@@ -139,7 +165,6 @@
 <div class="floating-sourcing-btn" onclick="openSourcingModal()">
     <span>💎 VIP REQUEST</span>
 </div>
-
 <div class="floating-home-btn" onclick="scrollToTop()">
     <span>🏠 HOME</span>
 </div>
@@ -151,7 +176,6 @@
       <div class="header-line"></div>
     </div>
     <p style="font-size: 0.85rem; margin-bottom: 25px; opacity: 0.7;">Servizio esclusivo di ricerca prodotti.</p>
-    
     <div class="input-group">
       <input type="text" id="src-model" placeholder=" " class="modal-input-line">
       <label>MODELLO</label>
@@ -160,7 +184,6 @@
       <input type="text" id="src-size" placeholder=" " class="modal-input-line">
       <label>TAGLIA</label>
     </div>
-    
     <div class="popup-actions">
       <button class="buy-btn main-btn" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
       <button class="buy-btn sec-btn-small" onclick="closeSourcingModal()">CHIUDI</button>
@@ -174,7 +197,6 @@
       <h3>CLIENT FEEDBACK</h3>
       <div class="header-line"></div>
     </div>
-    
     <div class="reviews-list">
       <div class="review-item">
         <div class="stars">★★★★★</div>
@@ -192,7 +214,6 @@
         <span class="review-author">— @alessia.vntg</span>
       </div>
     </div>
-
     <button class="buy-btn sec-btn-small" onclick="closeReviewsModal()">CHIUDI</button>
   </div>
 </div>
@@ -209,7 +230,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
