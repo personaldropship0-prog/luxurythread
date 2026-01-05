@@ -2,163 +2,169 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <title>LUXURY THREAD | VERIFIED RESELL</title>
-  
-  <link rel="icon" type="image/png" sizes="32x32" href="img/logo (1).png">
-  <link rel="apple-touch-icon" href="img/logo (1).png">
+  <title>LUXURY THREAD | OFFICIAL STORE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/logo (1).png">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="style.css?v=9">
+  <link rel="stylesheet" href="style.css?v=10">
 </head>
 
 <body>
 
-<div class="app-container">
-
-  <div class="promo-banner">
-    <span>🇮🇹 SPEDIZIONE GRATUITA SOPRA I 300€ &middot; AUTENTICITÀ GARANTITA</span>
+  <div class="top-ticker">
+    <span>SPEDIZIONE TRACCIATA 24/48H /// RESELLER UFFICIALE MILANO /// NO FAKE ZONE</span>
   </div>
 
-  <header class="sticky-header">
-    <div class="header-content">
-      <div class="logo-section" onclick="goHome()">
-        <span class="logo-font">LUXURY<span class="highlight">THREAD</span></span>
-      </div>
-
-      <div class="action-icons">
-        <button class="icon-btn" onclick="openSearchOverlay()">
-           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        </button>
-        <button class="menu-btn" onclick="openSourcingModal()">SOURCING</button>
-      </div>
+  <nav class="navbar">
+    <div class="nav-left">
+      <button class="nav-icon" onclick="openSearchOverlay()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
     </div>
-  </header>
 
-  <div class="filter-scroll-container">
-    <div class="filter-wrapper">
-        <button onclick="loadSection('trending')" id="btn-trending" class="filter-pill active">🔥 DROPS</button>
-        <button onclick="loadSection('belts')" id="btn-belts" class="filter-pill">CINTURE</button>
-        <button onclick="loadSection('wallets')" id="btn-wallets" class="filter-pill">PORTAFOGLI</button>
-        <button onclick="loadSection('bags')" id="btn-bags" class="filter-pill">BORSELLI</button>
+    <div class="nav-center" onclick="goHome()">
+      <span class="brand-logo">LUXURY THREAD</span>
+    </div>
+
+    <div class="nav-right">
+      <button class="req-btn desktop-only" onclick="openSourcingModal()">REQUEST STOCK</button>
+      <button class="nav-icon mobile-only" onclick="openSourcingModal()">+</button>
+    </div>
+  </nav>
+
+  <div id="search-overlay" class="search-modal">
+    <button class="close-search" onclick="closeSearchOverlay()">CHIUDI [X]</button>
+    <div class="search-center">
+        <label>SEARCH DATABASE</label>
+        <div class="input-group">
+            <input type="text" id="searchInput" placeholder="JORDAN 4, TRAPSTAR..." autocomplete="off">
+            <button onclick="performSearch()">GO</button>
+        </div>
     </div>
   </div>
 
-  <main id="main-view" class="main-content">
+  <main id="main-view">
     
-    <div class="section-header">
-        <h2 id="section-title">In Evidenza</h2>
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h2>NEW SEASON DROP</h2>
+            <h1>STREET ESSENTIALS</h1>
+            <button onclick="scrollToGrid()">SHOP NOW</button>
+        </div>
+    </section>
+
+    <div class="cat-scroller">
+        <button onclick="loadSection('trending')" id="btn-trending" class="cat-btn active">LATEST</button>
+        <button onclick="loadSection('belts')" id="btn-belts" class="cat-btn">BELTS</button>
+        <button onclick="loadSection('wallets')" id="btn-wallets" class="cat-btn">ACCESSORIES</button>
+        <button onclick="loadSection('bags')" id="btn-bags" class="cat-btn">BAGS</button>
     </div>
 
-    <div id="products-grid" class="resell-grid">
+    <div class="container">
+        <div class="section-header">
+            <h3 id="section-title">LATEST ARRIVALS</h3>
+            <div class="line"></div>
         </div>
 
-    <div id="no-results" class="empty-state" style="display:none;">
-        <div class="empty-icon">🔍</div>
-        <h3>Nessun risultato</h3>
-        <p>Non abbiamo trovato questo prodotto in stock.</p>
-        <button class="cta-btn black" onclick="openSourcingModal()">Richiedi al Team</button>
+        <div id="products-grid" class="raw-grid">
+            </div>
+
+        <div id="no-results" class="not-found-box" style="display:none;">
+            <h3>ITEM NOT FOUND</h3>
+            <p>IL PRODOTTO CERCATO NON È ATTUALMENTE IN STOCK.</p>
+            <button class="black-btn" onclick="openSourcingModal()">INVIA RICHIESTA AL TEAM</button>
+        </div>
     </div>
 
   </main>
 
-  <section id="single-product-page" class="product-detail-view">
-    <div class="detail-nav">
-        <button onclick="goBackToHome()" class="back-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        </button>
-        <span>DETTAGLIO PRODOTTO</span>
-        <div style="width: 24px;"></div> </div>
-
-    <div class="detail-container">
-        <div class="detail-image-area">
-            <img id="detail-img" src="" alt="">
-            <div class="auth-badge-large">✅ VERIFIED AUTHENTIC</div>
+  <section id="single-product-page" class="product-raw-view">
+    <button class="back-strip" onclick="goBackToHome()">
+       &lt; TORNA AL CATALOGO
+    </button>
+    
+    <div class="prod-container">
+        <div class="prod-image">
+            <img id="detail-img" src="" alt="Product">
+            <span class="auth-tag">VERIFIED AUTHENTIC</span>
         </div>
         
-        <div class="detail-info-area">
-            <span class="brand-tag">LUXURY THREAD SELECTION</span>
-            <h1 id="detail-title">Nome Prodotto</h1>
-            <p id="detail-desc">Descrizione...</p>
+        <div class="prod-details">
+            <span class="sub-brand">LUXURY THREAD EXCLUSIVE</span>
+            <h1 id="detail-title">PRODUCT NAME</h1>
+            <div class="price-wrap">
+                <span id="detail-price">€000</span>
+                <span class="tax-note">TAX INCLUDED</span>
+            </div>
             
-            <div class="price-box">
-                <span class="price-label">PREZZO ATTUALE</span>
-                <span id="detail-price" class="main-price">€000</span>
+            <p id="detail-desc">DESCRIPTION</p>
+            
+            <div class="buy-actions">
+                <button class="buy-btn" onclick="contactForProduct('buy')">ACQUISTA (DM)</button>
+                <button class="info-btn" onclick="contactForProduct('info')">INFO / SIZE CHECK</button>
             </div>
-
-            <div class="action-stack">
-                <button class="cta-btn black full" onclick="contactForProduct('buy')">ACQUISTA ORA</button>
-                <button class="cta-btn outline full" onclick="contactForProduct('info')">FAI UN'OFFERTA / INFO</button>
-            </div>
-
-            <div class="guarantee-box">
-                <div class="g-item">
-                    <span class="g-icon">🛡️</span>
-                    <div class="g-text"><strong>Autenticità 100%</strong><br>Ogni item è ispezionato.</div>
-                </div>
-                <div class="g-item">
-                    <span class="g-icon">🚀</span>
-                    <div class="g-text"><strong>Spedizione Express</strong><br>Doppia scatola protettiva.</div>
-                </div>
+            
+            <div class="tech-specs">
+                <div><span>CONDITION:</span> NEW / DS</div>
+                <div><span>SHIPPING:</span> 24H EXPRESS</div>
+                <div><span>LOCATION:</span> MILANO HQ</div>
             </div>
         </div>
     </div>
   </section>
 
-  <footer class="app-footer">
-    <div class="footer-content">
-        <p>LUXURY THREAD &copy; 2026</p>
-        <div class="footer-actions">
-            <a onclick="toggleTheme()" id="theme-btn">🌙 Dark Mode</a>
-            <a href="https://ig.me/m/luxury.thread_" target="_blank">Instagram</a>
+  <footer class="raw-footer">
+    <div class="footer-row">
+        <div class="f-col">
+            <h4>LUXURY THREAD</h4>
+            <p>STREETWEAR SOURCE.</p>
         </div>
+        <div class="f-col right">
+            <button id="theme-btn" onclick="toggleTheme()">VIEW: DARK</button>
+            <a href="https://ig.me/m/luxury.thread_" target="_blank">INSTAGRAM</a>
+        </div>
+    </div>
+    <div class="copy-bar">
+        &copy; 2026 ALL RIGHTS RESERVED.
     </div>
   </footer>
 
-</div>
-
-<div id="search-overlay" class="overlay-full">
-    <div class="overlay-header">
-        <span class="overlay-title">Cerca</span>
-        <button class="close-btn" onclick="closeSearchOverlay()">✕</button>
-    </div>
-    <div class="search-body">
-        <input type="text" id="searchInput" placeholder="Cerca brand, modello..." autocomplete="off">
-        <button class="search-go" onclick="performSearch()">VAI</button>
-    </div>
-</div>
-
-<div id="sourcing-modal" class="modal-dimmer">
-  <div class="modal-sheet">
-    <div class="sheet-handle"></div>
-    <h3>Sourcing Request</h3>
-    <p class="sheet-desc">Trova qualsiasi item non presente in lista.</p>
-    
-    <label>Nome Modello</label>
-    <input type="text" id="src-model" class="input-field" placeholder="Es. Jordan 4 Black Cat">
-    
-    <label>Taglia</label>
-    <input type="text" id="src-size" class="input-field" placeholder="Es. 43 EU">
-    
-    <div class="sheet-actions">
-        <button class="cta-btn black full" onclick="sendSourcingRequest()">INVIA SU INSTAGRAM</button>
-        <button class="cta-btn text full" onclick="closeSourcingModal()">Annulla</button>
+  <div id="sourcing-modal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-top">
+            <h3>SOURCING REQUEST</h3>
+            <button class="close-x" onclick="closeSourcingModal()">X</button>
+        </div>
+        <div class="modal-content">
+            <p>SE NON LO TROVI SUL SITO, LO TROVIAMO NOI.</p>
+            <div class="form-group">
+                <label>MODEL NAME</label>
+                <input type="text" id="src-model" placeholder="ES. TRAPSTAR SHOOTERS...">
+            </div>
+            <div class="form-group">
+                <label>SIZE</label>
+                <input type="text" id="src-size" placeholder="ES. M / EU 43">
+            </div>
+            <button class="black-btn full" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
+        </div>
     </div>
   </div>
-</div>
 
-<div id="popup" class="modal-dimmer">
-  <div class="modal-sheet center">
-    <h3>Contatta</h3>
-    <p id="popup-text" style="margin-bottom:20px; color:#666;"></p>
-    <button class="cta-btn black full" onclick="openInstagram()">APRI CHAT</button>
-    <button class="cta-btn text full" onclick="closePopup()">Chiudi</button>
+  <div id="popup" class="modal-overlay">
+    <div class="modal-box center">
+        <h3>CONTACT US</h3>
+        <p id="popup-text"></p>
+        <div class="btn-group">
+            <button class="black-btn" onclick="openInstagram()">OPEN INSTAGRAM</button>
+            <button class="outline-btn" onclick="closePopup()">CLOSE</button>
+        </div>
+    </div>
   </div>
-</div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
