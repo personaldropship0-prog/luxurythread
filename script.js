@@ -1,177 +1,160 @@
-// --- DATABASE LUXURY THREAD (Technical) ---
+/* === DATABASE PRODOTTI === */
 const products = [
-    // HIGHLIGHTS
-    { id: 1, name: "Jordan 1 High Chicago L&F", category: "trending", price: 440, img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=800&q=80", desc: "Modello iconico High-top. Pelle pieno fiore. Colorazione originale Chicago. Box e accessori originali inclusi." },
-    { id: 2, name: "Travis Scott x Jordan 1 Low", category: "trending", price: 1150, img: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?auto=format&fit=crop&w=800&q=80", desc: "Collaborazione esclusiva. Swoosh inverso. Lacci cerati inclusi. Condizioni perfette (Deadstock)." },
-    { id: 3, name: "Supreme Box Logo Hoodie", category: "trending", price: 390, img: "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?auto=format&fit=crop&w=800&q=80", desc: "Cotone Heavyweight Crossgrain. Ricamo Box Logo frontale. Vestibilità regolare." },
-    { id: 4, name: "Yeezy Slide Pure", category: "trending", price: 160, img: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=800&q=80", desc: "Schiuma EVA iniettata. Suola dentellata per trazione. Comfort superiore. Si consiglia una taglia in più." },
+    // 1. DI TENDENZA (Sneakers, Hoodies - HOT)
+    { name: "Jordan 4 Retro Military Black", price: 450, category: "trending", img: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=600&q=80" },
+    { name: "Nike Dunk Low Panda", price: 180, category: "trending", img: "https://images.unsplash.com/photo-1637844527273-df6881478839?auto=format&fit=crop&w=600&q=80" },
+    { name: "Travis Scott Hoodie", price: 220, category: "trending", img: "https://images.unsplash.com/photo-1571455786673-9d9d6c194f90?auto=format&fit=crop&w=600&q=80" },
+    { name: "Adidas Yeezy Slide", price: 140, category: "trending", img: "https://images.unsplash.com/photo-1603808033192-082d6919d3e1?auto=format&fit=crop&w=600&q=80" },
 
-    // ACCESSORI
-    { id: 101, name: "Gucci GG Marmont Belt", category: "belts", price: 395, img: "https://images.unsplash.com/photo-1624223032773-772eb0462052?auto=format&fit=crop&w=800&q=80", desc: "Pelle liscia nera. Fibbia Doppia G in ottone anticato. Larghezza 4cm." },
-    { id: 201, name: "LV Pocket Organizer", category: "wallets", price: 330, img: "https://images.unsplash.com/photo-1627123424574-181ce90b94c0?auto=format&fit=crop&w=800&q=80", desc: "Tela Monogram Eclipse. Fodera in vacchetta. 3 fessure per carte di credito. 5 tasche interne." },
-    { id: 301, name: "Prada Re-Nylon Bag", category: "bags", price: 920, img: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=800&q=80", desc: "Nylon rigenerato. Dettagli in pelle Saffiano. Logo triangolo smaltato. Tracolla regolabile in nastro." }
+    // 2. CINTURE (Belts)
+    { name: "Gucci GG Marmont Belt", price: 390, category: "belts", img: "https://images.unsplash.com/photo-1624223032773-772eb0462052?auto=format&fit=crop&w=600&q=80" },
+    { name: "Diesel 1DR Belt Logo", price: 120, category: "belts", img: "https://images.unsplash.com/photo-1559563458-527698bf5295?auto=format&fit=crop&w=600&q=80" },
+    { name: "Hermes H Belt", price: 780, category: "belts", img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80" },
+    { name: "Ferragamo Gancini", price: 350, category: "belts", img: "https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=600&q=80" },
+
+    // 3. BORSELLINI (Wallets/Small Leather Goods)
+    { name: "LV Pocket Organizer", price: 320, category: "wallets", img: "https://images.unsplash.com/photo-1627123424574-181ce90b94c0?auto=format&fit=crop&w=600&q=80" },
+    { name: "Goyard Card Holder", price: 450, category: "wallets", img: "https://images.unsplash.com/photo-1628149455676-e8d1a33753c1?auto=format&fit=crop&w=600&q=80" },
+    { name: "Prada Saffiano Wallet", price: 480, category: "wallets", img: "https://images.unsplash.com/photo-1550523412-40f46c6563e3?auto=format&fit=crop&w=600&q=80" },
+
+    // 4. BORSELLI (Shoulder Bags)
+    { name: "Prada Re-Nylon Bag", price: 1100, category: "bags", img: "https://images.unsplash.com/photo-1591561954557-26941169b49e?auto=format&fit=crop&w=600&q=80" },
+    { name: "Supreme Shoulder Bag", price: 150, category: "bags", img: "https://images.unsplash.com/photo-1547949003-9792a18a2601?auto=format&fit=crop&w=600&q=80" },
+    { name: "Gucci Messenger", price: 950, category: "bags", img: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80" },
 ];
 
+/* === CARICAMENTO PAGINA === */
 document.addEventListener("DOMContentLoaded", () => {
-    loadSection('trending');
+    loadCategory('trending', 'grid-trending');
+    loadCategory('belts', 'grid-belts');
+    loadCategory('wallets', 'grid-wallets');
+    loadCategory('bags', 'grid-bags');
 });
 
-function loadSection(category) {
-    document.querySelectorAll('.filter-link').forEach(b => b.classList.remove('active'));
+function loadCategory(cat, gridId) {
+    const grid = document.getElementById(gridId);
+    if(!grid) return;
     
-    let title = "";
-    let filteredList = [];
-
-    if (category === 'trending') {
-        document.getElementById('btn-trending').classList.add('active');
-        title = "HIGHLIGHTS";
-        filteredList = products.filter(p => p.category === 'trending');
-    } else if (category === 'belts') {
-        document.getElementById('btn-belts').classList.add('active');
-        title = "CINTURE";
-        filteredList = products.filter(p => p.category === 'belts');
-    } else if (category === 'wallets') {
-        document.getElementById('btn-wallets').classList.add('active');
-        title = "ACCESSORI";
-        filteredList = products.filter(p => p.category === 'wallets');
-    } else if (category === 'bags') {
-        document.getElementById('btn-bags').classList.add('active');
-        title = "BORSE";
-        filteredList = products.filter(p => p.category === 'bags');
-    }
-
-    document.getElementById('section-title').innerText = title;
-    document.getElementById('item-count').innerText = filteredList.length + " ARTICOLI";
+    // Filtra e crea le card
+    const items = products.filter(p => p.category === cat);
     
-    renderGrid(filteredList);
-    
-    document.getElementById('main-view').style.display = 'block';
-    document.getElementById('single-product-page').style.display = 'none';
-    document.getElementById('hero').style.display = category === 'trending' ? 'flex' : 'none';
-
-    if(filteredList.length === 0){
-        document.getElementById('products-grid').style.display = 'none';
-        document.getElementById('no-results').style.display = 'block';
-    } else {
-        document.getElementById('products-grid').style.display = 'grid';
-        document.getElementById('no-results').style.display = 'none';
-    }
-}
-
-function renderGrid(list) {
-    const grid = document.getElementById('products-grid');
-    grid.innerHTML = "";
-    
-    list.forEach(p => {
+    items.forEach(product => {
         const card = document.createElement('div');
-        card.className = 'item-card';
-        card.onclick = () => openProduct(p.id);
+        card.className = 'card';
+        card.onclick = () => {
+            // Semplice alert per ora, o redirect a pagina prodotto
+            alert("Contattaci su IG per acquistare: " + product.name); 
+            window.open("https://instagram.com/luxury.thread_", "_blank");
+        };
+        
         card.innerHTML = `
-            <div class="img-wrapper">
-                <img src="${p.img}" alt="${p.name}">
+            <div class="card-img-wrap">
+                <img src="${product.img}" alt="${product.name}">
             </div>
             <div class="card-info">
-                <span class="card-brand">LUXURY THREAD</span>
-                <div class="card-title">${p.name}</div>
-                <div class="card-price">€${p.price}</div>
+                <div class="card-title">${product.name}</div>
+                <div class="card-price">€${product.price}</div>
             </div>
         `;
         grid.appendChild(card);
     });
 }
 
-function performSearch() {
-    const query = document.getElementById('searchInput').value.toLowerCase();
-    const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+/* === RICERCA === */
+function toggleSearch() {
+    const bar = document.getElementById('search-bar-container');
+    bar.classList.toggle('active');
+    if(bar.classList.contains('active')) document.getElementById('search-input').focus();
+}
+
+function searchProducts() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const allCards = document.querySelectorAll('.card');
+    let found = false;
+
+    allCards.forEach(card => {
+        const title = card.querySelector('.card-title').innerText.toLowerCase();
+        if(title.includes(query)) {
+            card.style.display = 'block';
+            found = true;
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    const noRes = document.getElementById('no-results');
+    const headers = document.querySelectorAll('.category-header');
     
-    document.getElementById('section-title').innerText = "RISULTATI RICERCA: " + query.toUpperCase();
-    document.getElementById('item-count').innerText = filtered.length + " ARTICOLI";
-    document.getElementById('hero').style.display = 'none';
-    
-    renderGrid(filtered);
-    closeSearchOverlay();
-    
-    document.getElementById('main-view').style.display = 'block';
-    document.getElementById('single-product-page').style.display = 'none';
-    
-    if(filtered.length === 0){
-        document.getElementById('products-grid').style.display = 'none';
-        document.getElementById('no-results').style.display = 'block';
+    if(query.length > 0) {
+        // Nascondi i titoli delle categorie se stiamo cercando
+        headers.forEach(h => h.style.display = 'none');
+        noRes.style.display = found ? 'none' : 'block';
     } else {
-        document.getElementById('products-grid').style.display = 'grid';
-        document.getElementById('no-results').style.display = 'none';
+        // Ripristina vista normale
+        headers.forEach(h => h.style.display = 'flex');
+        noRes.style.display = 'none';
     }
 }
 
-function openProduct(id) {
-    const p = products.find(x => x.id === id);
-    if (!p) return;
+/* === LOGICA BOT (FONDAMENTALE) === */
 
-    document.getElementById('detail-img').src = p.img;
-    document.getElementById('detail-title').innerText = p.name;
-    document.getElementById('detail-desc').innerText = p.desc;
-    document.getElementById('detail-price').innerText = "€" + p.price;
-    document.getElementById('bread-name').innerText = p.name;
-
-    document.getElementById('main-view').style.display = 'none';
-    document.getElementById('hero').style.display = 'none';
-    document.getElementById('single-product-page').style.display = 'block';
-    window.scrollTo(0,0);
-}
-
-function goBackToHome() {
-    document.getElementById('single-product-page').style.display = 'none';
-    document.getElementById('main-view').style.display = 'block';
-    // Mostra hero solo se siamo in trending
-    if(document.getElementById('btn-trending').classList.contains('active')){
-         document.getElementById('hero').style.display = 'flex';
+function toggleBot() {
+    const win = document.getElementById('bot-window');
+    const btn = document.getElementById('bot-trigger');
+    
+    if (win.style.display === 'flex') {
+        win.style.display = 'none';
+        btn.style.display = 'flex'; // Ri-mostra il bottone
+    } else {
+        win.style.display = 'flex';
+        btn.style.display = 'none'; // Nasconde il bottone mentre la chat è aperta
+        resetBot(); // Torna sempre al menu principale quando apri
     }
 }
 
-function goHome() {
-    loadSection('trending');
-    window.scrollTo(0,0);
+function resetBot() {
+    document.getElementById('bot-main-menu').style.display = 'flex';
+    document.getElementById('bot-sourcing-form').style.display = 'none';
 }
 
-function scrollToGrid() {
-    document.getElementById('main-view').scrollIntoView({ behavior: 'smooth' });
+function showSourcingForm() {
+    document.getElementById('bot-main-menu').style.display = 'none';
+    document.getElementById('bot-sourcing-form').style.display = 'flex';
 }
 
-// Modals
-function openSearchOverlay() {
-    document.getElementById('search-overlay').style.display = 'flex';
-    setTimeout(() => document.getElementById('searchInput').focus(), 100);
+function contactInstagram() {
+    window.open("https://instagram.com/luxury.thread_", "_blank");
 }
-function closeSearchOverlay() { document.getElementById('search-overlay').style.display = 'none'; }
 
-function openSourcingModal() { document.getElementById('sourcing-modal').style.display = 'flex'; }
-function closeSourcingModal() { document.getElementById('sourcing-modal').style.display = 'none'; }
+function sendSourcingEmail() {
+    // 1. Prendi i dati
+    const email = document.getElementById('user-email').value;
+    const model = document.getElementById('user-model').value;
+    const size = document.getElementById('user-size').value;
 
-function sendSourcingRequest() {
-    const model = document.getElementById('src-model').value;
-    const size = document.getElementById('src-size').value;
-    if(!model) return;
+    if(!email || !model) {
+        alert("Per favore inserisci almeno la tua email e il modello.");
+        return;
+    }
+
+    // 2. Costruisci il link mailto
+    // Questo aprirà l'app mail dell'utente con tutto già scritto
+    const dest = "personal.drop.ship0@gmail.com";
+    const subject = encodeURIComponent(`Richiesta Sourcing: ${model}`);
+    const body = encodeURIComponent(
+`Ciao Luxury Thread,
+
+Vorrei richiedere il sourcing di questo prodotto:
+MODELLO: ${model}
+TAGLIA: ${size}
+
+La mia Email per il contatto: ${email}
+
+Grazie.`
+    );
+
+    window.location.href = `mailto:${dest}?subject=${subject}&body=${body}`;
     
-    // Messaggio pulito
-    const msg = `RICHIESTA SOURCING\nMODELLO: ${model}\nTAGLIA: ${size}`;
-    window.open(`https://ig.me/m/luxury.thread_?text=${encodeURIComponent(msg)}`, "_blank");
-    closeSourcingModal();
+    // Chiudi il bot dopo l'invio
+    toggleBot();
 }
-
-function contactForProduct(type) {
-    const title = document.getElementById('detail-title').innerText;
-    let msg = type === 'buy' ? `RICHIESTA ACQUISTO: ${title}` : `RICHIESTA INFORMAZIONI: ${title}`;
-    
-    document.getElementById('popup-text').innerText = msg;
-    document.getElementById('popup').style.display = 'flex';
-}
-function closePopup() { document.getElementById('popup').style.display = 'none'; }
-function openInstagram() { window.open("https://instagram.com/luxury.thread_", "_blank"); closePopup(); }
-
-function toggleTheme() {
-    document.body.classList.toggle('dark-mode');
-    const btn = document.getElementById('theme-btn');
-    btn.innerText = document.body.classList.contains('dark-mode') ? "MODALITÀ CHIARA" : "MODALITÀ SCURA";
-}
-
-document.getElementById('searchInput').addEventListener("keyup", function(e) { if (e.key === "Enter") performSearch(); });
