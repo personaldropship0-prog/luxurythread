@@ -1,175 +1,116 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>LUXURY THREAD | MILANO</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/logo (1).png">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="style.css?v=11">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Thread | Official Store</title>
+    
+    <link rel="icon" type="image/png" href="img/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css?v=FINAL">
 </head>
-
 <body>
 
-<div class="site-wrapper">
-
-  <div class="top-bar">
-    <span>SPEDIZIONE EXPRESS GRATUITA OLTRE 300€ &mdash; RESELLER VERIFICATO</span>
-  </div>
-
-  <header class="tech-header">
-    <div class="header-inner">
-      <div class="h-left">
-        <button class="nav-btn" onclick="openSearchOverlay()">CERCA</button>
-      </div>
-
-      <div class="h-center" onclick="goHome()">
-        <h1>LUXURY THREAD</h1>
-      </div>
-
-      <div class="h-right">
-        <button class="nav-btn" onclick="openSourcingModal()">SOURCING</button>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero-section" id="hero">
-    <div class="hero-overlay">
-      <h2>NUOVI ARRIVI</h2>
-      <button class="hero-cta" onclick="scrollToGrid()">SCOPRI LA COLLEZIONE</button>
-    </div>
-  </section>
-
-  <div class="filter-strip">
-    <div class="filter-container">
-        <button onclick="loadSection('trending')" id="btn-trending" class="filter-link active">HIGHLIGHTS</button>
-        <button onclick="loadSection('belts')" id="btn-belts" class="filter-link">CINTURE</button>
-        <button onclick="loadSection('wallets')" id="btn-wallets" class="filter-link">ACCESSORI</button>
-        <button onclick="loadSection('bags')" id="btn-bags" class="filter-link">BORSE</button>
-    </div>
-  </div>
-
-  <main id="main-view" class="container">
-    
-    <div class="section-head">
-        <h3 id="section-title">HIGHLIGHTS</h3>
-        <span class="item-count" id="item-count">0 ARTICOLI</span>
-    </div>
-
-    <div id="products-grid" class="tech-grid">
+    <div class="ticker-wrap">
+        <div class="ticker">
+            WORLDWIDE SHIPPING ✈ • 100% AUTHENTIC GUARANTEED • MILAN BASED • SOURCING SERVICE AVAILABLE • DM FOR INQUIRIES •
+            WORLDWIDE SHIPPING ✈ • 100% AUTHENTIC GUARANTEED • MILAN BASED • SOURCING SERVICE AVAILABLE • DM FOR INQUIRIES •
         </div>
-
-    <div id="no-results" class="empty-box" style="display:none;">
-        <h4>NESSUN RISULTATO</h4>
-        <p>Il prodotto cercato non è disponibile nel catalogo online.</p>
-        <button class="solid-btn" onclick="openSourcingModal()">RICHIEDI DISPONIBILITÀ</button>
     </div>
 
-  </main>
-
-  <section id="single-product-page" class="product-view">
-    <div class="breadcrumb">
-        <button onclick="goBackToHome()">INDICE</button> / <span id="bread-name">PRODOTTO</span>
-    </div>
-
-    <div class="p-layout">
-        <div class="p-image">
-            <img id="detail-img" src="" alt="">
+    <header>
+        <div class="header-inner">
+            <div class="logo-container" onclick="window.location.reload()">
+                <img src="img/logo.png" alt="LT Logo">
+            </div>
+            <h1 class="site-title">LUXURY THREAD</h1>
+            <div class="search-btn" onclick="toggleSearch()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
         </div>
         
-        <div class="p-info">
-            <span class="p-collection">LUXURY THREAD SELECTION</span>
-            <h1 id="detail-title">TITOLO PRODOTTO</h1>
-            <div class="p-price" id="detail-price">€000</div>
-            
-            <div class="separator"></div>
-            
-            <div class="p-desc">
-                <p><strong>DESCRIZIONE</strong></p>
-                <p id="detail-desc">Dettagli del prodotto...</p>
+        <div id="search-bar-container">
+            <input type="text" id="search-input" placeholder="Cerca brand, modello..." onkeyup="searchProducts()">
+        </div>
+    </header>
+
+    <main>
+        <div class="category-header">
+            <h2>🔥 DI TENDENZA ADESSO</h2>
+            <div class="line"></div>
+        </div>
+        <div class="product-grid" id="grid-trending"></div>
+
+        <div class="category-header">
+            <h2>CINTURE</h2>
+            <div class="line"></div>
+        </div>
+        <div class="product-grid" id="grid-belts"></div>
+
+        <div class="category-header">
+            <h2>BORSELLINI & ACCESSORI</h2>
+            <div class="line"></div>
+        </div>
+        <div class="product-grid" id="grid-wallets"></div>
+
+        <div class="category-header">
+            <h2>BORSELLI</h2>
+            <div class="line"></div>
+        </div>
+        <div class="product-grid" id="grid-bags"></div>
+        
+        <div id="no-results" style="display:none; text-align:center; padding: 50px;">
+            <h3>Nessun prodotto trovato.</h3>
+            <p>Usa il BOT in basso a sinistra per richiedere il sourcing.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2026 LUXURY THREAD</p>
+        <p style="font-size: 0.8rem; opacity: 0.6;">Milan • Tokyo • New York</p>
+    </footer>
+
+    <div id="bot-trigger" onclick="toggleBot()">
+        <span>🤖 BOT</span>
+    </div>
+
+    <div id="bot-window">
+        <div class="bot-header">
+            <span>ASSISTENZA LT</span>
+            <button onclick="toggleBot()">✕</button>
+        </div>
+        
+        <div class="bot-content" id="bot-main-menu">
+            <div class="bot-message">
+                Ciao! Hai bisogno di aiuto?
             </div>
-
-            <div class="p-specs">
-                <div class="spec-row">
-                    <span>CONDIZIONE</span>
-                    <span>NUOVO / DS</span>
-                </div>
-                <div class="spec-row">
-                    <span>AUTENTICITÀ</span>
-                    <span>GARANTITA</span>
-                </div>
-            </div>
-
-            <div class="p-actions">
-                <button class="solid-btn full" onclick="contactForProduct('buy')">ACQUISTA ORA</button>
-                <button class="outline-btn full" onclick="contactForProduct('info')">RICHIEDI INFORMAZIONI</button>
+            <div class="bot-options">
+                <button onclick="showSourcingForm()">NON TROVO IL PRODOTTO</button>
+                <button onclick="contactInstagram()">HO BISOGNO D'ASSISTENZA</button>
             </div>
         </div>
-    </div>
-  </section>
 
-  <footer class="tech-footer">
-    <div class="f-inner">
-        <div class="f-block">
-            <strong>LUXURY THREAD</strong>
-            <span>Milano, Italia</span>
-        </div>
-        <div class="f-block right">
-            <button onclick="toggleTheme()" id="theme-btn">MODALITÀ SCURA</button>
-            <a href="https://ig.me/m/luxury.thread_" target="_blank">INSTAGRAM</a>
-        </div>
-    </div>
-    <div class="f-bottom">
-        &copy; 2026 LUXURY THREAD. Tutti i diritti riservati.
-    </div>
-  </footer>
-
-</div>
-
-<div id="search-overlay" class="fullscreen-modal">
-    <button class="close-modal" onclick="closeSearchOverlay()">CHIUDI</button>
-    <div class="modal-center">
-        <label>RICERCA NEL CATALOGO</label>
-        <input type="text" id="searchInput" placeholder="Digita il nome del prodotto..." autocomplete="off">
-        <button class="search-confirm" onclick="performSearch()">CERCA</button>
-    </div>
-</div>
-
-<div id="sourcing-modal" class="side-modal-overlay">
-    <div class="side-modal">
-        <div class="side-head">
-            <h3>RICHIESTA SOURCING</h3>
-            <button class="close-side" onclick="closeSourcingModal()">X</button>
-        </div>
-        <div class="side-body">
-            <p>Servizio riservato per articoli fuori catalogo.</p>
+        <div class="bot-content" id="bot-sourcing-form" style="display:none;">
+            <div class="bot-message">
+                Compila il modulo per la richiesta di sourcing:
+            </div>
+            <input type="email" id="user-email" placeholder="La tua Email" class="bot-input">
+            <input type="text" id="user-model" placeholder="Modello desiderato" class="bot-input">
+            <input type="text" id="user-size" placeholder="Taglia" class="bot-input">
             
-            <label>MODELLO</label>
-            <input type="text" id="src-model" class="tech-input" placeholder="Es. Jordan 4 Military Black">
-            
-            <label>TAGLIA</label>
-            <input type="text" id="src-size" class="tech-input" placeholder="Es. 44 EU">
-            
-            <button class="solid-btn full" onclick="sendSourcingRequest()">INVIA RICHIESTA</button>
+            <div class="bot-options">
+                <button onclick="sendSourcingEmail()" style="background: #000; color: #fff;">INVIA RICHIESTA</button>
+                <button onclick="resetBot()" style="background: transparent; color: #000; border: 1px solid #ccc;">INDIETRO</button>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="popup" class="popup-overlay">
-    <div class="popup-box">
-        <h3>CONTATTA IL TEAM</h3>
-        <p id="popup-text" style="margin: 20px 0; color:#666;"></p>
-        <div class="popup-btns">
-            <button class="solid-btn full" onclick="openInstagram()">APRI CHAT</button>
-            <button class="outline-btn full" onclick="closePopup()">ANNULLA</button>
-        </div>
-    </div>
-</div>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
