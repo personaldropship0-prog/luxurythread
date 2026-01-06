@@ -38,7 +38,7 @@ const products = [
     },
     { 
         id: 7, category: 'belts', name: "GUCCI GG MARMONT", price: 390, 
-        img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/pcitem1861886529-712c0000018fea87b0e00a20e273-unadjust_923_923.png", 
         desc: "L'iconica cintura GG. Pelle nera martellata." 
     },
     { 
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
