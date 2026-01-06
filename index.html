@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LUXURY THREAD</title>
-    <link rel="icon" type="image/png" href="img/logo.png">
+    
+    <link rel="icon" type="image/png" href="img/logo%20(1).png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=FINAL_V5">
+    <link rel="stylesheet" href="style.css?v=FINAL_V6">
 </head>
 <body>
 
@@ -30,15 +31,15 @@
     <div id="search-overlay">
         <div class="search-top">
             <input type="text" id="search-input" placeholder="COSA CERCHI?" onkeyup="performSearch()">
-            <span onclick="closeSearch()">CHIUDI</span>
+            <span onclick="closeSearch()">CHIUDI X</span>
         </div>
         <div id="search-results"></div>
     </div>
 
     <header class="hero">
         <div class="hero-content">
-            <h1>NUOVA STAGIONE</h1>
-            <p>STREETWEAR DI LUSSO</p>
+            <h1>THE NEW DROP</h1>
+            <p>STREETWEAR & LUXURY RESELL</p>
         </div>
     </header>
 
@@ -52,9 +53,23 @@
     <main id="main-grid" class="product-grid">
         </main>
 
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-brand">LUXURY THREAD</div>
+            <div class="footer-links">
+                <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
+                <a href="#" onclick="toggleBot()">ASSISTENZA CLIENTI</a>
+                <a href="#" onclick="toggleBot()">SOURCING PRODOTTI</a>
+            </div>
+            <div class="footer-copy">
+                &copy; 2026 MILANO - TUTTI I DIRITTI RISERVATI
+            </div>
+        </div>
+    </footer>
+
     <div id="product-modal" class="modal-backdrop">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">CHIUDI</span>
+            <span class="close-modal" onclick="closeModal()">CHIUDI X</span>
             <div class="modal-body">
                 <div class="modal-img-container">
                     <img id="m-img" src="" alt="">
@@ -70,33 +85,25 @@
         </div>
     </div>
 
-    <footer>
-        <div class="f-logo">LT.</div>
-        <div class="f-links">
-            <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
-            <a href="#" onclick="toggleBot()">SOURCING</a>
-        </div>
-    </footer>
-
     <div id="bot-overlay">
         <div class="bot-box">
             <div class="bot-header">
-                <span>ASSISTENZA CLIENTI</span>
+                <span>ASSISTENZA</span>
                 <span onclick="toggleBot()" style="cursor:pointer">X</span>
             </div>
             
             <div id="bot-home" class="bot-view">
-                <p>SELEZIONA UN'OPZIONE:</p>
-                <button onclick="showSourcing()">RICHIESTA SOURCING (PRODOTTO MANCANTE)</button>
-                <button onclick="contactIG()">PARLA CON NOI SU INSTAGRAM</button>
+                <p>COME POSSIAMO AIUTARTI?</p>
+                <button onclick="showSourcing()">NON TROVO UN PRODOTTO (SOURCING)</button>
+                <button onclick="contactIG()">PARLA CON UN OPERATORE SU IG</button>
             </div>
 
             <div id="bot-form" class="bot-view" style="display:none;">
-                <p>COMPILA PER RICHIEDERE UN PRODOTTO:</p>
-                <input type="text" id="s-model" placeholder="MODELLO">
+                <p>RICHIESTA PRODOTTO MANCANTE</p>
+                <input type="text" id="s-model" placeholder="NOME MODELLO">
                 <input type="text" id="s-size" placeholder="TAGLIA">
                 <input type="email" id="s-email" placeholder="LA TUA EMAIL">
-                <button onclick="sendSourcing()">INVIA RICHIESTA</button>
+                <button onclick="sendSourcing()">INVIA ORA</button>
                 <span class="back-link" onclick="resetBot()">INDIETRO</span>
             </div>
         </div>
