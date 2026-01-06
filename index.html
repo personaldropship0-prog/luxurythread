@@ -4,119 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUXURY THREAD | OFFICIAL STORE</title>
-    
     <link rel="icon" type="image/png" href="img/logo.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=CLEAN_V1">
+    <link rel="stylesheet" href="style.css?v=LUXURY_V4">
 </head>
 <body>
 
-    <div class="marquee-container">
-        <div class="marquee-content">
-            NO FAKES ALLOWED - MILAN BASED PLUG - WORLDWIDE SHIPPING - SOURCING SERVICE AVAILABLE - SECURE YOUR PAIR - 
-            NO FAKES ALLOWED - MILAN BASED PLUG - WORLDWIDE SHIPPING - SOURCING SERVICE AVAILABLE - SECURE YOUR PAIR - 
+    <div class="ticker-wrap">
+        <div class="ticker-item">
+            SPEDIZIONE TRACCIATA IN TUTTO IL MONDO - AUTENTICITÀ GARANTITA - SOURCING SU RICHIESTA - MILANO BASED - 
+            SPEDIZIONE TRACCIATA IN TUTTO IL MONDO - AUTENTICITÀ GARANTITA - SOURCING SU RICHIESTA - MILANO BASED - 
         </div>
     </div>
 
-    <nav class="main-nav">
+    <nav>
         <div class="nav-left">
-            <a href="#" onclick="toggleSearch()">SEARCH</a>
+            <span onclick="openSearch()">CERCA</span>
         </div>
-        
         <div class="nav-center">
-            <div class="nav-logo" onclick="window.location.reload()">LUXURY THREAD</div>
+            <div class="brand-name" onclick="window.location.reload()">LUXURY THREAD</div>
         </div>
-
         <div class="nav-right">
-            <a href="#drop">SHOP</a>
-            <a href="#sourcing" onclick="toggleBot()">SOURCING</a>
-            <span class="cart-btn" onclick="alert('Carrello gestito via DM')">CART (0)</span>
+            <a href="#shop">SHOP</a>
+            <span onclick="toggleBot()">AIUTO</span>
         </div>
     </nav>
 
-    <div id="search-panel">
-        <input type="text" id="search-input" placeholder="CERCA PRODOTTO..." onkeyup="searchProducts()">
-        <button onclick="toggleSearch()">CHIUDI</button>
+    <div id="search-overlay">
+        <div class="search-close" onclick="closeSearch()">CHIUDI X</div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="DIGITA PER CERCARE..." onkeyup="performSearch()">
+        </div>
+        <div id="search-results"></div>
     </div>
 
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1>THE VAULT</h1>
-            <p>MILAN'S FINEST RESELLER</p>
-            <a href="#drop" class="cta-btn">ACQUISTA ORA</a>
+    <div id="product-modal" class="modal-backdrop">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">X</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="m-img" src="" alt="">
+                </div>
+                <div class="modal-info">
+                    <h2 id="m-title">NOME PRODOTTO</h2>
+                    <p id="m-price" class="price">€000</p>
+                    <div class="divider"></div>
+                    <p id="m-desc" class="desc">Descrizione prodotto...</p>
+                    <p class="shipping-note">Spedizione immediata • Autenticato</p>
+                    <button id="m-buy-btn" class="buy-btn">ACQUISTA ORA (INSTAGRAM)</button>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
 
-    <main id="drop">
+    <header class="hero">
+        <div class="hero-text">
+            <h1>NUOVI ARRIVI</h1>
+            <p>COLLEZIONE ESCLUSIVA STREETWEAR</p>
+            <a href="#shop" class="hero-btn">SCOPRI ORA</a>
+        </div>
+    </header>
+
+    <main id="shop">
         
-        <div class="section-header">
-            <h2>DI TENDENZA ADESSO</h2>
+        <div class="category-block">
+            <div class="cat-title">DI TENDENZA</div>
+            <div class="product-grid" id="grid-trending"></div>
         </div>
-        <div class="grid-container" id="grid-trending"></div>
 
-        <div class="section-header">
-            <h2>CINTURE</h2>
+        <div class="category-block">
+            <div class="cat-title">CINTURE</div>
+            <div class="product-grid" id="grid-belts"></div>
         </div>
-        <div class="grid-container" id="grid-belts"></div>
 
-        <div class="section-header">
-            <h2>BORSELLINI E ACCESSORI</h2>
+        <div class="category-block">
+            <div class="cat-title">BORSELLINI</div>
+            <div class="product-grid" id="grid-wallets"></div>
         </div>
-        <div class="grid-container" id="grid-wallets"></div>
 
-        <div class="section-header">
-            <h2>BORSELLI</h2>
-        </div>
-        <div class="grid-container" id="grid-bags"></div>
-
-        <div id="no-results">
-            <h3>NESSUN PRODOTTO TROVATO</h3>
-            <p>Usa il servizio Sourcing per richiederlo.</p>
+        <div class="category-block">
+            <div class="cat-title">BORSELLI</div>
+            <div class="product-grid" id="grid-bags"></div>
         </div>
 
     </main>
 
     <footer>
-        <div class="footer-col">
-            <h4>LUXURY THREAD</h4>
-            <p>EST. 2024 - MILANO</p>
-        </div>
-        <div class="footer-col">
+        <div class="f-logo">LUXURY THREAD</div>
+        <div class="f-links">
             <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
-            <a href="#" onclick="toggleBot()">ASSISTENZA</a>
-            <a href="#">TERMINI E CONDIZIONI</a>
+            <a href="#" onclick="toggleBot()">CONTATTACI</a>
         </div>
+        <div class="f-copy">© 2026 - MILANO</div>
     </footer>
 
-    <div id="bot-btn" onclick="toggleBot()">
-        HAI BISOGNO DI AIUTO?
-    </div>
+    <div id="bot-trigger" onclick="toggleBot()">ASSISTENZA</div>
 
-    <div id="bot-overlay">
-        <div class="bot-box">
-            <div class="bot-header">
-                <span>SUPPORTO CLIENTI</span>
-                <button onclick="toggleBot()">CHIUDI</button>
-            </div>
-            
-            <div id="bot-menu" class="bot-view">
-                <p class="bot-msg">Seleziona un'opzione:</p>
-                <button class="bot-option" onclick="showSourcing()">NON TROVO IL PRODOTTO</button>
-                <button class="bot-option" onclick="openIG()">HO BISOGNO D'ASSISTENZA</button>
-            </div>
-
-            <div id="bot-sourcing" class="bot-view" style="display:none;">
-                <p class="bot-msg">Richiesta Sourcing VIP</p>
-                <input type="email" id="src-email" placeholder="TUA EMAIL">
-                <input type="text" id="src-model" placeholder="MODELLO DESIDERATO">
-                <input type="text" id="src-size" placeholder="TAGLIA">
-                <button class="bot-submit" onclick="sendMail()">INVIA RICHIESTA</button>
-                <p class="bot-back" onclick="resetBot()">INDIETRO</p>
-            </div>
+    <div id="bot-window">
+        <div class="bot-top">
+            <span>SUPPORTO</span>
+            <span style="cursor:pointer;" onclick="toggleBot()">X</span>
+        </div>
+        <div id="bot-home" class="bot-inner">
+            <p>Come possiamo aiutarti oggi?</p>
+            <button onclick="showSourcing()">NON TROVO UN PRODOTTO</button>
+            <button onclick="contactIG()">HO BISOGNO DI ASSISTENZA</button>
+        </div>
+        <div id="bot-form" class="bot-inner" style="display:none;">
+            <p>Richiesta Sourcing</p>
+            <input type="email" id="s-email" placeholder="EMAIL">
+            <input type="text" id="s-model" placeholder="MODELLO">
+            <input type="text" id="s-size" placeholder="TAGLIA">
+            <button onclick="sendSourcing()">INVIA RICHIESTA</button>
+            <span class="back-link" onclick="resetBot()">Indietro</span>
         </div>
     </div>
 
