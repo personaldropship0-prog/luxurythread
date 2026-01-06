@@ -2,125 +2,103 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXURY THREAD | OFFICIAL STORE</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LUXURY THREAD</title>
     <link rel="icon" type="image/png" href="img/logo.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=LUXURY_V4">
+    <link rel="stylesheet" href="style.css?v=FINAL_V5">
 </head>
 <body>
 
     <div class="ticker-wrap">
         <div class="ticker-item">
-            SPEDIZIONE TRACCIATA IN TUTTO IL MONDO - AUTENTICITÀ GARANTITA - SOURCING SU RICHIESTA - MILANO BASED - 
-            SPEDIZIONE TRACCIATA IN TUTTO IL MONDO - AUTENTICITÀ GARANTITA - SOURCING SU RICHIESTA - MILANO BASED - 
+            NO FAKES - SPEDIZIONE RAPIDA - SOURCING SU RICHIESTA - MILANO BASED - 
+            NO FAKES - SPEDIZIONE RAPIDA - SOURCING SU RICHIESTA - MILANO BASED - 
         </div>
     </div>
 
     <nav>
-        <div class="nav-left">
-            <span onclick="openSearch()">CERCA</span>
-        </div>
-        <div class="nav-center">
-            <div class="brand-name" onclick="window.location.reload()">LUXURY THREAD</div>
-        </div>
-        <div class="nav-right">
-            <a href="#shop">SHOP</a>
-            <span onclick="toggleBot()">AIUTO</span>
-        </div>
+        <div class="nav-left" onclick="openSearch()">CERCA</div>
+        <div class="nav-center" onclick="location.reload()">LUXURY THREAD</div>
+        <div class="nav-right" onclick="toggleBot()">AIUTO</div>
     </nav>
 
     <div id="search-overlay">
-        <div class="search-close" onclick="closeSearch()">CHIUDI X</div>
-        <div class="search-container">
-            <input type="text" id="search-input" placeholder="DIGITA PER CERCARE..." onkeyup="performSearch()">
+        <div class="search-top">
+            <input type="text" id="search-input" placeholder="COSA CERCHI?" onkeyup="performSearch()">
+            <span onclick="closeSearch()">CHIUDI</span>
         </div>
         <div id="search-results"></div>
     </div>
 
+    <header class="hero">
+        <div class="hero-content">
+            <h1>NUOVA STAGIONE</h1>
+            <p>STREETWEAR DI LUSSO</p>
+        </div>
+    </header>
+
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="switchTab('trending', this)">TRENDING</button>
+        <button class="filter-btn" onclick="switchTab('belts', this)">CINTURE</button>
+        <button class="filter-btn" onclick="switchTab('wallets', this)">PORTAFOGLI</button>
+        <button class="filter-btn" onclick="switchTab('bags', this)">BORSELLI</button>
+    </div>
+
+    <main id="main-grid" class="product-grid">
+        </main>
+
     <div id="product-modal" class="modal-backdrop">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal()">X</span>
+            <span class="close-modal" onclick="closeModal()">CHIUDI</span>
             <div class="modal-body">
-                <div class="modal-image">
+                <div class="modal-img-container">
                     <img id="m-img" src="" alt="">
                 </div>
                 <div class="modal-info">
-                    <h2 id="m-title">NOME PRODOTTO</h2>
-                    <p id="m-price" class="price">€000</p>
-                    <div class="divider"></div>
-                    <p id="m-desc" class="desc">Descrizione prodotto...</p>
-                    <p class="shipping-note">Spedizione immediata • Autenticato</p>
-                    <button id="m-buy-btn" class="buy-btn">ACQUISTA ORA (INSTAGRAM)</button>
+                    <h2 id="m-title">NOME</h2>
+                    <p id="m-price">€000</p>
+                    <hr>
+                    <p id="m-desc">Descrizione...</p>
+                    <button id="m-buy-btn">ACQUISTA SU IG</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <header class="hero">
-        <div class="hero-text">
-            <h1>NUOVI ARRIVI</h1>
-            <p>COLLEZIONE ESCLUSIVA STREETWEAR</p>
-            <a href="#shop" class="hero-btn">SCOPRI ORA</a>
-        </div>
-    </header>
-
-    <main id="shop">
-        
-        <div class="category-block">
-            <div class="cat-title">DI TENDENZA</div>
-            <div class="product-grid" id="grid-trending"></div>
-        </div>
-
-        <div class="category-block">
-            <div class="cat-title">CINTURE</div>
-            <div class="product-grid" id="grid-belts"></div>
-        </div>
-
-        <div class="category-block">
-            <div class="cat-title">BORSELLINI</div>
-            <div class="product-grid" id="grid-wallets"></div>
-        </div>
-
-        <div class="category-block">
-            <div class="cat-title">BORSELLI</div>
-            <div class="product-grid" id="grid-bags"></div>
-        </div>
-
-    </main>
-
     <footer>
-        <div class="f-logo">LUXURY THREAD</div>
+        <div class="f-logo">LT.</div>
         <div class="f-links">
             <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
-            <a href="#" onclick="toggleBot()">CONTATTACI</a>
+            <a href="#" onclick="toggleBot()">SOURCING</a>
         </div>
-        <div class="f-copy">© 2026 - MILANO</div>
     </footer>
 
-    <div id="bot-trigger" onclick="toggleBot()">ASSISTENZA</div>
+    <div id="bot-overlay">
+        <div class="bot-box">
+            <div class="bot-header">
+                <span>ASSISTENZA CLIENTI</span>
+                <span onclick="toggleBot()" style="cursor:pointer">X</span>
+            </div>
+            
+            <div id="bot-home" class="bot-view">
+                <p>SELEZIONA UN'OPZIONE:</p>
+                <button onclick="showSourcing()">RICHIESTA SOURCING (PRODOTTO MANCANTE)</button>
+                <button onclick="contactIG()">PARLA CON NOI SU INSTAGRAM</button>
+            </div>
 
-    <div id="bot-window">
-        <div class="bot-top">
-            <span>SUPPORTO</span>
-            <span style="cursor:pointer;" onclick="toggleBot()">X</span>
-        </div>
-        <div id="bot-home" class="bot-inner">
-            <p>Come possiamo aiutarti oggi?</p>
-            <button onclick="showSourcing()">NON TROVO UN PRODOTTO</button>
-            <button onclick="contactIG()">HO BISOGNO DI ASSISTENZA</button>
-        </div>
-        <div id="bot-form" class="bot-inner" style="display:none;">
-            <p>Richiesta Sourcing</p>
-            <input type="email" id="s-email" placeholder="EMAIL">
-            <input type="text" id="s-model" placeholder="MODELLO">
-            <input type="text" id="s-size" placeholder="TAGLIA">
-            <button onclick="sendSourcing()">INVIA RICHIESTA</button>
-            <span class="back-link" onclick="resetBot()">Indietro</span>
+            <div id="bot-form" class="bot-view" style="display:none;">
+                <p>COMPILA PER RICHIEDERE UN PRODOTTO:</p>
+                <input type="text" id="s-model" placeholder="MODELLO">
+                <input type="text" id="s-size" placeholder="TAGLIA">
+                <input type="email" id="s-email" placeholder="LA TUA EMAIL">
+                <button onclick="sendSourcing()">INVIA RICHIESTA</button>
+                <span class="back-link" onclick="resetBot()">INDIETRO</span>
+            </div>
         </div>
     </div>
 
