@@ -33,7 +33,7 @@ const products = [
     // --- CINTURE (6 Prodotti) ---
     { 
         id: 6, category: 'belts', name: "DIESEL 1DR BELT", price: 120, 
-        img: "https://images.unsplash.com/photo-1624223032773-772eb0462052?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/open1848188377-1848188377-605e00000192c797c77e0a22d234-unadjust_800_800.gif", 
         desc: "Cintura in pelle con maxi logo D metallico." 
     },
     { 
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
