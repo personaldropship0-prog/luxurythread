@@ -75,7 +75,7 @@ const products = [
     },
     { 
         id: 14, category: 'wallets', name: "PRADA CARD HOLDER", price: 290, 
-        img: "https://images.unsplash.com/photo-1550523412-40f46c6563e3?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/open1687670541-252808396-48810000019a4dcecb360a23b491_1152_1152.jpg", 
         desc: "Pelle Saffiano nera con logo triangolo." 
     },
 
@@ -224,5 +224,6 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
