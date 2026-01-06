@@ -43,7 +43,7 @@ const products = [
     },
     { 
         id: 8, category: 'belts', name: "HERMES H BUCKLE", price: 780, 
-        img: "https://images.unsplash.com/photo-1605763240004-7e93b172d754?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/open1610848089-1610848089-491400000192c2ff72390a8115b5_1200_900.jpg", 
         desc: "Eleganza senza tempo. Fibbia H placcata oro." 
     },
     { 
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
