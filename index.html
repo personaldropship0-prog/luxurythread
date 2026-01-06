@@ -3,102 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXURY THREAD | THE PLUG</title>
+    <title>LUXURY THREAD | OFFICIAL STORE</title>
     
     <link rel="icon" type="image/png" href="img/logo.png">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=TRAP_V1">
+    <link rel="stylesheet" href="style.css?v=CLEAN_V1">
 </head>
 <body>
 
     <div class="marquee-container">
         <div class="marquee-content">
-            NO FAKES ALLOWED 🚫 • MILAN BASED PLUG 🇮🇹 • WORLDWIDE SHIPPING ✈️ • SOURCING SERVICE AVAILABLE • SECURE YOUR PAIR • 
-            NO FAKES ALLOWED 🚫 • MILAN BASED PLUG 🇮🇹 • WORLDWIDE SHIPPING ✈️ • SOURCING SERVICE AVAILABLE • SECURE YOUR PAIR • 
+            NO FAKES ALLOWED - MILAN BASED PLUG - WORLDWIDE SHIPPING - SOURCING SERVICE AVAILABLE - SECURE YOUR PAIR - 
+            NO FAKES ALLOWED - MILAN BASED PLUG - WORLDWIDE SHIPPING - SOURCING SERVICE AVAILABLE - SECURE YOUR PAIR - 
         </div>
     </div>
 
     <nav class="main-nav">
-        <div class="nav-logo">LT.</div>
-        <div class="nav-links">
-            <a href="#drop">DROP</a>
-            <a href="#sourcing" onclick="toggleBot()">SOURCING</a>
+        <div class="nav-left">
+            <a href="#" onclick="toggleSearch()">SEARCH</a>
         </div>
-        <div class="nav-cart" onclick="alert('Carrello gestito via DM')">🛒 (0)</div>
+        
+        <div class="nav-center">
+            <div class="nav-logo" onclick="window.location.reload()">LUXURY THREAD</div>
+        </div>
+
+        <div class="nav-right">
+            <a href="#drop">SHOP</a>
+            <a href="#sourcing" onclick="toggleBot()">SOURCING</a>
+            <span class="cart-btn" onclick="alert('Carrello gestito via DM')">CART (0)</span>
+        </div>
     </nav>
 
+    <div id="search-panel">
+        <input type="text" id="search-input" placeholder="CERCA PRODOTTO..." onkeyup="searchProducts()">
+        <button onclick="toggleSearch()">CHIUDI</button>
+    </div>
+
     <section class="hero-section">
-        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="glitch-text">LUXURY<br>THREAD</h1>
-            <p class="hero-subtitle">MILAN'S FINEST RESELLER</p>
-            <p class="hero-desc">WE SOURCE WHAT YOU CAN'T FIND.</p>
-            <a href="#drop" class="cta-btn">ENTER THE VAULT</a>
+            <h1>THE VAULT</h1>
+            <p>MILAN'S FINEST RESELLER</p>
+            <a href="#drop" class="cta-btn">ACQUISTA ORA</a>
         </div>
     </section>
 
     <main id="drop">
         
-        <div class="section-title">
-            <h2>CURRENTLY HOT 🔥</h2>
+        <div class="section-header">
+            <h2>DI TENDENZA ADESSO</h2>
         </div>
         <div class="grid-container" id="grid-trending"></div>
 
-        <div class="section-title">
-            <h2>BELTS / CINTURE</h2>
+        <div class="section-header">
+            <h2>CINTURE</h2>
         </div>
         <div class="grid-container" id="grid-belts"></div>
 
-        <div class="section-title">
-            <h2>SMALL GOODS / BORSELLINI</h2>
+        <div class="section-header">
+            <h2>BORSELLINI E ACCESSORI</h2>
         </div>
         <div class="grid-container" id="grid-wallets"></div>
 
-        <div class="section-title">
-            <h2>SIDE BAGS / BORSELLI</h2>
+        <div class="section-header">
+            <h2>BORSELLI</h2>
         </div>
         <div class="grid-container" id="grid-bags"></div>
+
+        <div id="no-results">
+            <h3>NESSUN PRODOTTO TROVATO</h3>
+            <p>Usa il servizio Sourcing per richiederlo.</p>
+        </div>
 
     </main>
 
     <footer>
-        <div class="footer-logo">LUXURY THREAD</div>
-        <div class="footer-links">
-            <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
-            <a href="#" onclick="toggleBot()">CONTACT</a>
-            <a href="#">TERMS & CONDITIONS</a>
+        <div class="footer-col">
+            <h4>LUXURY THREAD</h4>
+            <p>EST. 2024 - MILANO</p>
         </div>
-        <p class="copy">EST. 2024 • MILANO</p>
+        <div class="footer-col">
+            <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
+            <a href="#" onclick="toggleBot()">ASSISTENZA</a>
+            <a href="#">TERMINI E CONDIZIONI</a>
+        </div>
     </footer>
 
     <div id="bot-btn" onclick="toggleBot()">
-        ⚠️ NEED HELP?
+        HAI BISOGNO DI AIUTO?
     </div>
 
     <div id="bot-overlay">
         <div class="bot-box">
             <div class="bot-header">
-                <span>LT SUPPORT</span>
-                <button onclick="toggleBot()">✖</button>
+                <span>SUPPORTO CLIENTI</span>
+                <button onclick="toggleBot()">CHIUDI</button>
             </div>
             
             <div id="bot-menu" class="bot-view">
-                <p class="bot-msg">Cosa ti serve?</p>
-                <button class="bot-option" onclick="showSourcing()">🔎 NON TROVO IL PRODOTTO</button>
-                <button class="bot-option" onclick="openIG()">💬 ASSISTENZA (DM)</button>
+                <p class="bot-msg">Seleziona un'opzione:</p>
+                <button class="bot-option" onclick="showSourcing()">NON TROVO IL PRODOTTO</button>
+                <button class="bot-option" onclick="openIG()">HO BISOGNO D'ASSISTENZA</button>
             </div>
 
             <div id="bot-sourcing" class="bot-view" style="display:none;">
-                <p class="bot-msg">Compila per richiesta Sourcing VIP:</p>
-                <input type="email" id="src-email" placeholder="Tua Email">
-                <input type="text" id="src-model" placeholder="Modello (es. J4 Black Cat)">
-                <input type="text" id="src-size" placeholder="Taglia (es. 43)">
-                <button class="bot-submit" onclick="sendMail()">INVIA RICHIESTA ➔</button>
-                <p class="bot-back" onclick="resetBot()">Indietro</p>
+                <p class="bot-msg">Richiesta Sourcing VIP</p>
+                <input type="email" id="src-email" placeholder="TUA EMAIL">
+                <input type="text" id="src-model" placeholder="MODELLO DESIDERATO">
+                <input type="text" id="src-size" placeholder="TAGLIA">
+                <button class="bot-submit" onclick="sendMail()">INVIA RICHIESTA</button>
+                <p class="bot-back" onclick="resetBot()">INDIETRO</p>
             </div>
         </div>
     </div>
