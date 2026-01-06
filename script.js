@@ -70,7 +70,7 @@ const products = [
     },
     { 
         id: 13, category: 'wallets', name: "GOYARD SAINT SULPICE", price: 450, 
-        img: "https://images.unsplash.com/photo-1628149455676-e8d1a33753c1?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/pcitem1910834196-5e29000001938d26256f0a2395a3_2560_3413.jpg", 
         desc: "Pattern Goyardine verde. Esclusivo e raro." 
     },
     { 
@@ -224,4 +224,5 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
