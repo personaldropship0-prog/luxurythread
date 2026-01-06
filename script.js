@@ -48,7 +48,7 @@ const products = [
     },
     { 
         id: 9, category: 'belts', name: "LV MONOGRAM BELT", price: 490, 
-        img: "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/pcitem901883166076-38710000019146ab18960a2395d6_800_800.jpg", 
         desc: "Canvas Monogram classico con fibbia LV." 
     },
     { 
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
