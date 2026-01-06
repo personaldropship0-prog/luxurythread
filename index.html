@@ -3,110 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luxury Thread | Official Store</title>
+    <title>LUXURY THREAD | THE PLUG</title>
     
     <link rel="icon" type="image/png" href="img/logo.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=FINAL">
+    <link rel="stylesheet" href="style.css?v=TRAP_V1">
 </head>
 <body>
 
-    <div class="ticker-wrap">
-        <div class="ticker">
-            WORLDWIDE SHIPPING ✈ • 100% AUTHENTIC GUARANTEED • MILAN BASED • SOURCING SERVICE AVAILABLE • DM FOR INQUIRIES •
-            WORLDWIDE SHIPPING ✈ • 100% AUTHENTIC GUARANTEED • MILAN BASED • SOURCING SERVICE AVAILABLE • DM FOR INQUIRIES •
+    <div class="marquee-container">
+        <div class="marquee-content">
+            NO FAKES ALLOWED 🚫 • MILAN BASED PLUG 🇮🇹 • WORLDWIDE SHIPPING ✈️ • SOURCING SERVICE AVAILABLE • SECURE YOUR PAIR • 
+            NO FAKES ALLOWED 🚫 • MILAN BASED PLUG 🇮🇹 • WORLDWIDE SHIPPING ✈️ • SOURCING SERVICE AVAILABLE • SECURE YOUR PAIR • 
         </div>
     </div>
 
-    <header>
-        <div class="header-inner">
-            <div class="logo-container" onclick="window.location.reload()">
-                <img src="img/logo.png" alt="LT Logo">
-            </div>
-            <h1 class="site-title">LUXURY THREAD</h1>
-            <div class="search-btn" onclick="toggleSearch()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-            </div>
+    <nav class="main-nav">
+        <div class="nav-logo">LT.</div>
+        <div class="nav-links">
+            <a href="#drop">DROP</a>
+            <a href="#sourcing" onclick="toggleBot()">SOURCING</a>
         </div>
+        <div class="nav-cart" onclick="alert('Carrello gestito via DM')">🛒 (0)</div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="glitch-text">LUXURY<br>THREAD</h1>
+            <p class="hero-subtitle">MILAN'S FINEST RESELLER</p>
+            <p class="hero-desc">WE SOURCE WHAT YOU CAN'T FIND.</p>
+            <a href="#drop" class="cta-btn">ENTER THE VAULT</a>
+        </div>
+    </section>
+
+    <main id="drop">
         
-        <div id="search-bar-container">
-            <input type="text" id="search-input" placeholder="Cerca brand, modello..." onkeyup="searchProducts()">
+        <div class="section-title">
+            <h2>CURRENTLY HOT 🔥</h2>
         </div>
-    </header>
+        <div class="grid-container" id="grid-trending"></div>
 
-    <main>
-        <div class="category-header">
-            <h2>🔥 DI TENDENZA ADESSO</h2>
-            <div class="line"></div>
+        <div class="section-title">
+            <h2>BELTS / CINTURE</h2>
         </div>
-        <div class="product-grid" id="grid-trending"></div>
+        <div class="grid-container" id="grid-belts"></div>
 
-        <div class="category-header">
-            <h2>CINTURE</h2>
-            <div class="line"></div>
+        <div class="section-title">
+            <h2>SMALL GOODS / BORSELLINI</h2>
         </div>
-        <div class="product-grid" id="grid-belts"></div>
+        <div class="grid-container" id="grid-wallets"></div>
 
-        <div class="category-header">
-            <h2>BORSELLINI & ACCESSORI</h2>
-            <div class="line"></div>
+        <div class="section-title">
+            <h2>SIDE BAGS / BORSELLI</h2>
         </div>
-        <div class="product-grid" id="grid-wallets"></div>
+        <div class="grid-container" id="grid-bags"></div>
 
-        <div class="category-header">
-            <h2>BORSELLI</h2>
-            <div class="line"></div>
-        </div>
-        <div class="product-grid" id="grid-bags"></div>
-        
-        <div id="no-results" style="display:none; text-align:center; padding: 50px;">
-            <h3>Nessun prodotto trovato.</h3>
-            <p>Usa il BOT in basso a sinistra per richiedere il sourcing.</p>
-        </div>
     </main>
 
     <footer>
-        <p>© 2026 LUXURY THREAD</p>
-        <p style="font-size: 0.8rem; opacity: 0.6;">Milan • Tokyo • New York</p>
+        <div class="footer-logo">LUXURY THREAD</div>
+        <div class="footer-links">
+            <a href="https://instagram.com/luxury.thread_" target="_blank">INSTAGRAM</a>
+            <a href="#" onclick="toggleBot()">CONTACT</a>
+            <a href="#">TERMS & CONDITIONS</a>
+        </div>
+        <p class="copy">EST. 2024 • MILANO</p>
     </footer>
 
-    <div id="bot-trigger" onclick="toggleBot()">
-        <span>🤖 BOT</span>
+    <div id="bot-btn" onclick="toggleBot()">
+        ⚠️ NEED HELP?
     </div>
 
-    <div id="bot-window">
-        <div class="bot-header">
-            <span>ASSISTENZA LT</span>
-            <button onclick="toggleBot()">✕</button>
-        </div>
-        
-        <div class="bot-content" id="bot-main-menu">
-            <div class="bot-message">
-                Ciao! Hai bisogno di aiuto?
+    <div id="bot-overlay">
+        <div class="bot-box">
+            <div class="bot-header">
+                <span>LT SUPPORT</span>
+                <button onclick="toggleBot()">✖</button>
             </div>
-            <div class="bot-options">
-                <button onclick="showSourcingForm()">NON TROVO IL PRODOTTO</button>
-                <button onclick="contactInstagram()">HO BISOGNO D'ASSISTENZA</button>
-            </div>
-        </div>
-
-        <div class="bot-content" id="bot-sourcing-form" style="display:none;">
-            <div class="bot-message">
-                Compila il modulo per la richiesta di sourcing:
-            </div>
-            <input type="email" id="user-email" placeholder="La tua Email" class="bot-input">
-            <input type="text" id="user-model" placeholder="Modello desiderato" class="bot-input">
-            <input type="text" id="user-size" placeholder="Taglia" class="bot-input">
             
-            <div class="bot-options">
-                <button onclick="sendSourcingEmail()" style="background: #000; color: #fff;">INVIA RICHIESTA</button>
-                <button onclick="resetBot()" style="background: transparent; color: #000; border: 1px solid #ccc;">INDIETRO</button>
+            <div id="bot-menu" class="bot-view">
+                <p class="bot-msg">Cosa ti serve?</p>
+                <button class="bot-option" onclick="showSourcing()">🔎 NON TROVO IL PRODOTTO</button>
+                <button class="bot-option" onclick="openIG()">💬 ASSISTENZA (DM)</button>
+            </div>
+
+            <div id="bot-sourcing" class="bot-view" style="display:none;">
+                <p class="bot-msg">Compila per richiesta Sourcing VIP:</p>
+                <input type="email" id="src-email" placeholder="Tua Email">
+                <input type="text" id="src-model" placeholder="Modello (es. J4 Black Cat)">
+                <input type="text" id="src-size" placeholder="Taglia (es. 43)">
+                <button class="bot-submit" onclick="sendMail()">INVIA RICHIESTA ➔</button>
+                <p class="bot-back" onclick="resetBot()">Indietro</p>
             </div>
         </div>
     </div>
