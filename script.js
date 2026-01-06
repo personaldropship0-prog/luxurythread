@@ -6,7 +6,7 @@ const products = [
     // --- TRENDING (5 Prodotti) ---
     { 
         id: 1, category: 'trending', name: "JORDAN 4 BLACK MILITARY", price: 450, 
-        img: "https://images.unsplash.com/photo-1695627572793-270830953a7b?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/open1848188377-1848188377-605e00000192c797c77e0a22d234-unadjust_800_800.gif", 
         desc: "Best seller. Sneaker iconica in colorazione Military Black. Autenticità garantita al 100%." 
     },
     { 
