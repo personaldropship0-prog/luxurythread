@@ -82,7 +82,7 @@ const products = [
     // --- BORSELLI (1 Prodotto) ---
     { 
         id: 15, category: 'bags', name: "PRADA RE-NYLON BAG", price: 1100, 
-        img: "https://images.unsplash.com/photo-1547949003-9792a18a2601?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/open1687670541-252808396-0b160000019a521ee8a30a231226_800_800.jpg", 
         desc: "Tracolla in nylon rigenerato. Icona street-luxury." 
     }
 ];
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
