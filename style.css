@@ -1,148 +1,169 @@
-/* RESET */
+/* RESET & BASE */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; } /* Importante per il footer */
 body {
     background: #ffffff; color: #000;
     font-family: 'Inter', sans-serif; font-weight: 300;
-    overflow-x: hidden;
+    display: flex; flex-direction: column;
 }
 
 /* TICKER */
 .ticker-wrap {
-    background: #000; color: #fff; height: 30px;
+    background: #000; color: #fff; height: 30px; flex-shrink: 0;
     display: flex; align-items: center; overflow: hidden;
-    font-size: 0.7rem; letter-spacing: 1px;
+    font-size: 0.7rem; letter-spacing: 1px; font-weight: 600;
 }
 .ticker-item {
     white-space: nowrap; animation: ticker 25s linear infinite; padding-left: 100%;
 }
 @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-/* NAV */
+/* NAVBAR */
 nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(255,255,255,0.98); border-bottom: 1px solid #eee;
+    position: sticky; top: 0; z-index: 100; flex-shrink: 0;
+    background: rgba(255,255,255,0.98); border-bottom: 1px solid #e0e0e0;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 20px; height: 60px;
+    padding: 0 20px; height: 60px;
 }
-.nav-center { font-family: 'Oswald'; font-weight: 500; letter-spacing: 1px; font-size: 1.2rem; cursor: pointer; }
-.nav-left, .nav-right { font-size: 0.8rem; cursor: pointer; text-transform: uppercase; font-weight: 500; }
+.nav-center { font-family: 'Oswald'; font-weight: 500; font-size: 1.3rem; letter-spacing: -0.5px; cursor: pointer; }
+.nav-left, .nav-right { font-size: 0.8rem; cursor: pointer; text-transform: uppercase; font-weight: 600; }
 
 /* HERO */
 .hero {
-    height: 40vh; width: 100%;
-    background: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920&auto=format&fit=crop') center/cover;
+    height: 40vh; width: 100%; flex-shrink: 0;
+    /* Nuova immagine Hero più dark/street */
+    background: url('https://images.unsplash.com/photo-1520048063534-615f80f3a0db?q=80&w=1920&auto=format&fit=crop') center/cover;
     display: flex; align-items: center; justify-content: center;
-    position: relative; margin-bottom: 0;
+    position: relative;
 }
-.hero::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.4); }
+.hero::after { content:''; position: absolute; inset:0; background: rgba(0,0,0,0.3); }
 .hero-content { position: relative; z-index: 2; text-align: center; color: #fff; }
-.hero-content h1 { font-family: 'Oswald'; font-size: 2.5rem; letter-spacing: 1px; margin-bottom: 5px; }
-.hero-content p { font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; }
+.hero-content h1 { font-family: 'Oswald'; font-size: 3rem; letter-spacing: 1px; margin-bottom: 5px; text-transform: uppercase; }
+.hero-content p { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; }
 
-/* FILTER BAR (I TASTI) */
+/* TABS */
 .filter-bar {
-    display: flex; justify-content: center; gap: 15px;
-    padding: 30px 20px; background: #fff;
-    flex-wrap: wrap; border-bottom: 1px solid #fafafa;
+    display: flex; justify-content: center; gap: 10px; flex-shrink: 0;
+    padding: 20px 10px; background: #fff; flex-wrap: wrap; border-bottom: 1px solid #f0f0f0;
 }
 .filter-btn {
-    border: 1px solid #ddd; background: transparent;
-    padding: 10px 20px; font-family: 'Inter'; font-size: 0.75rem;
+    border: 1px solid #eee; background: transparent;
+    padding: 10px 18px; font-family: 'Inter'; font-size: 0.75rem; font-weight: 600;
     text-transform: uppercase; cursor: pointer; transition: 0.2s;
-    letter-spacing: 1px; color: #888;
+    color: #999;
 }
-.filter-btn.active, .filter-btn:hover {
-    border-color: #000; color: #000;
+.filter-btn.active { border-color: #000; color: #000; background: #fff; }
+.filter-btn:hover { color: #000; border-color: #ccc; }
+
+/* MAIN GRID (Con Footer Sticky Logic) */
+main {
+    flex: 1 0 auto; /* Spinge il footer in basso */
+    width: 100%; max-width: 1200px; margin: 0 auto;
+    padding: 30px 15px;
 }
 
-/* GRID SYSTEM (FIX MOBILE) */
 .product-grid {
     display: grid;
-    /* Mobile: 2 colonne fisse. Desktop: si adatta */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 15px; 
-    padding: 20px 15px;
-    max-width: 1200px; margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonne su mobile */
+    gap: 15px;
 }
 @media(min-width: 768px) {
-    .product-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; padding: 40px; }
+    .product-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; }
 }
 
 /* CARD PRODOTTO */
-.card { cursor: pointer; }
+.card { cursor: pointer; background: #fff; }
 .card-img {
     width: 100%;
-    aspect-ratio: 1 / 1; /* QUADRATO PERFETTO */
-    background: #f4f4f4;
+    aspect-ratio: 1 / 1; /* FORZA IL QUADRATO SEMPRE */
+    background: #f8f8f8;
     overflow: hidden; position: relative;
+    border-bottom: 1px solid #f0f0f0;
 }
 .card-img img {
     width: 100%; height: 100%;
-    object-fit: cover; /* Riempie il quadrato senza deformarsi */
-    display: block; transition: transform 0.4s;
+    object-fit: cover; /* Ritaglia l'immagine per riempire */
+    object-position: center;
+    display: block; transition: transform 0.5s ease;
 }
-.card:hover .card-img img { transform: scale(1.03); }
+.card:hover .card-img img { transform: scale(1.05); }
 
-.card-info { padding-top: 10px; }
-.card-name { font-size: 0.8rem; text-transform: uppercase; margin-bottom: 4px; color: #000; }
-.card-price { font-size: 0.8rem; color: #666; font-weight: 500; }
+.card-info { padding: 12px 5px; }
+.card-name { font-family: 'Oswald'; font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px; color: #000; line-height: 1.2;}
+.card-price { font-size: 0.85rem; color: #444; font-weight: 600; }
 
-/* SEARCH OVERLAY */
+/* FOOTER (Nuovo Stile Black) */
+.main-footer {
+    flex-shrink: 0;
+    background-color: #111; /* Sfondo quasi nero */
+    color: #fff;
+    padding: 50px 20px;
+    margin-top: 50px;
+}
+.footer-container {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+.footer-brand { font-family: 'Oswald'; font-size: 1.8rem; margin-bottom: 25px; letter-spacing: 1px;}
+.footer-links { display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+.footer-links a {
+    color: #aaa; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
+}
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 0.7rem; color: #555; }
+
+@media(min-width: 768px) {
+    .footer-links { flex-direction: row; gap: 30px; }
+}
+
+/* SEARCH & MODALS */
+#search-overlay, .modal-backdrop, #bot-overlay {
+    /* Stili rimasti uguali ma assicurati che siano sopra il footer */
+    z-index: 5000;
+}
+/* Re-inserisco stili search/modal per sicurezza */
 #search-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #fff; z-index: 2000; display: none;
-    flex-direction: column; padding: 20px;
+    background: #fff; display: none; flex-direction: column; padding: 20px;
 }
-.search-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #000; padding-bottom: 10px; }
-#search-input { border: none; font-size: 1.2rem; outline: none; width: 80%; text-transform: uppercase; }
-.search-top span { font-size: 0.8rem; font-weight: bold; cursor: pointer; }
-#search-results { margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; overflow-y: auto; }
+.search-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; padding-bottom: 15px; }
+#search-input { border: none; font-size: 1.5rem; outline: none; width: 80%; text-transform: uppercase; font-family: 'Oswald'; }
+#search-results { margin-top: 30px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; overflow-y: auto; padding-bottom: 50px;}
 
-/* MESSAGGIO NO RISULTATI */
-.no-res-box {
-    grid-column: 1 / -1; text-align: center; margin-top: 50px;
-}
-.no-res-box p { margin-bottom: 20px; font-size: 1rem; }
-.no-res-box button {
-    background: #000; color: #fff; border: none; padding: 15px 30px;
-    text-transform: uppercase; font-size: 0.8rem; cursor: pointer;
-}
+.no-res-box { grid-column: 1 / -1; text-align: center; margin-top: 50px; }
+.no-res-box button { background: #000; color: #fff; padding: 15px 30px; border: none; cursor: pointer; margin-top: 15px; }
 
 /* MODAL */
 .modal-backdrop {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255,255,255,0.95); z-index: 3000; display: none;
-    justify-content: center; align-items: center;
+    background: rgba(255,255,255,0.9); backdrop-filter: blur(5px);
+    display: none; align-items: center; justify-content: center;
 }
 .modal-content {
-    width: 90%; max-width: 900px; height: 80vh; background: #fff;
-    border: 1px solid #eee; display: flex; flex-direction: column; position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    width: 95%; max-width: 900px; height: 85vh; background: #fff;
+    border: 1px solid #000; display: flex; flex-direction: column; position: relative;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.2);
 }
-.close-modal { position: absolute; top: 15px; right: 20px; font-size: 0.8rem; cursor: pointer; z-index: 10; font-weight: 600; }
-.modal-body { display: flex; height: 100%; width: 100%; flex-direction: column; }
-@media(min-width: 768px) { .modal-body { flex-direction: row; } }
-
-.modal-img-container { flex: 1; background: #fafafa; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.close-modal { position: absolute; top: 15px; right: 20px; font-weight: bold; cursor: pointer; z-index: 10; }
+.modal-body { display: flex; height: 100%; width: 100%; flex-direction: column; overflow-y: auto; }
+.modal-img-container { flex: 1; min-height: 40%; background: #f9f9f9; }
 .modal-img-container img { width: 100%; height: 100%; object-fit: cover; }
-.modal-info { flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-.modal-info h2 { font-family: 'Oswald'; text-transform: uppercase; font-size: 2rem; margin-bottom: 10px; }
-.modal-info hr { border: 0; border-top: 1px solid #ddd; margin: 20px 0; }
-#m-buy-btn {
-    background: #000; color: #fff; border: none; padding: 15px;
-    text-transform: uppercase; margin-top: 30px; cursor: pointer;
-}
+.modal-info { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+.modal-info h2 { font-family: 'Oswald'; font-size: 2rem; margin-bottom: 10px; text-transform: uppercase;}
+.modal-info hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
+#m-buy-btn { width: 100%; padding: 18px; background: #000; color: #fff; border: none; font-weight: bold; cursor: pointer; margin-top: auto; }
 
-/* BOT / HELP */
+@media(min-width: 768px) { .modal-body { flex-direction: row; overflow: hidden; } .modal-img-container { height: 100%; } }
+
+/* BOT */
 #bot-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5); z-index: 5000; display: none;
-    align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center;
 }
-.bot-box { background: #fff; width: 90%; max-width: 400px; padding: 0; border: 1px solid #000; }
-.bot-header { background: #000; color: #fff; padding: 15px; display: flex; justify-content: space-between; font-size: 0.9rem; }
-.bot-view { padding: 30px; display: flex; flex-direction: column; gap: 10px; }
-.bot-view button { padding: 15px; background: #fff; border: 1px solid #ccc; cursor: pointer; font-size: 0.75rem; text-transform: uppercase; }
-.bot-view button:hover { border-color: #000; background: #000; color: #fff; }
-.bot-view input { padding: 10px; border: 1px solid #ccc; margin-bottom: 5px; }
-.back-link { text-align: center; font-size: 0.7rem; text-decoration: underline; cursor: pointer; margin-top: 10px; }
+.bot-box { width: 90%; max-width: 400px; background: #fff; border: 2px solid #000; }
+.bot-header { background: #000; color: #fff; padding: 15px; display: flex; justify-content: space-between; font-weight: bold;}
+.bot-view { padding: 30px; display: flex; flex-direction: column; gap: 15px; }
+.bot-view button { padding: 15px; background: #fff; border: 1px solid #000; cursor: pointer; font-weight: 600; text-transform: uppercase; }
+.bot-view button:hover { background: #000; color: #fff; }
+.bot-view input { padding: 12px; border: 1px solid #ccc; outline: none; }
+.back-link { text-align: center; text-decoration: underline; cursor: pointer; font-size: 0.8rem; margin-top: 10px; }
