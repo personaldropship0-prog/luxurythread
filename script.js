@@ -21,7 +21,7 @@ const products = [
     },
     { 
         id: 4, category: 'trending', name: "BOTTEGA VENETA", price: 450, 
-        img: "https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=800&auto=format&fit=crop", 
+        img: "https://www.francocuoio.it/wp-content/uploads/2019/10/Hermes-Franco-Cuoio-Web.jpg", 
         desc: "Pelle intrecciata motivo signature." 
     },
     { 
@@ -58,7 +58,7 @@ const products = [
     },
     { 
         id: 11, category: 'belts', name: "BOTTEGA VENETA", price: 450, 
-        img: "https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=800&auto=format&fit=crop", 
+        img: "https://www.francocuoio.it/wp-content/uploads/2019/10/Hermes-Franco-Cuoio-Web.jpg", 
         desc: "Pelle intrecciata motivo signature." 
     },
 
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
