@@ -53,7 +53,7 @@ const products = [
     },
     { 
         id: 10, category: 'belts', name: "FERRAGAMO GANCINI", price: 350, 
-        img: "https://images.unsplash.com/photo-1624222247344-550fb60583dc?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/open1778275904-1234478995-5fc200000189a4eead4f0a8115b5_800_800.jpg", 
         desc: "Cintura reversibile con fibbia Gancini." 
     },
     { 
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
