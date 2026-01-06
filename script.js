@@ -65,7 +65,7 @@ const products = [
     // --- PORTAFOGLI (3 Prodotti) ---
     { 
         id: 12, category: 'wallets', name: "LV POCKET ORGANIZER", price: 320, 
-        img: "https://images.unsplash.com/photo-1627123424574-181ce90b94c0?q=80&w=800&auto=format&fit=crop", 
+        img: "https://si.geilicdn.com/wdseller169153426-4802000001872c2910950a2313df_2560_1920.jpg", 
         desc: "Il portacarte definitivo. Canvas Eclipse." 
     },
     { 
@@ -224,3 +224,4 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
