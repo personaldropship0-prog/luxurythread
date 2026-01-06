@@ -4,30 +4,30 @@
 
 const products = [
     // --- TRENDING (5 Prodotti) ---
-    { 
-        id: 1, category: 'trending', name: "JORDAN 4 BLACK MILITARY", price: 450, 
-        img: "https://si.geilicdn.com/open1848188377-1848188377-605e00000192c797c77e0a22d234-unadjust_800_800.gif", 
-        desc: "Best seller. Sneaker iconica in colorazione Military Black. Autenticità garantita al 100%." 
+        { 
+        id: 1, category: 'trending', name: "FERRAGAMO GANCINI", price: 350, 
+        img: "https://si.geilicdn.com/open1778275904-1234478995-5fc200000189a4eead4f0a8115b5_800_800.jpg", 
+        desc: "Cintura reversibile con fibbia Gancini." 
     },
     { 
-        id: 2, category: 'trending', name: "CORTEIZ ALCATRAZ HOODIE", price: 280, 
-        img: "https://images.unsplash.com/photo-1620799140408-ed5341cd2431?q=80&w=800&auto=format&fit=crop", // Foto hoodie bianca generica streetwear
-        desc: "Felpa pesante con stampa iconica Alcatraz. Fit boxy, alta grammatura." 
+        id: 2, category: 'trending', name: "LV POCKET ORGANIZER", price: 320, 
+        img: "https://si.geilicdn.com/wdseller169153426-4802000001872c2910950a2313df_2560_1920.jpg", 
+        desc: "Il portacarte definitivo. Canvas Eclipse." 
     },
     { 
-        id: 3, category: 'trending', name: "NIKE DUNK LOW PANDA", price: 180, 
-        img: "https://images.unsplash.com/photo-1637844527273-df6881478839?q=80&w=800&auto=format&fit=crop", 
-        desc: "La scarpa più versatile. Colorazione bianco/nera classica." 
+        id: 3, category: 'trending', name: "PRADA RE-NYLON BAG", price: 1100, 
+        img: "https://si.geilicdn.com/open1687670541-252808396-0b160000019a521ee8a30a231226_800_800.jpg", 
+        desc: "Tracolla in nylon rigenerato. Icona street-luxury." 
     },
     { 
-        id: 4, category: 'trending', name: "STUSSY 8 BALL FLEECE", price: 220, 
-        img: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=800&auto=format&fit=crop", // Foto outfit streetwear
-        desc: "Giacca in pile reversibile con logo 8 Ball sulla schiena." 
+        id: 4, category: 'trending', name: "BOTTEGA VENETA", price: 450, 
+        img: "https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=800&auto=format&fit=crop", 
+        desc: "Pelle intrecciata motivo signature." 
     },
     { 
-        id: 5, category: 'trending', name: "TRAVIS SCOTT J1 OLIVE", price: 1100, 
-        img: "https://images.unsplash.com/photo-1584735175315-9d5df23860e6?q=80&w=800&auto=format&fit=crop", 
-        desc: "Collaborazione esclusiva Travis Scott. Swoosh rovesciato e materiali premium." 
+        id: 5,category: 'trending', name: "HERMES H BUCKLE", price: 780, 
+        img: "https://si.geilicdn.com/open1610848089-1610848089-491400000192c2ff72390a8115b5_1200_900.jpg", 
+        desc: "Eleganza senza tempo. Fibbia H placcata oro." 
     },
 
     // --- CINTURE (6 Prodotti) ---
@@ -224,6 +224,7 @@ function sendSourcing() {
     window.location.href = `mailto:personal.drop.ship0@gmail.com?subject=SOURCING ${model}&body=Richiesta modello: ${model}, Email: ${email}`;
     toggleBot();
 }
+
 
 
 
